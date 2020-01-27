@@ -1,11 +1,11 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
+import TabNavigator from "./navigation/AppNavigator";
+
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Skilt info!</Text>
-    </View>
+    <TabNavigator></TabNavigator>
   );
 }
 
