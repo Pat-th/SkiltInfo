@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import Colors from "../Constants/Colors"
 
 const SettingsScreen = props => {
     return(
@@ -7,6 +8,10 @@ const SettingsScreen = props => {
             <Text>This is the settings screen!</Text>
         </View>
     );
+};
+
+SettingsScreen.navigationOptions = () => {
+    headerTitle: 'Camera'
 };
 
 const styles = StyleSheet.create({
