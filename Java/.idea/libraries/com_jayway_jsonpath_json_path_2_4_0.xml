@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="com.jayway.jsonpath:json-path:2.4.0" type="repository">
+    <properties maven-id="com.jayway.jsonpath:json-path:2.4.0" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/json-path-2.4.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/json-smart-2.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/accessors-smart-1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/asm-5.0.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/slf4j-api-1.7.25.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
