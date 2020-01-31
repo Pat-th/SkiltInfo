@@ -4,42 +4,35 @@ import org.json.JSONObject;
 
 class Filters{
 JSONObject[] keys;
-    void getEgenskap(String json, int index, String key) throws JSONException {
-        JSONObject o = new JSONObject(json);
-        JSONArray array = o.getJSONArray("egenskaper");
+    void getEgenskap(JSONObject json, int index, String key) throws JSONException {
+
+        JSONArray array = json.getJSONArray("egenskaper");
         JSONObject object = array.getJSONObject(index);
         tryCatchBlock(object, key);
     }
 
-    void getMetadata(String json, String title, String key, String key2) throws JSONException {
-        JSONObject o = new JSONObject(json);
-        JSONObject object = o.getJSONObject(title);
+    void getMetadata(JSONObject json, String title, String key, String key2, String key3) throws JSONException {
+        JSONObject object = json.getJSONObject(title);
         tryCatchBlock(object, key);
         try {
             JSONObject object1 = object.getJSONObject(key);
             tryCatchBlock(object1, key2);
+            try{
+                JSONObject object2 = object1.getJSONObject(key2);
+                tryCatchBlock(object2, key3);
+            }catch (Exception e){
+
+            }
         } catch (Exception e){
         }
     }
 
     //String json, String title, int index, String key, String key2
-    void getRelasjoner(String json) throws JSONException{
-        JSONObject o = new JSONObject(json);
-        JSONObject object = o.getJSONObject("relasjoner");
-        JSONArray array = object.getJSONArray("foreldre");
+    void getRelasjoner(JSONObject json, String title, String key, String key2) throws JSONException{
+        JSONObject object = json.getJSONObject(title);
+        JSONArray array = object.getJSONArray(key);
         JSONObject object1 = array.getJSONObject(0);
-        tryCatchBlock(object1, "listeid");
-        try {
-            JSONObject object4 = object1.getJSONObject("type");
-            tryCatchBlock(object4, "id");
-        } catch (Exception e){
-        }
-        try {
-            JSONArray array2 = object1.getJSONArray("vegobjekter");
-            System.out.println(array2);
-        } catch (Exception e){
-
-        }
+        tryCatchBlock(object, key2);
 
     }
 

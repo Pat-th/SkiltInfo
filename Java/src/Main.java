@@ -6,11 +6,17 @@ public class Main {
         Signs signs = new Signs();
         Filters filters = new Filters();
         int objectId = 85404247;
+        JSONObject json = new JSONObject(signs.getJSONObject(objectId));
+
+        /*
         String[] keys = {"id", "navn", "egenskapstype"};
         for (String i : keys){
-            filters.getEgenskap(signs.getJSONObject(objectId), 0, i);
-        }
-       // JSONObject json = signs.getJSONObject(objectId);
+            filters.getEgenskap(json, 0, i);
+        }*/
+
+        filters.getMetadata(json, "metadata", "type", "id", "");
+
+
         //signs.getLinkOrId(json, "href");
         //signs.getLinkOrId(json, "id");
 
