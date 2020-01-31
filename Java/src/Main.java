@@ -8,14 +8,14 @@ public class Main {
         int objectId = 85404247;
         JSONObject json = new JSONObject(signs.getJSONObject(objectId));
 
-        /*
+
         String[] keys = {"id", "navn", "egenskapstype"};
         for (String i : keys){
             filters.getEgenskap(json, 0, i);
-        }*/
+        }
 
         filters.getMetadata(json, "metadata", "type", "id", "");
-
+        signs.getLinkOrId(json, "href");
 
         //signs.getLinkOrId(json, "href");
         //signs.getLinkOrId(json, "id");
@@ -26,7 +26,7 @@ public class Main {
         filters.getEgenskap(json, 0, "egenskapstype");*/
         //filters.getEgenskap(json, 1, "innhold", "navn");
         //filters.getMetadata(json, "lokasjon", "kommuner", "0");
-        // System.out.println(json);
+        //System.out.println(json);
         //filters.getRelasjoner(json);
     }
 }
