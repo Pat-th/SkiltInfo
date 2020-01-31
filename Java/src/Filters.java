@@ -21,7 +21,6 @@ JSONObject[] keys;
                 JSONObject object2 = object1.getJSONObject(key2);
                 tryCatchBlock(object2, key3);
             }catch (Exception e){
-
             }
         } catch (Exception e){
         }
