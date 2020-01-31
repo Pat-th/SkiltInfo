@@ -1,13 +1,20 @@
 import { createAppContainer } from "react-navigation";
 import { createBottomTabNavigator } from "react-navigation-tabs";
-import { Ionicons, AntDesign, Feather, MaterialIcons } from "@expo/vector-icons";
+import { createStackNavigator } from "react-navigation-stack"
+import { AntDesign, Feather, MaterialIcons } from "@expo/vector-icons";
 import React from "react";
 
 import CameraScreen from "../screens/CameraScreen";
 import HelpScreen from "../screens/HelpScreen";
 import SettingsScreen from "../screens/SettingsScreen";
+import DisplayInformationScreen from "../screens/DisplayInformationScreen";
 
 import Colors from "../Constants/Colors"
+
+const stackNavigator = createStackNavigator({
+    Kamera : CameraScreen,
+    VisInfo: DisplayInformationScreen
+});
 
 const TabNavigator = createBottomTabNavigator({
     Innstillinger: {
@@ -17,7 +24,7 @@ const TabNavigator = createBottomTabNavigator({
         }
     },
     Kamera: {
-        screen: CameraScreen,
+        screen: stackNavigator,
         navigationOptions: {
             tabBarIcon: <AntDesign name="camerao" size={35}></AntDesign>
         }

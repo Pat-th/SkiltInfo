@@ -1,5 +1,5 @@
 export default {
-    primaryColor: "#FF0000",
+    primaryColor: "white", //#FF0000
     accentColor: "#000000",
     secondaryColor: "#ffffff"
 }

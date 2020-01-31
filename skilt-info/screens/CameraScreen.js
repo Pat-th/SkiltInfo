@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { Camera } from 'expo-camera';
-import Header from "../components/Header"
 
 const CameraScreen = props => {
     const [hasPermission, setHasPermission] = useState(null);
@@ -21,15 +20,14 @@ const CameraScreen = props => {
         );
       }
       if (hasPermission === false) {
-        return <Text>No access to camera</Text>;
+        return <Text>Har ikke tilgang til kamera</Text>;
       }
 
     return(
         <View style={styles.cameraContainer} onPress={() => console.log("clicked cameraContainer")}>
-            <Header title="Kamera"></Header>
             <Camera style={styles.camera}>
                 <View style={styles.nonClickable} onPress={() => console.log("clicked nonClickable")}>
-                    <TouchableOpacity style={styles.buttonContainer} onPress={() => console.log("Ta bilde")}>
+                    <TouchableOpacity style={styles.buttonContainer} onPress={() => props.navigation.navigate({routeName: "VisInfo"})}>
                         <View style={styles.captureBtn}>
 
                         </View>
