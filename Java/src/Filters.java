@@ -1,37 +1,61 @@
-import com.fasterxml.jackson.annotation.JsonFilter;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ser.FilterProvider;
-import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
-import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
-import com.jayway.jsonpath.JsonPath;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.DecimalFormat;
-import java.util.List;
-public class Filters{
+class Filters{
+JSONObject[] keys;
+    void getEgenskap(String json, int index, String key) throws JSONException {
+        JSONObject o = new JSONObject(json);
+        JSONArray array = o.getJSONArray("egenskaper");
+        JSONObject object = array.getJSONObject(index);
+        tryCatchBlock(object, key);
+    }
 
-    void getEgenskap(String json, int index, String key) throws JSONException, JsonProcessingException {
-        int resInt = 0;
-        String resString = "";
-        double resDouble;
-
-        JSONObject object = new JSONObject(json);
-        JSONArray array = object.getJSONArray("egenskaper");
-        JSONObject object2 = array.getJSONObject(index);
+    void getMetadata(String json, String title, String key, String key2) throws JSONException {
+        JSONObject o = new JSONObject(json);
+        JSONObject object = o.getJSONObject(title);
+        tryCatchBlock(object, key);
         try {
-            if(object2.getDouble(key) % 1 == 0){
-                System.out.println(key + ": " + object2.getInt(key));
-            } else {
-            System.out.println(key + ": " + object2.getDouble(key));}
-            System.out.println(key + ": " + object2.getString(key));
-        } catch (Exception e) {
+            JSONObject object1 = object.getJSONObject(key);
+            tryCatchBlock(object1, key2);
+        } catch (Exception e){
         }
     }
 
+    //String json, String title, int index, String key, String key2
+    void getRelasjoner(String json) throws JSONException{
+        JSONObject o = new JSONObject(json);
+        JSONObject object = o.getJSONObject("relasjoner");
+        JSONArray array = object.getJSONArray("foreldre");
+        JSONObject object1 = array.getJSONObject(0);
+        tryCatchBlock(object1, "listeid");
+        try {
+            JSONObject object4 = object1.getJSONObject("type");
+            tryCatchBlock(object4, "id");
+        } catch (Exception e){
+        }
+        try {
+            JSONArray array2 = object1.getJSONArray("vegobjekter");
+            System.out.println(array2);
+        } catch (Exception e){
 
+        }
+
+    }
+
+    private void tryCatchBlock(JSONObject o, String key) {
+        try {
+            if(o.getDouble(key) % 1 == 0){
+                System.out.println(key + ": " + o.getInt(key));
+            } else {
+                System.out.println(key + ": " + o.getDouble(key));}
+        } catch (Exception e) {
+        }
+        try{
+            System.out.println(key + ": " + o.getString(key));
+        } catch (Exception e){
+        }
+
+    }
 }
 
