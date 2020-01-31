@@ -45,16 +45,16 @@ public class Server {
                 switch (requestMethod) {
                     case METHOD_GET:
                         final Map<String, List<String>> requestParameters = getRequestParameters(he.getRequestURI());
+                        try {
                         String objectId1 = requestParameters.get("id").toString();
                         String objectId2 = objectId1.replace("[", "");
                         String objectId = objectId2.replace("]", "");
                         System.out.println("Received call for id: " + objectId);
-                        try {
-                            final String responseBody = signs.getJSONObject(Integer.parseInt(objectId));
-                            headers.set(HEADER_CONTENT_TYPE, String.format("application/json; charset=%s", CHARSET));
-                            final byte[] rawResponseBody = responseBody.getBytes(CHARSET);
-                            he.sendResponseHeaders(STATUS_OK, rawResponseBody.length);
-                            he.getResponseBody().write(rawResponseBody);
+                        final String responseBody = signs.getJSONObject(Integer.parseInt(objectId));
+                        headers.set(HEADER_CONTENT_TYPE, String.format("application/json; charset=%s", CHARSET));
+                        final byte[] rawResponseBody = responseBody.getBytes(CHARSET);
+                        he.sendResponseHeaders(STATUS_OK, rawResponseBody.length);
+                        he.getResponseBody().write(rawResponseBody);
                         }
                         catch (Exception e){
                             System.out.println(e + "\n Invalid paramter, parameter has to be a number");
