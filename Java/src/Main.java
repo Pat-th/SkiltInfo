@@ -1,14 +1,24 @@
-import org.json.JSONObject;
+ import org.json.JSONObject;
+
+ import java.util.Collection;
+ import java.util.HashMap;
+ import java.util.List;
 
 
-public class Main {
+ public class Main {
     public static void main(String[] args) throws Exception {
         Signs signs = new Signs();
         Filters filters = new Filters();
         int objectId = 85404247;
-        JSONObject json = new JSONObject(signs.getJSONObject(objectId));
+        double lat = 63.365330;
+        double lon = 10.372574;
+        //JSONObject json = new JSONObject(signs.getJSONObject(objectId));
+        //signs.getListOfSigns(signs.getVeglenkesekvens(signs.getRoad(lat, lon)));
+        signs.getRoad(lat, lon, 7644);
+        //filters.getRoadId(json, "vegsystemreferanse", "vegsystem", "id");
 
 
+        /*
         String[] keys = {"id", "navn", "egenskapstype"};
         for (String i : keys){
             filters.getEgenskap(json, 0, i);
@@ -16,7 +26,7 @@ public class Main {
 
         filters.getMetadata(json, "metadata", "type", "id", "");
         signs.getLinkOrId(json, "href");
-
+        */
         //signs.getLinkOrId(json, "href");
         //signs.getLinkOrId(json, "id");
 
