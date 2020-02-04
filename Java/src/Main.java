@@ -12,10 +12,10 @@
         int objectId = 85404247;
         double lat = 63.365330;
         double lon = 10.372574;
+        int enum_id = 7644;
         //JSONObject json = new JSONObject(signs.getJSONObject(objectId));
         //signs.getListOfSigns(signs.getVeglenkesekvens(signs.getRoad(lat, lon)));
-        signs.getSignsOfType(lat, lon, 7644);
-        //filters.getRoadId(json, "vegsystemreferanse", "vegsystem", "id");
+        signs.getSignsOfType(lat, lon, enum_id);
 
 
         /*

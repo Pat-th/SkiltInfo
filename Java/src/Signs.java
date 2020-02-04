@@ -32,7 +32,6 @@ class Signs {
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
         return response.body();
     }
-
     /**
      * Used to get a list/multiple json-objects that match the parameters
      * @param lat latitude-value of the sign/where the picture is taken
@@ -90,14 +89,21 @@ class Signs {
         for (int index = 0; index < array1.length(); index++) {
             JSONObject object6 = array1.getJSONObject(index);
             JSONArray array2 = object6.getJSONArray("egenskaper");
-            JSONObject object7 = array2.getJSONObject(2);
-            if (object7.getInt("enum_id") == enum_id) {
-                list.add(object6);
+            for(int index1 = 0; index1 <array2.length(); index1++){
+                try {
+
+
+                    JSONObject object7 = array2.getJSONObject(index1);
+                    if (object7.getInt("enum_id") == enum_id && object7.getString("navn").equals("Skiltnummer")) {
+                        list.add(object6);
+                    }
+                } catch (Exception e) {
+                }
             }
+
         }
-        for (JSONObject i : list) {
+        for(JSONObject i : list)
             System.out.println(i);
-        }
         return list;
     }
 
@@ -106,8 +112,9 @@ class Signs {
      * @param json JSON response from sendGet(), or any other JSON
      * @param key  key is which info you want, a link to the xml-file or the id of the object. href for link, id for id.
      * @throws JSONException for JSONObject.
+     * @return
      */
-    void getLinkOrId(JSONObject json, String key) throws JSONException {
+    String getLinkOrId(JSONObject json, String key) throws JSONException {
 
         try {
             System.out.println(json.getString(key));
@@ -119,6 +126,6 @@ class Signs {
         }catch (Exception e){
 
         }
-
+        return json.get(key).toString();
     }
 }

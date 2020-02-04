@@ -46,18 +46,36 @@ public class Server {
                     case METHOD_GET:
                         final Map<String, List<String>> requestParameters = getRequestParameters(he.getRequestURI());
                         try {
-                        String objectId1 = requestParameters.get("id").toString();
-                        String objectId2 = objectId1.replace("[", "");
-                        String objectId = objectId2.replace("]", "");
-                        System.out.println("Received call for id: " + objectId);
-                        final String responseBody = signs.getJSONObject(Integer.parseInt(objectId));
+                            StringBuilder sb = new StringBuilder();
+                            sb.append(requestParameters.get("id"));
+                            sb.deleteCharAt(0);
+                            sb.deleteCharAt(sb.length() - 1);
+
+                            StringBuilder sb1 = new StringBuilder();
+                            sb1.append(requestParameters.get("lat"));
+                            sb1.deleteCharAt(0);
+                            sb1.deleteCharAt(sb1.length() - 1);
+
+                            StringBuilder sb2 = new StringBuilder();
+                            sb2.append(requestParameters.get("lon"));
+                            sb2.deleteCharAt(0);
+                            sb2.deleteCharAt(sb2.length() - 1);
+
+                            int enum_id = Integer.parseInt(sb.toString());
+                            double lat = Double.parseDouble(sb1.toString());
+                            double lon = Double.parseDouble(sb2.toString());
+
+                        System.out.println(enum_id + ", " + lat + ", " + lon + ".");
+                        //localhost:8080/?lat=63.365330&lon=10.372574&id=7644
+                            // localhost:8080/?lat=63.400854&lon=10.395050&id=7644
+                        final String responseBody = signs.getSignsOfType(lat, lon, enum_id).toString();
                         headers.set(HEADER_CONTENT_TYPE, String.format("application/json; charset=%s", CHARSET));
                         final byte[] rawResponseBody = responseBody.getBytes(CHARSET);
                         he.sendResponseHeaders(STATUS_OK, rawResponseBody.length);
                         he.getResponseBody().write(rawResponseBody);
                         }
                         catch (Exception e){
-                            System.out.println(e + "\n Invalid paramter, parameter has to be a number");
+                            System.out.println(e + "\n Invalid parameter, parameter has to be a number");
                         }
 
                         break;
