@@ -1,33 +1,39 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, FlatList } from 'react-native';
+
+import LevelOne from "../components/DisplayInfo/LevelOne"
 
 const DisplayInformationScreen = props => {
     const [data, setData] = useState("")
     const [hasErrors, setHasErrors] = useState(false);
+    const [levelOneItems, setLevelOneItems] = useState();
+    const [levelTwoObjects, setLevelTwoObjects] = useState([]);
+    const [levelThreeObjects, setLevelThreeObjects] = useState([]);
 
 
     async function fetchData(){
-        const res = await fetch("http://24d0f727.ngrok.io/?id=85404247");
-        res
-        .json()
-        .then(res => setData(res))
-        .catch(err => setHasErrors(true));
+        //Needs new link every time server restarts, create link with ngrok
+        console.log("Fetching");
+        const res = await fetch("http://8053823f.ngrok.io/?id=85404247");
+        const result = await res.json();
+        //console.log(result);
+        setLevelOneItems(Object.keys(result));
+        console.log(levelOneItems);
     }
 
     useEffect(() => {
-        fetchData();
-    })
-
-
-    
-    getData = () => {
-        console.log(data);
-    }
+        fetchData()
+    }, [])
 
     return(
         <View style={styles.container}>
             <Text>This is the DisplayInformationScreen!</Text>
-            <Button title="Get data" onPress={() => getData()}></Button>
+            <Button title="Get data"></Button>
+            <FlatList
+                keyExtractor={(item, index) => index}
+                data={levelOneItems}
+                renderItem={({item}) => <Text>{item}</Text>} 
+          />
         </View>
     );
 };

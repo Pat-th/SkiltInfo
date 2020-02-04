@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 const MalForNyeKomponenter = props => {
     return(
-
+        <View></View>
     );
 };
 
