@@ -14,7 +14,7 @@
         double lon = 10.372574;
         //JSONObject json = new JSONObject(signs.getJSONObject(objectId));
         //signs.getListOfSigns(signs.getVeglenkesekvens(signs.getRoad(lat, lon)));
-        signs.getRoad(lat, lon, 7644);
+        signs.getSignsOfType(lat, lon, 7644);
         //filters.getRoadId(json, "vegsystemreferanse", "vegsystem", "id");
 
 
