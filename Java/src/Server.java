@@ -97,7 +97,7 @@ public class Server {
         server.start();
     }
 
-    private static Map<String, List<String>> getRequestParameters(final URI requestUri) {
+    static Map<String, List<String>> getRequestParameters(final URI requestUri) {
         final Map<String, List<String>> requestParameters = new LinkedHashMap<>();
         final String requestQuery = requestUri.getRawQuery();
         if (requestQuery != null) {
@@ -113,7 +113,7 @@ public class Server {
         return requestParameters;
     }
 
-    private static String decodeUrlComponent(final String urlComponent) {
+    static String decodeUrlComponent(final String urlComponent) {
         try {
             return URLDecoder.decode(urlComponent, CHARSET.name());
         } catch (final UnsupportedEncodingException ex) {

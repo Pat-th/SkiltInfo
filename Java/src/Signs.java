@@ -2,6 +2,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -30,6 +31,18 @@ class Signs {
                 .build();
 
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        return response.body();
+    }
+
+    String getRoad(double lat, double lon) throws IOException, InterruptedException {
+        HttpRequest request = HttpRequest.newBuilder()
+                .GET()
+                .uri(URI.create("https://apilesv3.utv.atlas.vegvesen.no/posisjon?lat=" + lat + "&lon=" + lon))
+                .setHeader("User-Agent", "Skiltinfo")
+                .build();
+
+        HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+
         return response.body();
     }
     /**
@@ -90,15 +103,11 @@ class Signs {
             JSONObject object6 = array1.getJSONObject(index);
             JSONArray array2 = object6.getJSONArray("egenskaper");
             for(int index1 = 0; index1 <array2.length(); index1++){
-                try {
-
-
-                    JSONObject object7 = array2.getJSONObject(index1);
-                    if (object7.getInt("enum_id") == enum_id && object7.getString("navn").equals("Skiltnummer")) {
+                JSONObject object7 = array2.getJSONObject(index1);
+                    if (object7.has("enum_id") && object7.getInt("enum_id") == enum_id && object7.getString("navn").equals("Skiltnummer")) {
                         list.add(object6);
+                        break;
                     }
-                } catch (Exception e) {
-                }
             }
 
         }
