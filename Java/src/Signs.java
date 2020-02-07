@@ -18,12 +18,13 @@ class Signs {
             .build();
 
     /**
-     * Used to get all info on a specific sign
-     * @param objectId
-     * @return
-     * @throws Exception
+     *
+      * @param objectId the ID of the "Skiltplate" that you want information about
+     * @return returns the JSONObject as a String.
+     * @throws IOException e
+     * @throws InterruptedException e
      */
-    String getJSONObject(int objectId) throws Exception {
+    String getJSONObject(int objectId) throws IOException, InterruptedException {
         HttpRequest request = HttpRequest.newBuilder()
                 .GET()
                 .uri(URI.create("https://apilesv3.utv.atlas.vegvesen.no/vegobjekter/96/" + objectId + "/1"))
@@ -72,7 +73,7 @@ class Signs {
         JSONObject object = json.getJSONObject("vegsystemreferanse");
         JSONObject object1 = object.getJSONObject("vegsystem");
 
-        System.out.println(object1.getInt("id"));
+        //System.out.println(object1.getInt("id"));
 
         HttpRequest request1 = HttpRequest.newBuilder()
                 .GET()
@@ -85,7 +86,7 @@ class Signs {
         JSONObject object3 = object2.getJSONObject("lokasjon");
         JSONArray array = object3.getJSONArray("stedfestinger");
         JSONObject object4 = array.getJSONObject(0);
-        System.out.println(object4.getString("kortform"));
+        //System.out.println(object4.getString("kortform"));
 
         HttpRequest request2 = HttpRequest.newBuilder()
                 .GET()
@@ -93,10 +94,10 @@ class Signs {
                 .setHeader("User-Agent", "Skiltinfo")
                 .build();
         HttpResponse<String> response2 = httpClient.send(request2, HttpResponse.BodyHandlers.ofString());
-        System.out.println("Link: " + "https://apilesv3.utv.atlas.vegvesen.no/vegobjekter/96/?inkluder=alle&veglenkesekvens=" + object4.getString("kortform"));
+        //System.out.println("Link: " + "https://apilesv3.utv.atlas.vegvesen.no/vegobjekter/96/?inkluder=alle&veglenkesekvens=" + object4.getString("kortform"));
         JSONObject object5 = new JSONObject(response2.body());
         JSONArray array1 = object5.getJSONArray("objekter");
-        System.out.println(array1.length());
+        //System.out.println(array1.length());
 
         List<JSONObject> list = new ArrayList<>();
         for (int index = 0; index < array1.length(); index++) {
@@ -111,8 +112,10 @@ class Signs {
             }
 
         }
+        /*
         for(JSONObject i : list)
             System.out.println(i);
+            */
         return list;
     }
 
@@ -121,19 +124,20 @@ class Signs {
      * @param json JSON response from sendGet(), or any other JSON
      * @param key  key is which info you want, a link to the xml-file or the id of the object. href for link, id for id.
      * @throws JSONException for JSONObject.
-     * @return
+     * @return returns the key
      */
     String getLinkOrId(JSONObject json, String key) throws JSONException {
 
         try {
             System.out.println(json.getString(key));
         }catch (Exception e) {
+            e.printStackTrace();
         }
         try{
             System.out.println(json.getInt(key));
 
         }catch (Exception e){
-
+            e.printStackTrace();
         }
         return json.get(key).toString();
     }

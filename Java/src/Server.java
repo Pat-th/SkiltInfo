@@ -8,10 +8,7 @@ import java.net.URI;
 import java.net.URLDecoder;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 //https://stackoverflow.com/questions/28571086/java-simple-http-server-application-that-responds-in-json?fbclid=IwAR0eQm5OywnkrP3YrUlSdeU1kvpQ24oTOOkmO8YgYnaAU8uu5LvpLX1qCo0
 
@@ -34,6 +31,7 @@ public class Server {
     private static final String METHOD_OPTIONS = "OPTIONS";
     private static final String ALLOWED_METHODS = METHOD_GET + "," + METHOD_OPTIONS;
 
+
     public static void main(final String... args) throws IOException {
         Signs signs = new Signs();
         final HttpServer server = HttpServer.create(new InetSocketAddress(HOSTNAME, PORT), BACKLOG);
@@ -44,41 +42,25 @@ public class Server {
                 final String requestMethod = he.getRequestMethod().toUpperCase();
                 switch (requestMethod) {
                     case METHOD_GET:
-                        final Map<String, List<String>> requestParameters = getRequestParameters(he.getRequestURI());
-                        try {
-                            StringBuilder sb = new StringBuilder();
-                            sb.append(requestParameters.get("id"));
-                            sb.deleteCharAt(0);
-                            sb.deleteCharAt(sb.length() - 1);
-
-                            StringBuilder sb1 = new StringBuilder();
-                            sb1.append(requestParameters.get("lat"));
-                            sb1.deleteCharAt(0);
-                            sb1.deleteCharAt(sb1.length() - 1);
-
-                            StringBuilder sb2 = new StringBuilder();
-                            sb2.append(requestParameters.get("lon"));
-                            sb2.deleteCharAt(0);
-                            sb2.deleteCharAt(sb2.length() - 1);
-
-                            int enum_id = Integer.parseInt(sb.toString());
-                            double lat = Double.parseDouble(sb1.toString());
-                            double lon = Double.parseDouble(sb2.toString());
-
-                        System.out.println(enum_id + ", " + lat + ", " + lon + ".");
-                        //localhost:8080/?lat=63.365330&lon=10.372574&id=7644
-                            // localhost:8080/?lat=63.400854&lon=10.395050&id=7644
-                        final String responseBody = signs.getSignsOfType(lat, lon, enum_id).toString();
-                        headers.set(HEADER_CONTENT_TYPE, String.format("application/json; charset=%s", CHARSET));
-                        final byte[] rawResponseBody = responseBody.getBytes(CHARSET);
-                        he.sendResponseHeaders(STATUS_OK, rawResponseBody.length);
-                        he.getResponseBody().write(rawResponseBody);
-                        }
-                        catch (Exception e){
-                            System.out.println(e + "\n Invalid parameter, parameter has to be a number");
-                        }
-
-                        break;
+                        //final Map<String, String> requestParameters = getRequestParameters(he.getRequestURI());
+                        Map<String, String> requestParameters = getRequestParameters(he.getRequestURI());
+                            if (requestParameters.get("lat") != null && requestParameters.get("lon") != null && requestParameters.get("id") != null) {
+                                double lat = Double.parseDouble(requestParameters.get("lat"));
+                                double lon = Double.parseDouble(requestParameters.get("lon"));
+                                int enum_id = Integer.parseInt(requestParameters.get("id"));
+                                //System.out.println(requestParameters);
+                                //System.out.println(requestParameters.values());
+                                //System.out.println(enum_id + ", " + lat + ", " + lon + ".");
+                                //localhost:8080/?lat=63.365330&lon=10.372574&id=7644
+                                //localhost:8080/?lat=63.400854&lon=10.395050&id=7644
+                                final String responseBody = signs.getSignsOfType(lat, lon, enum_id).toString();
+                                headers.set(HEADER_CONTENT_TYPE, String.format("application/json; charset=%s", CHARSET));
+                                final byte[] rawResponseBody = responseBody.getBytes(CHARSET);
+                                he.sendResponseHeaders(STATUS_OK, rawResponseBody.length);
+                                he.getResponseBody().write(rawResponseBody);
+                                System.out.println(responseBody);
+                                break;
+                            }
                     case METHOD_OPTIONS:
                         headers.set(HEADER_ALLOW, ALLOWED_METHODS);
                         he.sendResponseHeaders(STATUS_OK, NO_RESPONSE_LENGTH);
@@ -97,17 +79,16 @@ public class Server {
         server.start();
     }
 
-    static Map<String, List<String>> getRequestParameters(final URI requestUri) {
-        final Map<String, List<String>> requestParameters = new LinkedHashMap<>();
+    static Map<String, String> getRequestParameters(final URI requestUri) {
+        final Map<String, String> requestParameters = new HashMap<>();
         final String requestQuery = requestUri.getRawQuery();
         if (requestQuery != null) {
             final String[] rawRequestParameters = requestQuery.split("[&;]", -1);
             for (final String rawRequestParameter : rawRequestParameters) {
                 final String[] requestParameter = rawRequestParameter.split("=", 2);
                 final String requestParameterName = decodeUrlComponent(requestParameter[0]);
-                requestParameters.putIfAbsent(requestParameterName, new ArrayList<>());
                 final String requestParameterValue = requestParameter.length > 1 ? decodeUrlComponent(requestParameter[1]) : null;
-                requestParameters.get(requestParameterName).add(requestParameterValue);
+                requestParameters.put(requestParameterName, requestParameterValue);
             }
         }
         return requestParameters;
