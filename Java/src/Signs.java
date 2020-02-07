@@ -112,10 +112,10 @@ class Signs {
             }
 
         }
-        /*
         for(JSONObject i : list)
             System.out.println(i);
-            */
+        System.out.println(list.size() + " skilt av denne typen eksisterer på veisekvensen");
+
         return list;
     }
 

@@ -58,7 +58,6 @@ public class Server {
                                 final byte[] rawResponseBody = responseBody.getBytes(CHARSET);
                                 he.sendResponseHeaders(STATUS_OK, rawResponseBody.length);
                                 he.getResponseBody().write(rawResponseBody);
-                                System.out.println(responseBody);
                                 break;
                             }
                     case METHOD_OPTIONS:
