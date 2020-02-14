@@ -12,7 +12,7 @@ const SettingsScreen = props => {
 
 SettingsScreen.navigationOptions = () => {
     headerTitle: 'Camera'
-};
+}
 
 const styles = StyleSheet.create({
     container: {

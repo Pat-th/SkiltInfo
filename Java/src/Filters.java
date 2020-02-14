@@ -21,8 +21,10 @@ JSONObject[] keys;
                 JSONObject object2 = object1.getJSONObject(key2);
                 tryCatchBlock(object2, key3);
             }catch (Exception e){
+                e.printStackTrace();
             }
         } catch (Exception e){
+            e.printStackTrace();
         }
     }
 
@@ -35,6 +37,7 @@ JSONObject[] keys;
 
     }
 
+
     private void tryCatchBlock(JSONObject o, String key) {
         try {
             if(o.getDouble(key) % 1 == 0){
@@ -42,10 +45,12 @@ JSONObject[] keys;
             } else {
                 System.out.println(key + ": " + o.getDouble(key));}
         } catch (Exception e) {
+            e.printStackTrace();
         }
         try{
             System.out.println(key + ": " + o.getString(key));
         } catch (Exception e){
+            e.printStackTrace();
         }
 
     }
