@@ -4,6 +4,6 @@ jdk:
 before_install:
   - cd Java/test
 script:
-  - javac -d /Java/out/test/SkiltInfo -cp /lib/junit-4.12.jar /Java/src/test/SignsTest.java
+  - javac -d /Java/out/test/SkiltInfo -cp /lib/junit-4.12.jar /Java/test/SignsTest.java
   - java -cp /Java/out/test/SkiltInfo:/lib/junit-4.12.jar:/lib/hamcrest-core-1.3.jar org.junit.runner.JUnitCore test.SignsTest
 
