@@ -24,7 +24,7 @@ class Signs {
      * @throws IOException e
      * @throws InterruptedException e
      */
-    String getJSONObject(int objectId) throws IOException, InterruptedException {
+    public String getJSONObject(int objectId) throws IOException, InterruptedException {
         HttpRequest request = HttpRequest.newBuilder()
                 .GET()
                 .uri(URI.create("https://apilesv3.utv.atlas.vegvesen.no/vegobjekter/96/" + objectId + "/1"))
@@ -35,7 +35,7 @@ class Signs {
         return response.body();
     }
 
-    String getRoad(double lat, double lon) throws IOException, InterruptedException {
+    public String getRoad(double lat, double lon) throws IOException, InterruptedException {
         HttpRequest request = HttpRequest.newBuilder()
                 .GET()
                 .uri(URI.create("https://apilesv3.utv.atlas.vegvesen.no/posisjon?lat=" + lat + "&lon=" + lon))
@@ -55,7 +55,7 @@ class Signs {
      * @throws Exception an Exception for JSON and HTTP request
      */
 
-    List<JSONObject> getSignsOfType(double lat, double lon, int enum_id) throws Exception {
+    public List<JSONObject> getSignsOfType(double lat, double lon, int enum_id) throws Exception {
         HttpRequest request = HttpRequest.newBuilder()
                 .GET()
                 .uri(URI.create("https://apilesv3.utv.atlas.vegvesen.no/posisjon?lat=" + lat + "&lon=" + lon))
@@ -126,7 +126,7 @@ class Signs {
      * @throws JSONException for JSONObject.
      * @return returns the key
      */
-    String getLinkOrId(JSONObject json, String key) throws JSONException {
+    public String getLinkOrId(JSONObject json, String key) throws JSONException {
 
         try {
             System.out.println(json.getString(key));
