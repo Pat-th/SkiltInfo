@@ -11,10 +11,11 @@ const DisplayInformationScreen = props => {
 
     async function fetchData(){
         //Needs new link every time server restarts, create link with ngrok
-        console.log("Fetching");
+        console.log("Fetching data...");
         setIsLoading(true)
-        const res = await fetch("https://7e6a9218.ngrok.io/?id=85404247");
+        const res = await fetch("http://573c0437.ngrok.io/?id=85404247");
         const result = await res.json();
+        console.log("Complete!")
         setIsLoading(false);
         createSimpleView(result);
     }
@@ -24,7 +25,6 @@ const DisplayInformationScreen = props => {
         addItem("Direkte Link", result.href);
         addItem("Start Dato", result.metadata.startdato);
         addItem("Sist Modifisert", result.metadata.sist_modifisert);
-        console.log(result.metadata.startdato)
     }
 
     const addItem = (id, value) => {
