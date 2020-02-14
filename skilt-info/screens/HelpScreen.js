@@ -1,21 +1,48 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, {Component} from 'react';
+import {ScrollView, StyleSheet, View,} from 'react-native';
+import Expandables from "../components/Expandables";
+import Header from "../components/Header";
 
-const HelpScreen = props => {
-    return(
-        <View style={styles.container}>
-            <Text>This is the help screen!</Text>
-        </View>
-    );
-};
+
+const name = [
+    {
+        title: 'Hvordan bruke appen',
+        content: 'Trykk på kameraknappen på bunnen av appen. Trykk på sirkelen rett over kameraknappen. Du vil så få et valg over',
+    },
+    {
+        title: 'Vanlige feil',
+        content: 'Unngå å stå i veikryss eller under/på bruer.',
+    },
+    {
+        title: 'Opphavsrett',
+        content: 'test',
+    },
+    {
+        title: 'Heisann Patrick',
+        content: 'heihei',
+    }
+];
+
+export default class HelpScreen extends Component {
+
+
+    render() {
+        return (
+            <View>
+                <Header title={'Hjelp'} style={styles.header}/>
+                <ScrollView>
+                <Expandables sections={name}/>
+                </ScrollView>
+            </View>
+        );
+    }
+}
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-      },
+    header: {
+        backgroundColor: '#000000',
+        padding: 10,
+        textAlign: 'left'
+    },
 });
 
-export default HelpScreen;
