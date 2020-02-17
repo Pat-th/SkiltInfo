@@ -1,0 +1,14 @@
+language: java
+jdk:
+  - oraclejdk11
+before_install:
+  - javac -version
+script:
+  - cd Java/src
+  - javac -cp "../../lib/*" Signs.java Server.java
+  - cd ../test
+  - javac -cp "../../lib/*:../src" SignsTest.java ServerTest.java
+  - ls
+  - java -cp "../../lib/*:../src:." org.junit.runner.JUnitCore SignsTest ServerTest
+
+
