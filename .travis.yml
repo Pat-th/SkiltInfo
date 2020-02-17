@@ -21,7 +21,7 @@ matrix:
         directories:
           - ~/.npm
       before_script:
-        - npm install -g npm@latest
+        - npm install -g
       script:
         - npm ci
         - npx jest --ci
