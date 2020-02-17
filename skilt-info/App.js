@@ -6,9 +6,7 @@ import TabNavigator from "./navigation/AppNavigator";
 
 export default function App() {
   return (
-    <View>
-      <TabNavigator></TabNavigator>
-    </View>
+    <TabNavigator></TabNavigator>
   );
 }
 

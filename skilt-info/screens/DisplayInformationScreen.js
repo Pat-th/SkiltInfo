@@ -13,7 +13,7 @@ const DisplayInformationScreen = props => {
         //Needs new link every time server restarts, create link with ngrok
         console.log("Fetching data...");
         setIsLoading(true)
-        const res = await fetch("http://51784b16.ngrok.io/?lat=63.400854&lon=10.395050&id=7644");
+        const res = await fetch("http://4b1ca066.ngrok.io/?lat=63.400854&lon=10.395050&id=7644");
         const result = await res.json();
         console.log("Complete!")
         setIsLoading(false);
