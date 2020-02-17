@@ -1,7 +1,8 @@
 language: java
 jdk:
   - oraclejdk11
-
+os:
+  - windows
 before_install:
   - javac -version
 script:
