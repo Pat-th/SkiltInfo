@@ -30,6 +30,5 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="org.jacoco:jacoco-maven-plugin:0.8.5" level="project" />
   </component>
 </module>
