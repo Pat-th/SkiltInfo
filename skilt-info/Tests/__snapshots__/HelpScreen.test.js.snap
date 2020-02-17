@@ -1,0 +1,413 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<HelpScreen /> Renders correctly 1`] = `
+<View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "white",
+        "height": 80,
+        "justifyContent": "center",
+        "paddingTop": 36,
+        "width": "100%",
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "#000000",
+          "fontSize": 18,
+        }
+      }
+    >
+      Hjelp
+    </Text>
+  </View>
+  <RCTScrollView>
+    <View>
+      <View>
+        <RCTScrollView>
+          <View>
+            <View>
+              <View
+                style={Object {}}
+              >
+                <View
+                  accessible={true}
+                  focusable={true}
+                  isTVSelectable={true}
+                  onClick={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  style={
+                    Object {
+                      "opacity": 1,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "backgroundColor": "rgb(255,139,135)",
+                        "color": "rgba(0,0,0,1)",
+                        "justifyContent": "center",
+                        "padding": 10,
+                      }
+                    }
+                  >
+                    <Text
+                      style={
+                        Object {
+                          "color": "rgba(0,0,0,1)",
+                          "fontSize": 24,
+                          "fontWeight": "500",
+                          "textAlign": "left",
+                        }
+                      }
+                    >
+                      Hvordan bruke appen
+                    </Text>
+                    <Image
+                      source={1}
+                      style={
+                        Object {
+                          "height": 30,
+                          "position": "absolute",
+                          "right": 10,
+                          "width": 30,
+                        }
+                      }
+                    />
+                  </View>
+                </View>
+                <View
+                  pointerEvents="none"
+                  style={
+                    Object {
+                      "height": 0,
+                      "overflow": "hidden",
+                    }
+                  }
+                >
+                  <View
+                    onLayout={[Function]}
+                    style={Object {}}
+                  >
+                    <View
+                      style={
+                        Object {
+                          "backgroundColor": "rgb(255,139,135)",
+                          "color": "rgba(0,0,0,1)",
+                          "padding": 20,
+                          "textAlign": "left",
+                        }
+                      }
+                    >
+                      <Text
+                        style={
+                          Object {
+                            "color": "rgba(0,0,0,1)",
+                            "padding": 20,
+                            "textAlign": "left",
+                          }
+                        }
+                      >
+                        Trykk på kameraknappen på bunnen av appen. Trykk på sirkelen rett over kameraknappen. Du vil så få et valg over
+                      </Text>
+                    </View>
+                  </View>
+                </View>
+              </View>
+              <View
+                style={Object {}}
+              >
+                <View
+                  accessible={true}
+                  focusable={true}
+                  isTVSelectable={true}
+                  onClick={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  style={
+                    Object {
+                      "opacity": 1,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "backgroundColor": "rgb(255,139,135)",
+                        "color": "rgba(0,0,0,1)",
+                        "justifyContent": "center",
+                        "padding": 10,
+                      }
+                    }
+                  >
+                    <Text
+                      style={
+                        Object {
+                          "color": "rgba(0,0,0,1)",
+                          "fontSize": 24,
+                          "fontWeight": "500",
+                          "textAlign": "left",
+                        }
+                      }
+                    >
+                      Vanlige feil
+                    </Text>
+                    <Image
+                      source={1}
+                      style={
+                        Object {
+                          "height": 30,
+                          "position": "absolute",
+                          "right": 10,
+                          "width": 30,
+                        }
+                      }
+                    />
+                  </View>
+                </View>
+                <View
+                  pointerEvents="none"
+                  style={
+                    Object {
+                      "height": 0,
+                      "overflow": "hidden",
+                    }
+                  }
+                >
+                  <View
+                    onLayout={[Function]}
+                    style={Object {}}
+                  >
+                    <View
+                      style={
+                        Object {
+                          "backgroundColor": "rgb(255,139,135)",
+                          "color": "rgba(0,0,0,1)",
+                          "padding": 20,
+                          "textAlign": "left",
+                        }
+                      }
+                    >
+                      <Text
+                        style={
+                          Object {
+                            "color": "rgba(0,0,0,1)",
+                            "padding": 20,
+                            "textAlign": "left",
+                          }
+                        }
+                      >
+                        Unngå å stå i veikryss eller under/på bruer.
+                      </Text>
+                    </View>
+                  </View>
+                </View>
+              </View>
+              <View
+                style={Object {}}
+              >
+                <View
+                  accessible={true}
+                  focusable={true}
+                  isTVSelectable={true}
+                  onClick={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  style={
+                    Object {
+                      "opacity": 1,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "backgroundColor": "rgb(255,139,135)",
+                        "color": "rgba(0,0,0,1)",
+                        "justifyContent": "center",
+                        "padding": 10,
+                      }
+                    }
+                  >
+                    <Text
+                      style={
+                        Object {
+                          "color": "rgba(0,0,0,1)",
+                          "fontSize": 24,
+                          "fontWeight": "500",
+                          "textAlign": "left",
+                        }
+                      }
+                    >
+                      Opphavsrett
+                    </Text>
+                    <Image
+                      source={1}
+                      style={
+                        Object {
+                          "height": 30,
+                          "position": "absolute",
+                          "right": 10,
+                          "width": 30,
+                        }
+                      }
+                    />
+                  </View>
+                </View>
+                <View
+                  pointerEvents="none"
+                  style={
+                    Object {
+                      "height": 0,
+                      "overflow": "hidden",
+                    }
+                  }
+                >
+                  <View
+                    onLayout={[Function]}
+                    style={Object {}}
+                  >
+                    <View
+                      style={
+                        Object {
+                          "backgroundColor": "rgb(255,139,135)",
+                          "color": "rgba(0,0,0,1)",
+                          "padding": 20,
+                          "textAlign": "left",
+                        }
+                      }
+                    >
+                      <Text
+                        style={
+                          Object {
+                            "color": "rgba(0,0,0,1)",
+                            "padding": 20,
+                            "textAlign": "left",
+                          }
+                        }
+                      >
+                        test
+                      </Text>
+                    </View>
+                  </View>
+                </View>
+              </View>
+              <View
+                style={Object {}}
+              >
+                <View
+                  accessible={true}
+                  focusable={true}
+                  isTVSelectable={true}
+                  onClick={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  style={
+                    Object {
+                      "opacity": 1,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "backgroundColor": "rgb(255,139,135)",
+                        "color": "rgba(0,0,0,1)",
+                        "justifyContent": "center",
+                        "padding": 10,
+                      }
+                    }
+                  >
+                    <Text
+                      style={
+                        Object {
+                          "color": "rgba(0,0,0,1)",
+                          "fontSize": 24,
+                          "fontWeight": "500",
+                          "textAlign": "left",
+                        }
+                      }
+                    >
+                      Heisann Patrick
+                    </Text>
+                    <Image
+                      source={1}
+                      style={
+                        Object {
+                          "height": 30,
+                          "position": "absolute",
+                          "right": 10,
+                          "width": 30,
+                        }
+                      }
+                    />
+                  </View>
+                </View>
+                <View
+                  pointerEvents="none"
+                  style={
+                    Object {
+                      "height": 0,
+                      "overflow": "hidden",
+                    }
+                  }
+                >
+                  <View
+                    onLayout={[Function]}
+                    style={Object {}}
+                  >
+                    <View
+                      style={
+                        Object {
+                          "backgroundColor": "rgb(255,139,135)",
+                          "color": "rgba(0,0,0,1)",
+                          "padding": 20,
+                          "textAlign": "left",
+                        }
+                      }
+                    >
+                      <Text
+                        style={
+                          Object {
+                            "color": "rgba(0,0,0,1)",
+                            "padding": 20,
+                            "textAlign": "left",
+                          }
+                        }
+                      >
+                        heihei
+                      </Text>
+                    </View>
+                  </View>
+                </View>
+              </View>
+            </View>
+          </View>
+        </RCTScrollView>
+      </View>
+    </View>
+  </RCTScrollView>
+</View>
+`;

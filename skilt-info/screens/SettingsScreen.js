@@ -5,7 +5,9 @@ import Colors from "../Constants/Colors"
 const SettingsScreen = props => {
     return(
         <View style={styles.container}>
-            <Text>This is the settings screen!</Text>
+            <View>
+                <Text>This is the settings screen!</Text>
+            </View>
         </View>
     );
 };
