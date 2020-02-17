@@ -4,7 +4,7 @@ jdk:
 before_install:
   - javac -version
 script:
-  - cd java/src
+  - cd Java/src
   - javac -cp "../../lib/*" Signs.java Server.java
   - cd ../test
   - javac -cp "../../lib/:../src*" SignsTest.java ServerTest.java
