@@ -10,5 +10,7 @@ script:
   - javac -cp "../../lib/*:../src" SignsTest.java ServerTest.java
   - ls
   - java -cp "../../lib/*:../src:." org.junit.runner.JUnitCore SignsTest ServerTest
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
 
 
