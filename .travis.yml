@@ -21,6 +21,7 @@ matrix:
         directories:
           - ~/.npm
       before_script:
+        - cd skilt-info
         - npm install -g npm@latest
       script:
         - npm ci
