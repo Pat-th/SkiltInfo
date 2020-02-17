@@ -1,52 +1,42 @@
-import React, {Component} from 'react';
+import React, {useState} from 'react';
 import {ScrollView, StyleSheet, Text, TouchableOpacity, View, Image,} from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import Accordion from 'react-native-collapsible/Accordion';
 
 
-export default class Expandables extends Component {
+const Expandables = props => {
 
-    constructor(props) {
-        super(props);
-        this.icons = {
+    const [activeSections, setActiveSections] = useState([]);
+
+    let icons = {
             'plus' : require('../images/plus.png'),
             'minus' : require('../images/minus.png'),
-        }
+        };
+
+
+    function setSections(sections){
+        setActiveSections(sections.includes(undefined) ? [] : sections);
     }
 
-    state = {
-        activeSections: [],
-        collapsed: true,
-    };
-
-
-
-
-    setSections = sections => {
-        this.setState({
-            activeSections: sections.includes(undefined) ? [] : sections,
-        });
-    };
-
-    renderHeader = (section, _, isActive) => {
-        let icon = this.icons['plus'];
+    function renderHeader (section, _, isActive) {
+        let icon = icons['plus'];
 
         if(isActive){
-            icon = this.icons['minus'];
+            icon = icons['minus'];
         }
         return (
             <Animatable.View
                 duration={400}
-                style={[styles.header, isActive ? styles.active : styles.inactive]}
+                style={[styles.header, isActive ? styles.headeractive : styles.inactive]}
                 transition="backgroundColor"
             >
                 <Text style={styles.headerText}>{section.title}
                 </Text><Image source={icon} style={styles.icons}/>
             </Animatable.View>
         );
-    };
+    }
 
-    renderContent(section, _, isActive) {
+    function renderContent(section, _, isActive) {
         return (
             <Animatable.View
                 duration={300}
@@ -60,30 +50,24 @@ export default class Expandables extends Component {
         );
     }
 
-    render() {
-
-
-        const {activeSections} = this.state;
-
         return (
 
             <View>
                 <ScrollView>
                     <Accordion
-                        sections={this.props.sections}
+                        sections={props.sections}
                         activeSections={activeSections}
                         touchableComponent={TouchableOpacity}
                         expandMultiple={false}
-                        renderHeader={this.renderHeader}
-                        renderContent={this.renderContent}
-                        onChange={this.setSections}
+                        renderHeader={renderHeader}
+                        renderContent={renderContent}
+                        onChange={setSections}
                     />
                 </ScrollView>
             </View>
 
         );
-    }
-}
+    };
 
 const styles = StyleSheet.create({
     header: {
@@ -99,22 +83,40 @@ const styles = StyleSheet.create({
 
     },
     content: {
-        padding: 20,
+        padding: 5,
         color: 'rgba(0,0,0,1)',
         textAlign: 'left',
     },
-    active: {
+    headeractive: {
+        marginTop: 6,
         backgroundColor: 'rgb(255,255,255)',
         color: 'rgba(0,0,0,1)',
-
+        borderColor: 'rgb(186,186,186)',
+        borderWidth: 3,
+        borderRadius: 0,
+    },
+    active: {
+        marginTop: 0,
+        backgroundColor: 'rgb(255,255,255)',
+        color: 'rgba(0,0,0,1)',
+        borderColor: 'rgb(186,186,186)',
+        borderWidth: 2,
+        borderRadius: 0,
     },
     inactive: {
-        backgroundColor: 'rgb(255,139,135)',
+        marginTop: 6,
+        backgroundColor: 'rgb(255,255,255)',
         color: 'rgba(0,0,0,1)',
+        borderColor: 'rgb(0,0,0)',
+        borderWidth: 3,
+        borderRadius: 0,
     },
     icons: {
         height: 30,
         width: 30,
-        position: 'absolute', right: 10,
+        position: 'absolute',
+        right: 10,
     }
 });
+
+export default Expandables;
