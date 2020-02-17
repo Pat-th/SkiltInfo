@@ -7,7 +7,7 @@ script:
   - cd Java/src
   - javac -cp "../../lib/*" Signs.java Server.java
   - cd ../test
-  - javac -cp "../../lib/:../src*" SignsTest.java ServerTest.java
+  - javac -cp "../../lib/*:../src" SignsTest.java ServerTest.java
   - java -cp "./lib/*" org.junit.runner.JUnitCore SignsTest ServerTest
 
 
