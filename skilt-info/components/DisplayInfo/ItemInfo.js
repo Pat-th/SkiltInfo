@@ -4,8 +4,10 @@ import { StyleSheet, Text, View } from 'react-native';
 const ItemInfo = props => {
     return(
         <View>
-            <Text>{props.id}</Text>
-            <Text>{props.value}</Text>
+            <View>
+                <Text>{props.id}</Text>
+                <Text>{props.value}</Text>
+            </View>
         </View>
     );
 };

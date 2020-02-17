@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<CameraScreen /> renders correctly 1`] = `
+exports[`<CameraScreen /> Renders correctly 1`] = `
 <View
   style={
     Object {
