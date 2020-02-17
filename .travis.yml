@@ -9,6 +9,6 @@ script:
   - cd ../test
   - javac -cp "../../lib/*:../src" SignsTest.java ServerTest.java
   - ls
-  - java -cp "../../lib/*" org.junit.runner.JUnitCore SignsTest ServerTest
+  - java -cp "../../lib/*:." org.junit.runner.JUnitCore SignsTest ServerTest
 
 
