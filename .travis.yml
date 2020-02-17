@@ -4,7 +4,10 @@ jdk:
 before_install:
   - javac -version
 script:
-  - javac -cp "./lib/*" ./Java/src/SignsTest.java
-  - java -cp "./lib/*" org.junit.runner.JUnitCore ./Java/out/test/SkiltInfo/SignsTest
+  - cd java/src
+  - javac -cp "../../lib/*" Signs.java Server.java
+  - cd ../test
+  - javac -cp "../../lib/:../src*" SignsTest.java ServerTest.java
+  - java -cp "./lib/*" org.junit.runner.JUnitCore SignsTest ServerTest
 
 
