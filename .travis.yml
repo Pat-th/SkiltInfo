@@ -3,7 +3,7 @@ jdk:
   - oraclejdk11
 
 before_install:
-  - cd SkiltInfo
+  - javac -version
 script:
   - javac -cp /lib/junit-4.12.jar /Java/test/SignsTest.java
   - java -cp /Java/out/test/SkiltInfo:/lib/junit-4.12.jar:/lib/hamcrest-core-1.3.jar org.junit.runner.JUnitCore test.SignsTest
