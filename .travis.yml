@@ -10,9 +10,8 @@ matrix:
         - javac -cp "../../lib/*" Signs.java Server.java
         - cd ../test
         - javac -cp "../../lib/*:../src" SignsTest.java ServerTest.java
-        - java -javaagent:../../lib/jacocoagent.jar=destfile=../../jacoco.exec -cp "../../lib/*:../src:." org.junit.runner.JUnitCore SignsTest ServerTest
-        - java -jar "../../lib/jacococli.jar" report ../../jacoco.exec --classfiles . --sourcefiles .
-        - cd ..
+        - java -javaagent:../../lib/jacocoagent.jar=destfile=../../jacoco.exec -cp "../lib/*:../src:." org.junit.runner.JUnitCore SignsTest ServerTest
+        - java -jar "../../lib/jacococli.jar" report ../jacoco.exec --classfiles . --sourcefiles . --xml .. --name JaCoCo
       after_success:
         - bash <(curl -s https://codecov.io/bash)
     - language: node_js
