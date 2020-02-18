@@ -112,8 +112,8 @@ const styles = StyleSheet.create({
         borderRadius: 0,
     },
     icons: {
-        height: 30,
-        width: 30,
+        height: 15,
+        width: 15,
         position: 'absolute',
         right: 10,
     }
