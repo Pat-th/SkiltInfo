@@ -121,13 +121,13 @@ class Signs {
 
     /**
      * Used to get a link or id from a specific object
-     * @param json JSON response from sendGet(), or any other JSON
+     * @param object JSON response from sendGet(), or any other JSON
      * @param key  key is which info you want, a link to the xml-file or the id of the object. href for link, id for id.
      * @throws JSONException for JSONObject.
      * @return returns the key
      */
-    public String getLinkOrId(JSONObject json, String key) throws JSONException {
-
+    public String getLinkOrId(String object, String key) throws JSONException {
+        /*
         try {
             System.out.println(json.getString(key));
         }catch (Exception e) {
@@ -138,7 +138,9 @@ class Signs {
 
         }catch (Exception e){
             e.printStackTrace();
-        }
+        }*/
+        JSONObject json = new JSONObject(object);
+        System.out.println(json.get(key).toString());
         return json.get(key).toString();
     }
 }

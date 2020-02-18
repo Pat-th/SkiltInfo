@@ -24,7 +24,8 @@
         //signs.getSignsOfType(lat, lon, enum_id);
         //System.out.println(signs.getRoad(lat3, lon3));
         //System.out.println(signs.getRoad(63.399900, 10.393645));
-        signs.getSignsOfType(lat2, lon2, enum_id);
+        //signs.getSignsOfType(lat2, lon2, enum_id);
+        signs.getLinkOrId(signs.getJSONObject(objectId), "id");
 
 
         /*
