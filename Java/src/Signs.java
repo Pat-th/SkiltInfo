@@ -63,6 +63,7 @@ class Signs {
                 .build();
 
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        System.out.println(response);
 
         StringBuilder sb = new StringBuilder();
         sb.append(response.body());
@@ -72,8 +73,7 @@ class Signs {
         JSONObject json = new JSONObject(sb.toString());
         JSONObject object = json.getJSONObject("vegsystemreferanse");
         JSONObject object1 = object.getJSONObject("vegsystem");
-
-        //System.out.println(object1.getInt("id"));
+        System.out.println(object1.getInt("id"));
 
         HttpRequest request1 = HttpRequest.newBuilder()
                 .GET()
@@ -94,10 +94,9 @@ class Signs {
                 .setHeader("User-Agent", "Skiltinfo")
                 .build();
         HttpResponse<String> response2 = httpClient.send(request2, HttpResponse.BodyHandlers.ofString());
-        //System.out.println("Link: " + "https://apilesv3.utv.atlas.vegvesen.no/vegobjekter/96/?inkluder=alle&veglenkesekvens=" + object4.getString("kortform"));
         JSONObject object5 = new JSONObject(response2.body());
         JSONArray array1 = object5.getJSONArray("objekter");
-        //System.out.println(array1.length());
+        System.out.println(response2);
 
         List<JSONObject> list = new ArrayList<>();
         for (int index = 0; index < array1.length(); index++) {
@@ -112,8 +111,9 @@ class Signs {
             }
 
         }
+        /*
         for(JSONObject i : list)
-            System.out.println(i);
+            System.out.println(i);*/
         System.out.println(list.size() + " skilt av denne typen eksisterer på veisekvensen");
 
         return list;
