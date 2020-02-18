@@ -5,15 +5,13 @@ matrix:
         - oraclejdk11
       before_install:
         - javac -version
-      addons:
-        chrome: stable
       script:
         - cd Java/src
         - javac -cp "../../lib/*" Signs.java Server.java
         - cd ../test
         - javac -cp "../../lib/*:../src" SignsTest.java ServerTest.java
-        - java -javaagent:../../lib/jacocoagent.jar=destfile=../jacoco.exec -cp "../../lib/*:../src:." org.junit.runner.JUnitCore SignsTest ServerTest
-        - java -jar "../../lib/jacococli.jar" report ../jacoco.exec --classfiles . --sourcefiles .
+        - java -javaagent:../../lib/jacocoagent.jar=destfile=../../jacoco.exec -cp "../../lib/*:../src:." org.junit.runner.JUnitCore SignsTest ServerTest
+        - java -jar "../../lib/jacococli.jar" report ../../jacoco.exec --classfiles . --sourcefiles .
         - cd ..
       after_success:
         - bash <(curl -s https://codecov.io/bash)
