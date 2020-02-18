@@ -6,17 +6,11 @@ import ItemInfo from "../components/DisplayInfo/ItemInfo"
 
 const DisplayInformationScreen = props => {
     const [info, setInfo] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
 
 
     async function fetchData(){
-        //Needs new link every time server restarts, create link with ngrok
-        console.log("Fetching data...");
-        setIsLoading(true)
-        const res = await fetch("http://4b1ca066.ngrok.io/?lat=63.400854&lon=10.395050&id=7644");
-        const result = await res.json();
-        console.log("Complete!")
-        setIsLoading(false);
+        //console.log(props);
+        const result = props.navigation.state.params.result;
         createSimpleView(result);
     }
 
@@ -37,28 +31,12 @@ const DisplayInformationScreen = props => {
         fetchData();
     }, [])
 
-    const ListView = props => {
-        if(isLoading){
-            return(
-                <View style={styles.loadingSpinner}>
-                    <ActivityIndicator size="large" color="#0000ff" />
-                </View>
-            )
-        }else{
-            return(
-                <FlatList style={styles.list1}
-                     keyExtractor={(item, index) => item.id}
-                     data={info}
-                     renderItem={itemData => <ItemInfo id={itemData.item.id + ":"} value={itemData.item.value}/>} 
-                  />
-            );
-        }
-    }
-
     return(
-        <View style={styles.container}>
-            <ListView></ListView>
-        </View>
+        <FlatList style={styles.list1}
+             keyExtractor={(item, index) => item.id}
+             data={info}
+             renderItem={itemData => <ItemInfo id={itemData.item.id + ":"} value={itemData.item.value}/>} 
+          />
     );
 };
 

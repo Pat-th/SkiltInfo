@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { Camera } from 'expo-camera';
 
 const CameraScreen = props => {
     const [hasPermission, setHasPermission] = useState(null);
+    const [result, setResult] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
+    const [long, setLong] = useState(null);
+    const [lat, setLat] = useState(null);
 
     useEffect(() => {
         (async () => {
@@ -11,6 +15,32 @@ const CameraScreen = props => {
           setHasPermission(status === 'granted');
         })();
       }, []);
+
+      async function fetchAndNavigate(){
+        setIsLoading(true);
+        getLatLong();
+        console.log("Fetching data...");
+        //Needs new link every time server restarts, create link with ngrok
+        const res = await fetch("http://760f47c2.ngrok.io/?lat=63.400854&lon=10.395050&id=7644");
+        const result1 = await res.json();
+        console.log("Complete!!!");
+        setResult(result1);
+        console.log("Latitude: " + lat);
+        console.log("Longitude: " + long);
+        setIsLoading(false);
+        props.navigation.navigate("VisInfo", { result: result })
+    }
+
+    const getLatLong = () => {
+        navigator.geolocation.getCurrentPosition(
+            position => {
+                const latitude = position.coords.latitude;
+                const longitude = position.coords.longitude;
+                setLat(latitude);
+                setLong(longitude);
+            }
+        )
+    }
 
       if (hasPermission === null) {
         return(
@@ -23,27 +53,49 @@ const CameraScreen = props => {
         return <Text>Har ikke tilgang til kamera</Text>;
       }
 
-    return(
-        <View style={styles.cameraContainer} onPress={() => console.log("clicked cameraContainer")}>
-            <Camera style={styles.camera}>
-                <View style={styles.nonClickable} onPress={() => console.log("clicked nonClickable")}>
-                    <TouchableOpacity style={styles.buttonContainer} onPress={() => props.navigation.navigate({routeName: "VisInfo"})}>
-                        <View style={styles.captureBtn}>
-
-                        </View>
-                    </TouchableOpacity>
+    const CameraView = props => {
+        if(isLoading){
+            return(
+                <View style={styles.container} onPress={() => console.log("clicked cameraContainer")}>
+                    <View style={styles.loadingSpinner}>
+                            <ActivityIndicator size="large" color="#0000ff" />
+                    </View>
                 </View>
-            </Camera>
-        </View>
-    );
+            )
+        }else{
+            return(
+                <View style={styles.cameraContainer} onPress={() => console.log("clicked cameraContainer")}>
+                    <Camera style={styles.camera}>
+                        <View style={styles.nonClickable} onPress={() => console.log("clicked nonClickable")}>
+                            <TouchableOpacity style={styles.buttonContainer} onPress={() => fetchAndNavigate()}>
+                                <View style={styles.captureBtn}>
+        
+                                </View>
+                            </TouchableOpacity>
+                        </View>
+                    </Camera>
+                </View>
+            );
+        }
+    }
+
+    return(
+            <CameraView/>
+    )
 };
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: "flex-start"
+    },
     cameraContainer: {
         flex: 1,
+        justifyContent: "center",
       },
       camera: {
-        flex: 1
+        flex: 1,
       },
       captureBtn: {
         width: 60,
@@ -64,6 +116,10 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         margin: 20
+    },
+    loadingSpinner: {
+        alignSelf: "center"
+        
     }
 });
 

@@ -5,6 +5,7 @@ exports[`<CameraScreen /> Renders correctly 1`] = `
   style={
     Object {
       "flex": 1,
+      "justifyContent": "center",
     }
   }
 >
