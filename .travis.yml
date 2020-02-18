@@ -12,10 +12,11 @@ matrix:
         - javac -cp "../../lib/*" Signs.java Server.java
         - cd ../test
         - javac -cp "../../lib/*:../src" SignsTest.java ServerTest.java
-        - java -javaagent:../../lib/jacocoagent.jar -cp "../../lib/*:../src:." org.junit.runner.JUnitCore SignsTest ServerTest
-        - java -jar "../../lib/jacococli.jar" report jacoco.exec --classfiles . --sourcefiles . --html ..
+        - java -javaagent:../../lib/jacocoagent.jar=destfile=../jacoco.exec -cp "../../lib/*:../src:." org.junit.runner.JUnitCore SignsTest ServerTest
+        - java -jar "../../lib/jacococli.jar" report ../jacoco.exec --classfiles . --sourcefiles .
         - cd ..
-        - ls
+      after_success:
+        - bash <(curl -s https://codecov.io/bash)
     - language: node_js
       node_js:
         - node
