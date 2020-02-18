@@ -10,8 +10,8 @@ matrix:
         - javac -cp "../../lib/*" Signs.java Server.java
         - cd ../test
         - javac -cp "../../lib/*:../src" SignsTest.java ServerTest.java
-        - ls
-        - java -cp "../../lib/*:../src:." org.junit.runner.JUnitCore SignsTest ServerTest
+        - java -javaagent:../../lib/jacocoagent.jar=destfile=../jacoco.exec -cp "../../lib/*:../src:." org.junit.runner.JUnitCore SignsTest ServerTest
+        - java -jar "../../lib/jacococli.jar" report ../jacoco.exec --classfiles . --sourcefiles . --xml ../../jacoco*.xml
 
     - language: node_js
       node_js:
@@ -26,5 +26,3 @@ matrix:
       script:
         - npm ci
         - npx jest --ci
-
-
