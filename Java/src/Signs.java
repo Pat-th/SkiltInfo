@@ -59,7 +59,7 @@ class Signs {
         List<JSONObject> list = new ArrayList<>();
         HttpRequest request = HttpRequest.newBuilder()
                 .GET()
-                .uri(URI.create("https://apilesv3.utv.atlas.vegvesen.no/posisjon?lat=" + lat + "&lon=" + lon))
+                .uri(URI.create("https://apilesv3.utv.atlas.vegvesen.no/posisjon?lat=" + lat + "&lon=" + lon + "&maks_avstand=50"))
                 .setHeader("User-Agent", "Skiltinfo")
                 .build();
 
