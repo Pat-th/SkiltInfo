@@ -18,10 +18,13 @@ const CameraScreen = props => {
 
       async function fetchAndNavigate(){
         setIsLoading(true);
-        getLatLong();
+        //getLatLong();
         console.log("Fetching data...");
         //Needs new link every time server restarts, create link with ngrok
-        const res = await fetch("http://760f47c2.ngrok.io/?lat=63.400854&lon=10.395050&id=7644");
+        console.log("lat" + lat + "long" + long);
+        const res = await fetch("http://196fa9c0.ngrok.io/?lat="+lat+"&lon="+long+"&id=7644");
+        //const res = await fetch("http://196fa9c0.ngrok.io/?lat=63.400854&lon=10.395050&id=7644")
+        console.log("res:" + res);
         const result1 = await res.json();
         console.log("Complete!!!");
         setResult(result1);
@@ -40,6 +43,11 @@ const CameraScreen = props => {
                 setLong(longitude);
             }
         )
+    }
+
+    const latLongAndFetch = () => {
+        getLatLong();
+        fetchAndNavigate();
     }
 
       if (hasPermission === null) {
@@ -67,7 +75,7 @@ const CameraScreen = props => {
                 <View style={styles.cameraContainer} onPress={() => console.log("clicked cameraContainer")}>
                     <Camera style={styles.camera}>
                         <View style={styles.nonClickable} onPress={() => console.log("clicked nonClickable")}>
-                            <TouchableOpacity style={styles.buttonContainer} onPress={() => fetchAndNavigate()}>
+                            <TouchableOpacity style={styles.buttonContainer} onPress={() => latLongAndFetch()}>
                                 <View style={styles.captureBtn}>
         
                                 </View>
