@@ -10,7 +10,6 @@ const DisplayInformationScreen = props => {
 
 
     async function fetchData(){
-        //console.log(props);
         const result = props.navigation.state.params.result;
         createSimpleView(result);
     }
