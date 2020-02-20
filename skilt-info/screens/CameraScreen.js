@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { Camera } from 'expo-camera';
 
@@ -9,6 +9,34 @@ const CameraScreen = props => {
     const [long, setLong] = useState(null);
     const [lat, setLat] = useState(null);
 
+
+    //Function taken from https://overreacted.io/making-setinterval-declarative-with-react-hooks/
+    function useInterval(callback, delay) {
+        const savedCallback = useRef();
+      
+        // Remember the latest callback.
+        useEffect(() => {
+          savedCallback.current = callback;
+        }, [callback]);
+      
+        // Set up the interval.
+        useEffect(() => {
+          function tick() {
+            savedCallback.current();
+          }
+          if (delay !== null) {
+            let id = setInterval(tick, delay);
+            return () => clearInterval(id);
+          }
+        }, [delay]);
+      }
+
+      useInterval(() => {
+        // Your custom logic here
+        getLatLong();
+        console.log("laaaat: "+lat+"looooong: "+long);
+      }, 2000);
+
     useEffect(() => {
         (async () => {
           const { status } = await Camera.requestPermissionsAsync();
@@ -16,22 +44,45 @@ const CameraScreen = props => {
         })();
       }, []);
 
+     /* async function fetchSign(){
+          setIsLoading(true);
+          console.log("Fetching data...");
+          try{
+            await fetch("http://196fa9c0.ngrok.io/?lat=63.400854&lon=10.395050&id=7644")
+            .then((response) => response.json())
+            .then((responseData) => {
+                setResult(responseData);
+                console.log("heiheihei");
+            })
+            //const res = await fetch("http://196fa9c0.ngrok.io/?lat="+lat+"&lon="+long+"&id=7644");
+            //const resultJson = await res.json();
+            //setResult(resultJson);
+            //console.log(result);
+            console.log("Complete!");
+            setIsLoading(false);
+            }
+          catch(error){
+             console.error(error);
+          }
+      }*/
+
+      async function fetchSign(){
+          setIsLoading(true);
+          let res = await fetch("http://196fa9c0.ngrok.io/?lat="+lat+"&lon="+long+"&id=7642");
+          console.log("http://196fa9c0.ngrok.io/?lat="+lat+"&lon="+long+"&id=7644");
+          let data = await res.json();
+          setIsLoading(false);
+          return data
+      }
+
+
+
       async function fetchAndNavigate(){
-        setIsLoading(true);
-        //getLatLong();
-        console.log("Fetching data...");
-        //Needs new link every time server restarts, create link with ngrok
-        console.log("lat" + lat + "long" + long);
-        const res = await fetch("http://196fa9c0.ngrok.io/?lat="+lat+"&lon="+long+"&id=7644");
-        //const res = await fetch("http://196fa9c0.ngrok.io/?lat=63.400854&lon=10.395050&id=7644")
-        console.log("res:" + res);
-        const result1 = await res.json();
-        console.log("Complete!!!");
-        setResult(result1);
         console.log("Latitude: " + lat);
         console.log("Longitude: " + long);
-        setIsLoading(false);
-        props.navigation.navigate("VisInfo", { result: result })
+        console.log("lat: "+lat+" long "+long);
+        fetchSign()
+        .then(data => props.navigation.navigate("VisInfo", { result: data }));
     }
 
     const getLatLong = () => {
@@ -43,11 +94,6 @@ const CameraScreen = props => {
                 setLong(longitude);
             }
         )
-    }
-
-    const latLongAndFetch = () => {
-        getLatLong();
-        fetchAndNavigate();
     }
 
       if (hasPermission === null) {
@@ -75,7 +121,7 @@ const CameraScreen = props => {
                 <View style={styles.cameraContainer} onPress={() => console.log("clicked cameraContainer")}>
                     <Camera style={styles.camera}>
                         <View style={styles.nonClickable} onPress={() => console.log("clicked nonClickable")}>
-                            <TouchableOpacity style={styles.buttonContainer} onPress={() => latLongAndFetch()}>
+                            <TouchableOpacity style={styles.buttonContainer} onPress={() => fetchAndNavigate()}>
                                 <View style={styles.captureBtn}>
         
                                 </View>
