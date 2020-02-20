@@ -81,10 +81,10 @@ exports[`<HelpScreen /> Renders correctly 1`] = `
                       source={1}
                       style={
                         Object {
-                          "height": 30,
+                          "height": 15,
                           "position": "absolute",
                           "right": 10,
-                          "width": 30,
+                          "width": 15,
                         }
                       }
                     />
@@ -182,10 +182,10 @@ exports[`<HelpScreen /> Renders correctly 1`] = `
                       source={1}
                       style={
                         Object {
-                          "height": 30,
+                          "height": 15,
                           "position": "absolute",
                           "right": 10,
-                          "width": 30,
+                          "width": 15,
                         }
                       }
                     />
@@ -283,10 +283,10 @@ exports[`<HelpScreen /> Renders correctly 1`] = `
                       source={1}
                       style={
                         Object {
-                          "height": 30,
+                          "height": 15,
                           "position": "absolute",
                           "right": 10,
-                          "width": 30,
+                          "width": 15,
                         }
                       }
                     />
@@ -384,10 +384,10 @@ exports[`<HelpScreen /> Renders correctly 1`] = `
                       source={1}
                       style={
                         Object {
-                          "height": 30,
+                          "height": 15,
                           "position": "absolute",
                           "right": 10,
-                          "width": 30,
+                          "width": 15,
                         }
                       }
                     />
