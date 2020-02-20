@@ -42,19 +42,37 @@ public class Server {
                 final String requestMethod = he.getRequestMethod().toUpperCase();
                 switch (requestMethod) {
                     case METHOD_GET:
-                        //final Map<String, String> requestParameters = getRequestParameters(he.getRequestURI());
                         Map<String, String> requestParameters = getRequestParameters(he.getRequestURI());
-                            if (requestParameters.get("lat") != null && requestParameters.get("lon") != null && requestParameters.get("id") != null) {
+                            if (requestParameters.get("lat") != null && requestParameters.get("lon") != null && requestParameters.get("id") != null && isDouble(requestParameters.get("lat")) && isDouble(requestParameters.get("lon")) && isInt(requestParameters.get("id"))) {
                                 double lat = Double.parseDouble(requestParameters.get("lat"));
                                 double lon = Double.parseDouble(requestParameters.get("lon"));
                                 int enum_id = Integer.parseInt(requestParameters.get("id"));
-                                //System.out.println(requestParameters);
-                                //System.out.println(requestParameters.values());
-                                //System.out.println(enum_id + ", " + lat + ", " + lon + ".");
-                                //localhost:8080/?lat=63.365330&lon=10.372574&id=7644
-                                //localhost:8080/?lat=63.400854&lon=10.395050&id=7644
                                 final String responseBody = signs.getSignsOfType(lat, lon, enum_id).toString();
                                 headers.set(HEADER_CONTENT_TYPE, String.format("application/json; charset=%s", CHARSET));
+                                final byte[] rawResponseBody = responseBody.getBytes(CHARSET);
+                                he.sendResponseHeaders(STATUS_OK, rawResponseBody.length);
+                                he.getResponseBody().write(rawResponseBody);
+                                break;
+                            } else if (he.getRequestURI().toString().equals("/skiltForkjoers")){
+                                final String responseBody = "7644";
+                                final byte[] rawResponseBody = responseBody.getBytes(CHARSET);
+                                he.sendResponseHeaders(STATUS_OK, rawResponseBody.length);
+                                he.getResponseBody().write(rawResponseBody);
+                                break;
+                            } else if (he.getRequestURI().toString().equals("/skiltGangfelt")){
+                                final String responseBody = "7705";
+                                final byte[] rawResponseBody = responseBody.getBytes(CHARSET);
+                                he.sendResponseHeaders(STATUS_OK, rawResponseBody.length);
+                                he.getResponseBody().write(rawResponseBody);
+                                break;
+                            } else if (he.getRequestURI().toString().equals("/skiltVikeplikt")){
+                                final String responseBody = "7642";
+                                final byte[] rawResponseBody = responseBody.getBytes(CHARSET);
+                                he.sendResponseHeaders(STATUS_OK, rawResponseBody.length);
+                                he.getResponseBody().write(rawResponseBody);
+                                break;
+                            } else {
+                                final String responseBody = "Dette er ikke en gyldig link";
                                 final byte[] rawResponseBody = responseBody.getBytes(CHARSET);
                                 he.sendResponseHeaders(STATUS_OK, rawResponseBody.length);
                                 he.getResponseBody().write(rawResponseBody);
@@ -99,5 +117,29 @@ public class Server {
         } catch (final UnsupportedEncodingException ex) {
             throw new InternalError(ex);
         }
+    }
+
+    static boolean isDouble(String x) {
+        if (x == null) {
+            return false;
+        }
+        try {
+            double d = Double.parseDouble(x);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        return true;
+    }
+
+    static boolean isInt(String x) {
+        if (x == null) {
+            return false;
+        }
+        try {
+            double i = Integer.parseInt(x);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        return true;
     }
 }

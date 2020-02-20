@@ -56,9 +56,10 @@ class Signs {
      */
 
     public List<JSONObject> getSignsOfType(double lat, double lon, int enum_id) throws Exception {
+        List<JSONObject> list = new ArrayList<>();
         HttpRequest request = HttpRequest.newBuilder()
                 .GET()
-                .uri(URI.create("https://apilesv3.utv.atlas.vegvesen.no/posisjon?lat=" + lat + "&lon=" + lon))
+                .uri(URI.create("https://apilesv3.utv.atlas.vegvesen.no/posisjon?lat=" + lat + "&lon=" + lon + "&maks_avstand=50"))
                 .setHeader("User-Agent", "Skiltinfo")
                 .build();
 
@@ -70,48 +71,55 @@ class Signs {
         sb.deleteCharAt(sb.length() - 1);
 
         JSONObject json = new JSONObject(sb.toString());
-        JSONObject object = json.getJSONObject("vegsystemreferanse");
-        JSONObject object1 = object.getJSONObject("vegsystem");
+        if (json.has("vegsystemreferanse")){
+            JSONObject object = json.getJSONObject("vegsystemreferanse");
+            JSONObject object1 = object.getJSONObject("vegsystem");
 
-        //System.out.println(object1.getInt("id"));
+            //System.out.println(object1.getInt("id"));
 
-        HttpRequest request1 = HttpRequest.newBuilder()
-                .GET()
-                .uri(URI.create("https://apilesv3.utv.atlas.vegvesen.no/vegobjekter/915/" + object1.getInt("id") + "/1"))
-                .setHeader("User-Agent", "Skiltinfo")
-                .build();
+            HttpRequest request1 = HttpRequest.newBuilder()
+                    .GET()
+                    .uri(URI.create("https://apilesv3.utv.atlas.vegvesen.no/vegobjekter/915/" + object1.getInt("id") + "/1"))
+                    .setHeader("User-Agent", "Skiltinfo")
+                    .build();
 
-        HttpResponse<String> response1 = httpClient.send(request1, HttpResponse.BodyHandlers.ofString());
-        JSONObject object2 = new JSONObject(response1.body());
-        JSONObject object3 = object2.getJSONObject("lokasjon");
-        JSONArray array = object3.getJSONArray("stedfestinger");
-        JSONObject object4 = array.getJSONObject(0);
-        //System.out.println(object4.getString("kortform"));
+            HttpResponse<String> response1 = httpClient.send(request1, HttpResponse.BodyHandlers.ofString());
+            JSONObject object2 = new JSONObject(response1.body());
+            JSONObject object3 = object2.getJSONObject("lokasjon");
+            JSONArray array = object3.getJSONArray("stedfestinger");
+            JSONObject object4 = array.getJSONObject(0);
+            //System.out.println(object4.getString("kortform"));
 
-        HttpRequest request2 = HttpRequest.newBuilder()
-                .GET()
-                .uri(URI.create("https://apilesv3.utv.atlas.vegvesen.no/vegobjekter/96/?inkluder=alle&veglenkesekvens=" + object4.getString("kortform")))
-                .setHeader("User-Agent", "Skiltinfo")
-                .build();
-        HttpResponse<String> response2 = httpClient.send(request2, HttpResponse.BodyHandlers.ofString());
-        //System.out.println("Link: " + "https://apilesv3.utv.atlas.vegvesen.no/vegobjekter/96/?inkluder=alle&veglenkesekvens=" + object4.getString("kortform"));
-        JSONObject object5 = new JSONObject(response2.body());
-        JSONArray array1 = object5.getJSONArray("objekter");
-        //System.out.println(array1.length());
+            HttpRequest request2 = HttpRequest.newBuilder()
+                    .GET()
+                    .uri(URI.create("https://apilesv3.utv.atlas.vegvesen.no/vegobjekter/96/?inkluder=alle&veglenkesekvens=" + object4.getString("kortform")))
+                    .setHeader("User-Agent", "Skiltinfo")
+                    .build();
+            HttpResponse<String> response2 = httpClient.send(request2, HttpResponse.BodyHandlers.ofString());
+            //System.out.println("Link: " + "https://apilesv3.utv.atlas.vegvesen.no/vegobjekter/96/?inkluder=alle&veglenkesekvens=" + object4.getString("kortform"));
+            JSONObject object5 = new JSONObject(response2.body());
+            JSONArray array1 = object5.getJSONArray("objekter");
+            //System.out.println(array1.length());
 
-        List<JSONObject> list = new ArrayList<>();
-        for (int index = 0; index < array1.length(); index++) {
-            JSONObject object6 = array1.getJSONObject(index);
-            JSONArray array2 = object6.getJSONArray("egenskaper");
-            for(int index1 = 0; index1 <array2.length(); index1++){
-                JSONObject object7 = array2.getJSONObject(index1);
+
+            for (int index = 0; index < array1.length(); index++) {
+                JSONObject object6 = array1.getJSONObject(index);
+                JSONArray array2 = object6.getJSONArray("egenskaper");
+                for(int index1 = 0; index1 <array2.length(); index1++){
+                    JSONObject object7 = array2.getJSONObject(index1);
                     if (object7.has("enum_id") && object7.getInt("enum_id") == enum_id && object7.getString("navn").equals("Skiltnummer")) {
                         list.add(object6);
                         break;
                     }
+                }
+
             }
 
+        } else {
+            JSONObject notARoad = new JSONObject("{Melding: Koordinatene er ikke i nærheten av en vei}");
+            list.add(notARoad);
         }
+
         for(JSONObject i : list)
             System.out.println(i);
         System.out.println(list.size() + " skilt av denne typen eksisterer på veisekvensen");
@@ -121,13 +129,13 @@ class Signs {
 
     /**
      * Used to get a link or id from a specific object
-     * @param json JSON response from sendGet(), or any other JSON
+     * @param object JSON response from sendGet(), or any other JSON
      * @param key  key is which info you want, a link to the xml-file or the id of the object. href for link, id for id.
      * @throws JSONException for JSONObject.
      * @return returns the key
      */
-    public String getLinkOrId(JSONObject json, String key) throws JSONException {
-
+    public String getLinkOrId(String object, String key) throws JSONException {
+        /*
         try {
             System.out.println(json.getString(key));
         }catch (Exception e) {
@@ -138,7 +146,9 @@ class Signs {
 
         }catch (Exception e){
             e.printStackTrace();
-        }
+        }*/
+        JSONObject json = new JSONObject(object);
+        System.out.println(json.get(key).toString());
         return json.get(key).toString();
     }
 }
