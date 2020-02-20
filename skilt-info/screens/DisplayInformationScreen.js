@@ -6,6 +6,7 @@ import ItemInfo from "../components/DisplayInfo/ItemInfo"
 
 const DisplayInformationScreen = props => {
     const [info, setInfo] = useState([]);
+    const [error, setError] = useState(false);
 
 
     async function fetchData(){
@@ -15,10 +16,14 @@ const DisplayInformationScreen = props => {
     }
 
     const createSimpleView = result => {
-        addItem("ID", result[0].id);
-        addItem("Direkte Link", result[0].href);
-        addItem("Start Dato", result[0].metadata.startdato);
-        addItem("Sist Modifisert", result[0].metadata.sist_modifisert);
+        if(typeof result[0] === "undefined"){
+            setError(true);
+        }else{
+            addItem("ID", result[0].id);
+            addItem("Direkte Link", result[0].href);
+            addItem("Start Dato", result[0].metadata.startdato);
+            addItem("Sist Modifisert", result[0].metadata.sist_modifisert);
+        }
     }
 
     const addItem = (id, value) => {
@@ -30,6 +35,14 @@ const DisplayInformationScreen = props => {
     useEffect(() => {
         fetchData();
     }, [])
+
+    if(error){
+        return(
+            <View style={styles.errorContainer}>
+                <Text>Vi fant desverre ingen passende skilt på denne strekningen</Text>
+            </View>
+        )
+    }
 
     return(
         <FlatList style={styles.list1}
@@ -52,6 +65,9 @@ const styles = StyleSheet.create({
       },
       loadingSpinner: {
           alignSelf: "center"
+      },
+      errorContainer: {
+          flex: 1
       }
 });
 
