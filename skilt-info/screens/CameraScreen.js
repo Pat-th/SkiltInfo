@@ -35,7 +35,7 @@ const CameraScreen = props => {
     const getPosSuccess = position => {
       const latitude = position.coords.latitude;
       const longitude = position.coords.longitude;
-      fetchSign("63.364886", "10.375081")
+      fetchSign(latitude, longitude)
       .then(data => props.navigation.navigate("VisInfo", { result: data }));
     }
     const getPosError = err => {
