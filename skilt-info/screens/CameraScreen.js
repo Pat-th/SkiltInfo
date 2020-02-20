@@ -25,8 +25,8 @@ const CameraScreen = props => {
       async function fetchSign(latitude, longitude){
           setIsLoading(true);
           console.log("latitude and long from new func: "+latitude +" " + longitude);
-          let res = await fetch("http://b2b564c6.ngrok.io/?lat="+latitude+"&lon="+longitude+"&id=7644");
-          console.log("http://b2b564c6.ngrok.io/?lat="+latitude+"&lon="+longitude+"&id=7644");
+          let res = await fetch("http://b2b564c6.ngrok.io/?lat="+latitude+"&lon="+longitude+"&id=7642");
+          console.log("http://b2b564c6.ngrok.io/?lat="+latitude+"&lon="+longitude+"&id=7642");
           let data = await res.json();
           setIsLoading(false);
           return data
@@ -35,7 +35,7 @@ const CameraScreen = props => {
     const getPosSuccess = position => {
       const latitude = position.coords.latitude;
       const longitude = position.coords.longitude;
-      fetchSign(latitude, longitude)
+      fetchSign("63.364886", "10.375081")
       .then(data => props.navigation.navigate("VisInfo", { result: data }));
     }
     const getPosError = err => {
