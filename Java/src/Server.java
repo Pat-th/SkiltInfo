@@ -47,7 +47,7 @@ public class Server {
                                 double lat = Double.parseDouble(requestParameters.get("lat"));
                                 double lon = Double.parseDouble(requestParameters.get("lon"));
                                 int enum_id = Integer.parseInt(requestParameters.get("id"));
-                                final String responseBody = signs.getSignsOfType(lat, lon, enum_id).toString();
+                                final String responseBody = signs.getKartutsnitt(lat, lon, enum_id).toString();
                                 headers.set(HEADER_CONTENT_TYPE, String.format("application/json; charset=%s", CHARSET));
                                 final byte[] rawResponseBody = responseBody.getBytes(CHARSET);
                                 he.sendResponseHeaders(STATUS_OK, rawResponseBody.length);
