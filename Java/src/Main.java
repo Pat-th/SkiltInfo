@@ -30,7 +30,8 @@
         //System.out.println(signs.getRoad(63.399900, 10.393645));
         //signs.getSignsOfType(lattie, longie, enum_id);
         //signs.getLinkOrId(signs.getJSONObject(objectId), "href");
-        signs.getKartutsnitt(x, y, enum_id);
+        //http://localhost:8080/?id=7644&lat=63.362083&lon=10.383740
+        //signs.getKartutsnitt(x, y, enum_id);
 
 
         /*

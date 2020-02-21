@@ -150,14 +150,17 @@ class Signs {
         return json.get(key).toString();
     }
 
-    public List<JSONObject> getKartutsnitt(double lat, double lon, int enum_id) throws IOException, InterruptedException {
+    public List<JSONObject> getBoundingBox(double lat, double lon, int enum_id) throws Exception {
         List<JSONObject> list = new ArrayList<>();
+        Deg2UTM utm = new Deg2UTM(lat, lon);
+        double x = utm.getEasting();
+        double y = utm.getNorthing();
         double radius = 100;
-        double latMin = lat - radius;
-        double latMax = lat + radius;
+        double latMin = x - radius;
+        double latMax = x + radius;
 
-        double lonMin = lon - radius;
-        double lonMax = lon + radius;
+        double lonMin = y - radius;
+        double lonMax = y + radius;
 
         HttpRequest request = HttpRequest.newBuilder()
                 .GET()
@@ -179,8 +182,12 @@ class Signs {
                     break;
                 }
             }
-
         }
+        if(list.size() == 0){
+            JSONObject notARoad = new JSONObject("{Melding: Koordinatene er ikke i nærheten av en vei}");
+            list.add(notARoad);
+        }
+        System.out.println("Det er " + list.size() + " skilt i av typen i nærheten");
         return list;
     }
 }
