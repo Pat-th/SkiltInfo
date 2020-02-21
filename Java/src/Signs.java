@@ -117,9 +117,6 @@ class Signs {
             JSONObject notARoad = new JSONObject("{Melding: Koordinatene er ikke i nærheten av en vei}");
             list.add(notARoad);
         }
-
-        for(JSONObject i : list)
-            System.out.println(i);
         System.out.println(list.size() + " skilt av denne typen eksisterer på veisekvensen");
 
         return list;
