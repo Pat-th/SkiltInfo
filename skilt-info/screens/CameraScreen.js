@@ -1,13 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { Camera } from 'expo-camera';
+import SignPicker from "../components/SignPicker";
 
 const CameraScreen = props => {
     const [hasPermission, setHasPermission] = useState(null);
-    const [result, setResult] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
-    const [long, setLong] = useState(null);
-    const [lat, setLat] = useState(null);
+    const [isChooseMode, setIsChooseMode] = useState(false);
+    const [signsData, setSignsData] = useState(null);
+    const [navigation, setNavigation] = useState(null);
 
     var options = {
       enableHighAccuracy: true,
@@ -24,20 +25,25 @@ const CameraScreen = props => {
 
       async function fetchSign(latitude, longitude){
           setIsLoading(true);
-          console.log("latitude and long from new func: "+latitude +" " + longitude);
-          let res = await fetch("http://b2b564c6.ngrok.io/?lat="+latitude+"&lon="+longitude+"&id=7642");
-          console.log("http://b2b564c6.ngrok.io/?lat="+latitude+"&lon="+longitude+"&id=7642");
+          let res = await fetch("http://6695a9fe.ngrok.io/?lat="+latitude+"&lon="+longitude+"&id=7642");
+          console.log("http://6695a9fe.ngrok.io/?lat="+latitude+"&lon="+longitude+"&id=7642");
           let data = await res.json();
           setIsLoading(false);
-          return data
+          let numofSigns = Object.keys(data).length;
+          console.log("Number of signs: " + numofSigns);
+          return data;
       }
 
     const getPosSuccess = position => {
       const latitude = position.coords.latitude;
       const longitude = position.coords.longitude;
-      fetchSign(latitude, longitude)
-      .then(data => props.navigation.navigate("VisInfo", { result: data }));
+      fetchSign("63.3610845", "10.3932593")
+      .then(data => setSignsData(data));
+      setIsChooseMode(true);
+      /*fetchSign("63.3610845", "10.3932593")
+      .then(data => props.navigation.navigate("VisInfo", { result: data }));*/
     }
+
     const getPosError = err => {
       console.log("Error "+ err);
       return(
@@ -48,9 +54,20 @@ const CameraScreen = props => {
     }
 
     const getLatLong = () => {
+      //console.log(props.navigation);
+      setNavigation(props.navigation)
       navigator.geolocation.getCurrentPosition(
         getPosSuccess, getPosError, options
     )
+    }
+
+    const cancelHandler = () => {
+      setIsChooseMode(false);
+    }
+
+    const signChosenHandler = () => {
+      //navigate to diplayinformationscreen
+      console.log("Sign chosen!");
     }
 
       if (hasPermission === null) {
@@ -77,6 +94,12 @@ const CameraScreen = props => {
             return(
                 <View style={styles.cameraContainer} onPress={() => console.log("clicked cameraContainer")}>
                     <Camera style={styles.camera}>
+                    <SignPicker 
+                    visible={isChooseMode} 
+                    onCancel={cancelHandler} 
+                    onSignChosen={signChosenHandler} 
+                    data={signsData}
+                    navigation = {navigation}></SignPicker>
                         <View style={styles.nonClickable} onPress={() => console.log("clicked nonClickable")}>
                             <TouchableOpacity style={styles.buttonContainer} onPress={() => getLatLong()}>
                                 <View style={styles.captureBtn}>

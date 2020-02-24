@@ -15,13 +15,13 @@ const DisplayInformationScreen = props => {
     }
 
     const createSimpleView = result => {
-        if(typeof result[0] === "undefined"){
+        if(typeof result === "undefined"){
             setError(true);
         }else{
-            addItem("ID", result[0].id);
-            addItem("Direkte Link", result[0].href);
-            addItem("Start Dato", result[0].metadata.startdato);
-            addItem("Sist Modifisert", result[0].metadata.sist_modifisert);
+            addItem("ID", result.id);
+            addItem("Direkte Link", result.href);
+            addItem("Start Dato", result.metadata.startdato);
+            addItem("Sist Modifisert", result.metadata.sist_modifisert);
         }
     }
 
