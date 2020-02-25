@@ -1,0 +1,259 @@
+{
+  "metadata": {
+    "sist_modifisert": "2019-12-20T15:03:42",
+    "startdato": "2015-02-26",
+    "type": {
+      "navn": "Skiltplate",
+      "id": 96
+    },
+    "versjon": 3
+  },
+  "egenskaper": [
+    {
+      "stedfestingstype": "Punkt",
+      "relativPosisjon": 0.47771529,
+      "retning": "MED",
+      "datatype": "GeomPunkt",
+      "veglenkesekvensid": 121490,
+      "navn": "PunktTilknytning",
+      "id": 100096,
+      "kjørefelt": [],
+      "egenskapstype": "Stedfesting",
+      "sideposisjon": "V"
+    },
+    {
+      "datatype": "GeomPunkt",
+      "datafangstdato": "2015-02-26",
+      "verdi": "POINT Z(88791.72 6467127.87 2.95)",
+      "kvalitet": {
+        "målemetode": 96,
+        "nøyaktighetHøyde": 4,
+        "nøyaktighet": 2,
+        "maksimaltAvvik": -1,
+        "målemetodeHøyde": 96,
+        "synbarhet": 0
+      },
+      "navn": "Geometri, punkt",
+      "medium_nvdb": 0,
+      "id": 4795,
+      "medium": "T",
+      "egenskapstype": "Geometri",
+      "lengde": -1,
+      "høydereferanse": 1
+    },
+    {
+      "datatype": "FlerverdiAttributt, Tekst",
+      "verdi": "Klasse 3",
+      "enum_id": 2849,
+      "navn": "Folieklasse",
+      "id": 1921,
+      "egenskapstype": "Tekstenum"
+    },
+    {
+      "datatype": "Tall",
+      "verdi": 1,
+      "navn": "Plasseringskode",
+      "id": 5128,
+      "egenskapstype": "Heltall"
+    },
+    {
+      "datatype": "FlerverdiAttributt, Tekst",
+      "verdi": "516 - Gangfelt",
+      "enum_id": 7705,
+      "navn": "Skiltnummer",
+      "id": 5530,
+      "egenskapstype": "Tekstenum"
+    },
+    {
+      "datatype": "FlerverdiAttributt, Tekst",
+      "verdi": "Plan",
+      "enum_id": 2853,
+      "navn": "Skiltform",
+      "id": 1892,
+      "egenskapstype": "Tekstenum"
+    },
+    {
+      "datatype": "FlerverdiAttributt, Tekst",
+      "verdi": "Tosidig",
+      "enum_id": 3698,
+      "navn": "Ansiktsside, rettet mot",
+      "id": 1894,
+      "egenskapstype": "Tekstenum"
+    },
+    {
+      "datatype": "FlerverdiAttributt, Tekst",
+      "verdi": "Liten",
+      "enum_id": 2621,
+      "navn": "Størrelse",
+      "id": 1970,
+      "egenskapstype": "Tekstenum"
+    },
+    {
+      "datatype": "Dato",
+      "verdi": "2004-01-01",
+      "navn": "Oppsettingsdato",
+      "id": 2108,
+      "egenskapstype": "Dato"
+    }
+  ],
+  "geometri": {
+    "wkt": "POINT Z(88791.72 6467127.87 2.95)",
+    "egengeometri": true,
+    "srid": 6173
+  },
+  "lokasjon": {
+    "kommuner": [
+      4204
+    ],
+    "fylker": [
+      42
+    ],
+    "stedfestinger": [
+      {
+        "relativPosisjon": 0.47771529,
+        "retning": "MED",
+        "kortform": "0.47771529@121490",
+        "veglenkesekvensid": 121490,
+        "kjørefelt": [],
+        "type": "Punkt",
+        "sideposisjon": "V"
+      }
+    ],
+    "kontraktsområder": [],
+    "geometri": {
+      "wkt": "POINT Z(88795.067 6467130.165 2.717)",
+      "srid": 6173
+    },
+    "riksvegruter": [],
+    "vegsystemreferanser": [
+      {
+        "strekning": {
+          "trafikantgruppe": "K",
+          "retning": "MED",
+          "strekning": 1,
+          "meter": 224.473,
+          "delstrekning": 1,
+          "id": -1,
+          "versjon": -1,
+          "adskilte_løp": "Nei",
+          "arm": false
+        },
+        "kortform": "FV482 S1D1 m224",
+        "vegsystem": {
+          "fase": "V",
+          "vegkategori": "F",
+          "id": 1006188538,
+          "versjon": 1,
+          "nummer": 482
+        }
+      }
+    ]
+  },
+  "vegsegmenter": [
+    {
+      "relativPosisjon": 0.47771529,
+      "kommune": 4204,
+      "vegsystemreferanse": {
+        "kortform": "FV1",
+        "vegsystem": {
+          "fase": "V",
+          "vegkategori": "F",
+          "id": 1005484063,
+          "versjon": 1,
+          "nummer": 1
+        }
+      },
+      "typeVeg_sosi": "enkelBilveg",
+      "fylke": 42,
+      "startdato": "2015-02-26",
+      "veglenkesekvensid": 121490,
+      "typeVeg": "Enkel bilveg",
+      "geometri": {
+        "wkt": "POINT Z(88795.067 6467130.165 2.717)",
+        "srid": 6173
+      },
+      "veglenkeType": "HOVED",
+      "sluttdato": "2019-05-31",
+      "detaljnivå": "Vegtrase og kjørebane"
+    },
+    {
+      "relativPosisjon": 0.47771529,
+      "kommune": 4204,
+      "vegsystemreferanse": {
+        "kortform": "FV482",
+        "vegsystem": {
+          "fase": "V",
+          "vegkategori": "F",
+          "id": 1006188538,
+          "versjon": 1,
+          "nummer": 482
+        }
+      },
+      "typeVeg_sosi": "enkelBilveg",
+      "fylke": 42,
+      "startdato": "2019-05-31",
+      "veglenkesekvensid": 121490,
+      "typeVeg": "Enkel bilveg",
+      "geometri": {
+        "wkt": "POINT Z(88795.067 6467130.165 2.717)",
+        "srid": 6173
+      },
+      "veglenkeType": "HOVED",
+      "sluttdato": "2019-11-07",
+      "detaljnivå": "Vegtrase og kjørebane"
+    },
+    {
+      "relativPosisjon": 0.47771529,
+      "kommune": 4204,
+      "vegsystemreferanse": {
+        "strekning": {
+          "trafikantgruppe": "K",
+          "retning": "MED",
+          "strekning": 1,
+          "meter": 224.473,
+          "delstrekning": 1,
+          "id": -1,
+          "versjon": -1,
+          "adskilte_løp": "Nei",
+          "arm": false
+        },
+        "kortform": "FV482 S1D1 m224",
+        "vegsystem": {
+          "fase": "V",
+          "vegkategori": "F",
+          "id": 1006188538,
+          "versjon": 1,
+          "nummer": 482
+        }
+      },
+      "typeVeg_sosi": "enkelBilveg",
+      "fylke": 42,
+      "startdato": "2019-11-07",
+      "veglenkesekvensid": 121490,
+      "typeVeg": "Enkel bilveg",
+      "geometri": {
+        "wkt": "POINT Z(88795.067 6467130.165 2.717)",
+        "srid": 6173
+      },
+      "veglenkeType": "HOVED",
+      "detaljnivå": "Vegtrase og kjørebane"
+    }
+  ],
+  "id": 86088943,
+  "href": "https://apilesv3.utv.atlas.vegvesen.no/vegobjekter/96/86088943/3",
+  "relasjoner": {
+    "foreldre": [
+      {
+        "vegobjekter": [
+          86088944
+        ],
+        "listeid": 220004,
+        "id": 200004,
+        "type": {
+          "navn": "Skiltpunkt",
+          "id": 95
+        }
+      }
+    ]
+  }
+}
