@@ -10,11 +10,6 @@ const SignPicker = props => {
         setNavigation(props.navigation)
     })
 
-    const clickItemHandler = sign => {
-        props.onCancel();
-        props.navigation.navigate("VisInfo", { result: sign });
-    }
-
     return(
         <Modal 
         isVisible={props.visible} 

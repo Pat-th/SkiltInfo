@@ -152,7 +152,7 @@ class Signs {
         Deg2UTM utm = new Deg2UTM(lat, lon);
         double x = utm.getEasting();
         double y = utm.getNorthing();
-        double radius = 1000;
+        double radius = 100;
         double latMin = x - radius;
         double latMax = x + radius;
 

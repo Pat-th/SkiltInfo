@@ -9,7 +9,8 @@ const CameraScreen = props => {
     const [isChooseMode, setIsChooseMode] = useState(false);
     const [signsData, setSignsData] = useState(null);
     const [navigation, setNavigation] = useState(null);
-
+    const [picture, setPicture] = useState(null);
+    let camera;
     var options = {
       enableHighAccuracy: true,
       timeout: 5000,
@@ -25,8 +26,8 @@ const CameraScreen = props => {
 
       async function fetchSign(latitude, longitude){
           setIsLoading(true);
-          let res = await fetch("http://b27190d7.ngrok.io/?lat="+latitude+"&lon="+longitude+"&id=7642");
-          console.log("http://b27190d7.ngrok.io/?lat="+latitude+"&lon="+longitude+"&id=7642");
+          let res = await fetch("http://b27190d7.ngrok.io/?lat="+latitude+"&lon="+longitude+"&id=7649");
+          console.log("http://b27190d7.ngrok.io/?lat="+latitude+"&lon="+longitude+"&id=7649");
           let data = await res.json();
           setIsLoading(false);
           let numofSigns = Object.keys(data).length;
@@ -55,10 +56,17 @@ const CameraScreen = props => {
 
     const getLatLong = () => {
       //console.log(props.navigation);
+      console.log(camera);
       setNavigation(props.navigation)
       navigator.geolocation.getCurrentPosition(
         getPosSuccess, getPosError, options
     )
+    }
+
+    const cameraButtonHandler = () => {
+      takePicture()
+      .then(photo => console.log(photo));
+      getLatLong();
     }
 
     const cancelHandler = () => {
@@ -68,6 +76,19 @@ const CameraScreen = props => {
     const signChosenHandler = () => {
       //navigate to diplayinformationscreen
       console.log("Sign chosen!");
+    }
+
+    async function takePicture(){
+      if (camera) {
+        const options = { quality: 0.5 }
+        let photo = await camera.takePictureAsync(options);
+        console.log(photo);
+        setPicture(photo);
+        return photo;
+      }
+      else{
+        console.log("no camera");
+      }
     }
 
       if (hasPermission === null) {
@@ -93,7 +114,7 @@ const CameraScreen = props => {
         }else{
             return(
                 <View style={styles.cameraContainer} onPress={() => console.log("clicked cameraContainer")}>
-                    <Camera style={styles.camera}>
+                    <Camera style={styles.camera} ref={ref => {camera = ref;}}>
                     <SignPicker 
                     visible={isChooseMode} 
                     onCancel={cancelHandler} 
@@ -101,9 +122,8 @@ const CameraScreen = props => {
                     data={signsData}
                     navigation = {navigation}></SignPicker>
                         <View style={styles.nonClickable} onPress={() => console.log("clicked nonClickable")}>
-                            <TouchableOpacity style={styles.buttonContainer} onPress={() => getLatLong()}>
+                            <TouchableOpacity style={styles.buttonContainer} onPress={() => takePicture().then(() => getLatLong())}>
                                 <View style={styles.captureBtn}>
-        
                                 </View>
                             </TouchableOpacity>
                         </View>

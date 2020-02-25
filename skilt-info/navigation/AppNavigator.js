@@ -8,12 +8,13 @@ import CameraScreen from "../screens/CameraScreen";
 import HelpScreen from "../screens/HelpScreen";
 import SettingsScreen from "../screens/SettingsScreen";
 import DisplayInformationScreen from "../screens/DisplayInformationScreen";
+import NewDisplayInformationScreen from "../screens/NewDisplayInformationScreen";
 
 import Colors from "../Constants/Colors"
 
 const stackNavigator = createStackNavigator({
     Kamera : CameraScreen,
-    VisInfo: DisplayInformationScreen
+    VisInfo: NewDisplayInformationScreen
 });
 
 const TabNavigator = createBottomTabNavigator({
