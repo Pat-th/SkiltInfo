@@ -13,6 +13,7 @@ import java.util.List;
 
 class Signs {
 
+    private final double RADIUS = 150;
     private final HttpClient httpClient = HttpClient.newBuilder()
             .version(HttpClient.Version.HTTP_2)
             .build();
@@ -152,12 +153,11 @@ class Signs {
         Deg2UTM utm = new Deg2UTM(lat, lon);
         double x = utm.getEasting();
         double y = utm.getNorthing();
-        double radius = 100;
-        double latMin = x - radius;
-        double latMax = x + radius;
+        double latMin = x - RADIUS;
+        double latMax = x + RADIUS;
 
-        double lonMin = y - radius;
-        double lonMax = y + radius;
+        double lonMin = y - RADIUS;
+        double lonMax = y + RADIUS;
 
         HttpRequest request = HttpRequest.newBuilder()
                 .GET()
@@ -185,6 +185,7 @@ class Signs {
             list.add(notARoad);
         }
         System.out.println("Det er " + list.size() + " skilt i av typen i nærheten");
+        System.out.println(x + " " + y);
         return list;
     }
 }

@@ -1,28 +1,53 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, {useState} from 'react';
+import {ScrollView, StyleSheet, Switch, Text, TouchableOpacity, View, Button,} from 'react-native';
 import Colors from "../Constants/Colors"
+import Collapsed from "../components/Collapsed";
 
 const SettingsScreen = props => {
-    return(
-        <View style={styles.container}>
-            <View>
-                <Text>This is the settings screen!</Text>
-            </View>
-        </View>
-    );
-};
+    const json = require("../settings/filters.json");
+    let filters = [];
+    for(var i in json.filters){
+        filters.push(
+            json.filters[i]
+        );
+    }
 
-SettingsScreen.navigationOptions = () => {
-    headerTitle: 'Camera'
-}
+
+
+    return(
+        <View>
+            <Collapsed titleOfCollapsible={"Filter"}
+                       contentOfCollapsible={filters.map((info, i) => <View style={styles.container} key={i}><TouchableOpacity><Text key={i} style={styles.content}>{info}</Text></TouchableOpacity><Button  onPress={() => console.log(filters[i])} title={"Verdi"}/></View>)}
+            />
+            <Text style={styles.headerText}>Nattmodus</Text><Switch style={styles.switchbutton}/>
+            <Button onPress={() => props.navigation.navigate('NyttFilter')} title={"Neste"}/>
+        </View>
+    )
+};
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        flexDirection: 'row',
         backgroundColor: '#fff',
         alignItems: 'center',
-        justifyContent: 'center',
       },
+    content: {
+        padding: 5,
+        color: 'rgba(0,0,0,1)',
+        textAlign: 'left',
+    },
+    headerText: {
+        textAlign: 'left',
+        fontSize: 24,
+        fontWeight: '500',
+        color: 'rgba(0,0,0,1)',
+    },
+    switchbutton: {
+        width: 20,
+        height: 15,
+        left: 100,
+    },
+
 });
 
 export default SettingsScreen;
