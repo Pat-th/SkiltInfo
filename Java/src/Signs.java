@@ -99,8 +99,6 @@ class Signs {
             //System.out.println("Link: " + "https://apilesv3.utv.atlas.vegvesen.no/vegobjekter/96/?inkluder=alle&veglenkesekvens=" + object4.getString("kortform"));
             JSONObject object5 = new JSONObject(response2.body());
             JSONArray array1 = object5.getJSONArray("objekter");
-            //System.out.println(array1.length());
-
 
             for (int index = 0; index < array1.length(); index++) {
                 JSONObject object6 = array1.getJSONObject(index);
@@ -147,5 +145,46 @@ class Signs {
         JSONObject json = new JSONObject(object);
         System.out.println(json.get(key).toString());
         return json.get(key).toString();
+    }
+
+    public List<JSONObject> getBoundingBox(double lat, double lon, int enum_id) throws Exception {
+        List<JSONObject> list = new ArrayList<>();
+        Deg2UTM utm = new Deg2UTM(lat, lon);
+        double x = utm.getEasting();
+        double y = utm.getNorthing();
+        double radius = 100;
+        double latMin = x - radius;
+        double latMax = x + radius;
+
+        double lonMin = y - radius;
+        double lonMax = y + radius;
+
+        HttpRequest request = HttpRequest.newBuilder()
+                .GET()
+                .uri(URI.create("https://apilesv3.utv.atlas.vegvesen.no/vegobjekter/96/?inkluder=alle&kartutsnitt="+latMin+","+lonMin+","+latMax+","+lonMax+"&srid=6173"))
+                .setHeader("User-Agent", "Skiltinfo")
+                .build();
+        System.out.println("https://apilesv3.utv.atlas.vegvesen.no/vegobjekter/96/?inkluder=alle&kartutsnitt="+latMin+","+lonMin+","+latMax+","+lonMax+"&srid=6173");
+
+        HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        JSONObject object = new JSONObject(response.body());
+        JSONArray array = object.getJSONArray("objekter");
+        for (int index = 0; index < array.length(); index++) {
+            JSONObject object1 = array.getJSONObject(index);
+            JSONArray array1 = object1.getJSONArray("egenskaper");
+            for(int index1 = 0; index1 <array1.length(); index1++){
+                JSONObject object2 = array1.getJSONObject(index1);
+                if (object2.has("enum_id") && object2.getInt("enum_id") == enum_id && object2.getString("navn").equals("Skiltnummer")) {
+                    list.add(object1);
+                    break;
+                }
+            }
+        }
+        if(list.size() == 0){
+            JSONObject notARoad = new JSONObject("{Melding: Koordinatene er ikke i nærheten av en vei}");
+            list.add(notARoad);
+        }
+        System.out.println("Det er " + list.size() + " skilt i av typen i nærheten");
+        return list;
     }
 }
