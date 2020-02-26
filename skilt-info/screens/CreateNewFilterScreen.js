@@ -23,8 +23,7 @@ const CreateNewFilterScreen = () => {
 
     async function newFilters() {
       const filter = await AsyncStorage.getItem('filters');
-      let string;
-      string = [await JSON.parse(filter)];
+      let string = [await JSON.parse(filter)];
       if(string[0].filters.includes(input)){
           console.log('Dette filteret eksisterer allerede');
           return 'Dette filteret eksisterer allerede'
@@ -38,12 +37,14 @@ const CreateNewFilterScreen = () => {
     async function createFilter() {
         let arr = await createArray();
         let json = await JSON.stringify(arr);
-        try {
+        const filter = await AsyncStorage.getItem('filters');
+        let string = [await JSON.parse(filter)];
+        if(string[0].filters.includes(input)){
+            console.log('Dette filteret eksisterer allerede');
+            return 'Dette filteret eksisterer allerede'
+        }
             await AsyncStorage.setItem(input, json);
             await newFilters();
-        } catch (error) {
-            console.log(error)
-        }
     }
 
     async function getFilter() {
