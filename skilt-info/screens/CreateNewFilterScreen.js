@@ -1,128 +1,106 @@
 import React, {useState} from 'react';
-import {StyleSheet, Switch, Text, View, Button,} from 'react-native';
-import TextInput from "react-native-web/dist/exports/TextInput";
+import {StyleSheet, Switch, Text, View, Button, TextInput, AsyncStorage,} from 'react-native';
 
 const CreateNewFilterScreen = () => {
     const [metadata, setMetadata] = useState(false);
+    const [skiltnummer, setSkiltnummer] = useState(false);
+    const [ansikt, setAnsikt] = useState(false);
+
     const [input, setInput] = useState('');
 
-    const save = () => {
-      if(metadata){
+    let settings = [];
+    let egenskaper = [];
 
-      }
-    };
+    function createArray(){
+        settings = [];
+        egenskaper = [];
+        Metadata();
+        Skiltnummer();
+        AnsiktssideRettetMot();
+        settings.push(egenskaper);
+        return settings;
+    }
 
+    async function newFilters() {
+      const filter = await AsyncStorage.getItem('filters');
+      let string = [];
+      string = [await JSON.parse(filter)];
+      string[0].filters.push(input);
+      let stringify = JSON.stringify(string);
+      let split = stringify.substring(1, stringify.length-1);
+      await AsyncStorage.setItem('filters', split);
 
-    const json = require("../settings/settings.json");
-    //let settings = [];
-    /*for(var i in json.egenskaper){
-        settings.push(
-            json.egenskaper[i].navn
-        )
-    }*/
-    const Metadata = () => {
-        let name = 'Metadata';
-        return name;
-    };
+    }
 
-    const PunktTilknytning = () => {
-        let name = '';
-        for (var i in json.egenskaper) {
-            if (json.egenskaper[i].navn === 'PunktTilknytning') {
-                name = json.egenskaper[i].navn;
-            }
+    async function createFilter() {
+        let arr = await createArray();
+        let json = await JSON.stringify(arr);
+        try {
+            await AsyncStorage.setItem(input, json);
+            await newFilters();
+        } catch (error) {
+            console.log(error)
         }
-        return name;
+    }
+
+    async function getFilter() {
+        try {
+            const get = await AsyncStorage.getItem(input);
+            if(get !== null){
+                console.log(get);
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    async function getFilters() {
+        try {
+            const get = await AsyncStorage.getItem('filters');
+            if(get !== null){
+                console.log(get);
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const Metadata = () => {
+        if(metadata){
+            settings.push({"Metadata": true});
+        }
     };
 
     const GeometriPunkt = () => {
-        let name = '';
-        for (var i in json.egenskaper) {
-            if (json.egenskaper[i].navn === 'Geometri, punkt') {
-                name = json.egenskaper[i].navn;
-            }
-        }
-        return name;
-    };
-
-    const Folieklasse = () => {
-        let name = '';
-        for (var i in json.egenskaper) {
-            if (json.egenskaper[i].navn === 'Folieklasse') {
-                name = json.egenskaper[i].navn;
-            }
-        }
-        return name;
-    };
-
-    const Plasseringskode = () => {
-        let name = '';
-        for (var i in json.egenskaper) {
-            if (json.egenskaper[i].navn === 'Plasseringskode') {
-                name = json.egenskaper[i].navn;
-            }
-        }
-        return name;
     };
 
     const Skiltnummer = () => {
-        let name = '';
-        for (var i in json.egenskaper) {
-            if (json.egenskaper[i].navn === 'Skiltnummer') {
-                name = json.egenskaper[i].navn;
-            }
+        if(skiltnummer){
+            egenskaper.push({"Skiltnummer": true})
         }
-        return name;
-    };
-
-    const Skiltform = () => {
-        let name = '';
-        for (var i in json.egenskaper) {
-            if (json.egenskaper[i].navn === 'Skiltform') {
-                name = json.egenskaper[i].navn;
-            }
-        }
-        return name;
     };
 
     const AnsiktssideRettetMot = () => {
-        let name = '';
-        for (var i in json.egenskaper) {
-            if (json.egenskaper[i].navn === 'Ansiktsside, rettet mot') {
-                name = json.egenskaper[i].navn;
-            }
+        if(ansikt){
+            egenskaper.push({"Ansiktsside": true})
         }
-        return name;
     };
 
-    const Storrelse = () => {
-        let name = '';
-        for (var i in json.egenskaper) {
-            if (json.egenskaper[i].navn === 'Størrelse') {
-                name = json.egenskaper[i].navn;
-            }
-        }
-        return name;
-    };
+
 
     const Oppsettingsdato = () => {
-        let name = '';
-        for (var i in json.egenskaper) {
-            if (json.egenskaper[i].navn === 'Oppsettingsdato') {
-                name = json.egenskaper[i].navn;
-            }
-        }
-        return name;
     };
 
 
     return (
         <View>
-            <Text>Navn:</Text><TextInput onChange={() => setInput()}/>
-            <Text>{Metadata()}</Text><Switch onValueChange={() => setMetadata(!metadata)} value={metadata}/>
-            <Text>{PunktTilknytning()}</Text><Switch/>
-            <Text>{GeometriPunkt()}</Text><Switch/>
-            <Button title={"Lagre"}/>
+            <Text>Navn:</Text><TextInput onChangeText={text => setInput(text)} value={input}/>
+            <Text>Metadata</Text><Switch onValueChange={() => setMetadata(!metadata)} value={metadata}/>
+            <Text>Skiltnummer</Text><Switch onValueChange={() => setSkiltnummer(!skiltnummer)} value={skiltnummer}/>
+            <Text>Ansikt</Text><Switch onValueChange={() => setAnsikt(!ansikt)} value={ansikt}/>
+            <Button title={"Lagre"} onPress={() => createFilter()}/>
+            <Button title={"New"} onPress={() => getFilter()}/>
+            <Button title={"Get"} onPress={() => getFilters()}/>
         </View>
     )
 };

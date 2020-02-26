@@ -13,7 +13,6 @@ import java.util.List;
 
 class Signs {
 
-    private final double RADIUS = 150;
     private final HttpClient httpClient = HttpClient.newBuilder()
             .version(HttpClient.Version.HTTP_2)
             .build();
@@ -153,6 +152,7 @@ class Signs {
         Deg2UTM utm = new Deg2UTM(lat, lon);
         double x = utm.getEasting();
         double y = utm.getNorthing();
+        double RADIUS = 150;
         double latMin = x - RADIUS;
         double latMax = x + RADIUS;
 

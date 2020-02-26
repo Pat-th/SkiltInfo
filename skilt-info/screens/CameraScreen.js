@@ -22,11 +22,11 @@ const CameraScreen = props => {
           setHasPermission(status === 'granted');
         })();
       }, []);
-
+        //63.3647227 10.3739619
       async function fetchSign(latitude, longitude){
           setIsLoading(true);
-          let res = await fetch("http://b27190d7.ngrok.io/?lat="+latitude+"&lon="+longitude+"&id=7642");
-          console.log("http://b27190d7.ngrok.io/?lat="+latitude+"&lon="+longitude+"&id=7642");
+          let res = await fetch("http://211a3863.ngrok.io/?lat="+63.3647227+"&lon="+10.3739619+"&id=7642");
+          console.log("http://211a3863.ngrok.io/?lat="+latitude+"&lon="+longitude+"&id=7642");
           let data = await res.json();
           setIsLoading(false);
           let numofSigns = Object.keys(data).length;
