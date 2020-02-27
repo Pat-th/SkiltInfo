@@ -1,39 +1,81 @@
-import React, {useState} from 'react';
-import {ScrollView, StyleSheet, Switch, Text, TouchableOpacity, View, Button, AsyncStorage,} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {ScrollView, StyleSheet, Switch, Text, TouchableOpacity, View, Button, AsyncStorage, Image,} from 'react-native';
 import Colors from "../Constants/Colors"
 import Collapsed from "../components/Collapsed";
 
 const SettingsScreen = props => {
+    let filters = ['hei', 'ho'];
+    const [data, setData] = useState([]);
+
+
     const read = require("../settings/filters.json");
     if(AsyncStorage.getItem('filters') == null){
         AsyncStorage.setItem('filters', JSON.stringify(read));
     }
-    let filters = ['hei', 'ho'];
 
-    async function setStorage(){
-        let storage = await AsyncStorage.getItem('filters');
-        let parse = await JSON.parse(storage);
-        for (var i in parse.filters) {
-            filters.push(
-                parse.filters[i]
-            );
-        }
-        console.log(filters);
-        return filters;
-    }
+
+    useEffect(() => {
+        const getData = async () => {
+            filters = [];
+            let storage = await AsyncStorage.getItem('filters');
+            let parse = await JSON.parse(storage);
+            for (var i = 2; i < parse.filters.length; i++) {
+                filters.push(
+                    parse.filters[i]
+                );
+            }
+            setData(filters);
+        };
+        getData();
+    }, []);
+
+    useEffect(() => {
+        props.navigation.addListener(
+            'didFocus',
+            payload => {const updateData = async () => {
+                filters = [];
+                let storage = await AsyncStorage.getItem('filters');
+                let parse = await JSON.parse(storage);
+                for (var i = 2; i < parse.filters.length; i++) {
+                    filters.push(
+                        parse.filters[i]
+                    );
+                }
+                setData(filters);
+            };
+            updateData();
+            },
+        [])
+    });
+
+    const fillArray = () => {
+        return(<View>
+            <View><TouchableOpacity><Text>Enkel</Text></TouchableOpacity></View>
+            <View><TouchableOpacity><Text>Enkel</Text></TouchableOpacity></View>
+            {data.map((info, i) => <View style={styles.container} key={i}><TouchableOpacity><Text key={i} style={styles.content}>{info}</Text></TouchableOpacity><Button title={'Slett'}/><Button  onPress={() => console.log(data[i])} title={"Verdi"}/></View>)}
+            <View><TouchableOpacity onPress={() => goToAddNew()}><Text>Legg til nytt filter</Text><Image source={require('../images/plus.png')} style={styles.icons}/></TouchableOpacity></View>
+        </View>)
+    };
+
+    const goToAddNew = () => {
+        props.navigation.navigate('NyttFilter')
+    };
 
     return(
         <View>
+            <ScrollView>
             <Collapsed
                 titleOfCollapsible={"Filter"}
-                contentOfCollapsible={filters.map((info, i) => <View style={styles.container} key={i}><TouchableOpacity><Text key={i} style={styles.content}>{info}</Text></TouchableOpacity><Button  onPress={() => console.log(filters[i])} title={"Verdi"}/></View>)}
+                contentOfCollapsible={fillArray()}
             />
-            <Text style={styles.headerText}>Nattmodus</Text><Switch style={styles.switchbutton}/>
-            <Button onPress={() => props.navigation.navigate('NyttFilter')} title={"Neste"}/>
+            <View style={styles.container}>
+                <Text style={styles.headerText}>Nattmodus</Text>
+                <Switch style={styles.switchbutton}/>
+            </View>
             <Button onPress={async () => await AsyncStorage.getItem('filters', (err, res) => console.log(res))} title={"fetch"}/>
             <Button onPress={async () => {await AsyncStorage.clear(); AsyncStorage.setItem('filters', JSON.stringify(read))}} title={"slett alt"}/>
-            <Button onPress={() => console.log(filters)} title={"array"}/>
-        </View>
+            </ScrollView>
+            </View>
     )
 };
 
@@ -57,8 +99,15 @@ const styles = StyleSheet.create({
     switchbutton: {
         width: 20,
         height: 15,
-        left: 100,
+        position: 'absolute',
+        right: 20,
     },
+    icons: {
+        height: 15,
+        width: 15,
+        position: 'absolute',
+        right: 10,
+    }
 
 });
 

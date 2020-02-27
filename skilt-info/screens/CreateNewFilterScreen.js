@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import {StyleSheet, Switch, Text, View, Button, TextInput, AsyncStorage,} from 'react-native';
+import {StyleSheet, Switch, Text, View, Button, TextInput, AsyncStorage, Alert,} from 'react-native';
 
-const CreateNewFilterScreen = () => {
+const CreateNewFilterScreen = props => {
     const [metadata, setMetadata] = useState(false);
     const [skiltnummer, setSkiltnummer] = useState(false);
     const [ansikt, setAnsikt] = useState(false);
@@ -41,10 +41,19 @@ const CreateNewFilterScreen = () => {
         let string = [await JSON.parse(filter)];
         if(string[0].filters.includes(input)){
             console.log('Dette filteret eksisterer allerede');
+            Alert.alert(
+                'Noe gikk galt!',
+                'Et annet filter bruker dette navnet',
+                [
+                    {text: 'OK', onPress: () => console.log('OK PRESSED')}
+                ],
+            {cancelable: false},
+            );
             return 'Dette filteret eksisterer allerede'
         }
             await AsyncStorage.setItem(input, json);
             await newFilters();
+            await props.navigation.goBack();
     }
 
     async function getFilter() {
@@ -102,9 +111,7 @@ const CreateNewFilterScreen = () => {
             <Text>Metadata</Text><Switch onValueChange={() => setMetadata(!metadata)} value={metadata}/>
             <Text>Skiltnummer</Text><Switch onValueChange={() => setSkiltnummer(!skiltnummer)} value={skiltnummer}/>
             <Text>Ansikt</Text><Switch onValueChange={() => setAnsikt(!ansikt)} value={ansikt}/>
-            <Button title={"Lagre"} onPress={() => createFilter()}/>
-            <Button title={"New"} onPress={() => getFilter()}/>
-            <Button title={"Get"} onPress={() => getFilters()}/>
+            <Button title={"Lagre"} onPress={() =>createFilter()}/>
         </View>
     )
 };
