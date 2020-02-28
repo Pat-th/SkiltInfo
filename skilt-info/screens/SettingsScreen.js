@@ -1,6 +1,18 @@
 import React, {useEffect, useState} from 'react';
-import {Button, Image, ScrollView, StyleSheet, Switch, Text, TouchableOpacity, View, AsyncStorage,} from 'react-native';
+import {
+    Button,
+    Image,
+    ScrollView,
+    StyleSheet,
+    Switch,
+    Text,
+    TouchableOpacity,
+    View,
+    AsyncStorage,
+    FlatList,
+} from 'react-native';
 import Collapsed from "../components/Collapsed";
+import SettingsFilters from "../components/SettingsFilters";
 
 
 const SettingsScreen = props => {
@@ -36,20 +48,16 @@ const SettingsScreen = props => {
             <View>
             <View><TouchableOpacity><Text>Enkel</Text></TouchableOpacity></View>
             <View><TouchableOpacity><Text>Avansert</Text></TouchableOpacity></View>
-            {data.map((info, i) =>
-                <View style={styles.container} key={i}>
-                    <TouchableOpacity>
-                        <Text key={i} style={styles.content}>{info}</Text>
-                    </TouchableOpacity>
-                    <View style={styles.buttongrp}>
-                    <TouchableOpacity onPress={() => deleteFilter(data[i])} title={"Verdi"} style={styles.delete}>
-                        <Image source={require('../images/delete.png')} style={styles.deleteicon}/>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() =>  props.navigation.navigate('Rediger Filter', {toEdit: data[i]})} style={styles.edit}>
-                        <Image source={require('../images/edit.png')} style={styles.editicon}/>
-                    </TouchableOpacity>
-                    </View>
-                </View>)}
+                <FlatList
+                    data={data}
+                    renderItem={({item}) => {
+                        return (
+                            <SettingsFilters
+                                deleteButton={() => deleteFilter(item)}
+                                sendToEdit={item}
+                                Text={item}
+                            />)}}
+                            />
             <View>
                 <TouchableOpacity onPress={() => goToAddNew()}>
                     <Text>Legg til nytt filter</Text>
@@ -104,6 +112,7 @@ const SettingsScreen = props => {
                     await AsyncStorage.clear();
                     AsyncStorage.setItem('filters', JSON.stringify(read))
                 }} title={"slett alt"}/>
+                <Button onPress={() => console.log(data)} title={"data"}/>
             </ScrollView>
         </View>
     )
