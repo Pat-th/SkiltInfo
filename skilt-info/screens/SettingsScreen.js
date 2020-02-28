@@ -1,7 +1,7 @@
-import React, {useState, useEffect} from 'react';
-import {ScrollView, StyleSheet, Switch, Text, TouchableOpacity, View, Button, AsyncStorage, Image,} from 'react-native';
-import Colors from "../Constants/Colors"
+import React, {useEffect, useState} from 'react';
+import {Button, Image, ScrollView, StyleSheet, Switch, Text, TouchableOpacity, View, AsyncStorage,} from 'react-native';
 import Collapsed from "../components/Collapsed";
+
 
 const SettingsScreen = props => {
     let filters = ['hei', 'ho'];
@@ -9,73 +9,103 @@ const SettingsScreen = props => {
 
 
     const read = require("../settings/filters.json");
-    if(AsyncStorage.getItem('filters') == null){
+    if (AsyncStorage.getItem('filters') == null) {
         AsyncStorage.setItem('filters', JSON.stringify(read));
     }
 
 
     useEffect(() => {
-        const getData = async () => {
-            filters = [];
-            let storage = await AsyncStorage.getItem('filters');
-            let parse = await JSON.parse(storage);
-            for (var i = 2; i < parse.filters.length; i++) {
-                filters.push(
-                    parse.filters[i]
-                );
-            }
-            setData(filters);
-        };
         getData();
-    }, []);
+    }, [filters]);
 
-    useEffect(() => {
-        props.navigation.addListener(
-            'didFocus',
-            payload => {const updateData = async () => {
-                filters = [];
-                let storage = await AsyncStorage.getItem('filters');
-                let parse = await JSON.parse(storage);
-                for (var i = 2; i < parse.filters.length; i++) {
-                    filters.push(
-                        parse.filters[i]
-                    );
-                }
-                setData(filters);
-            };
-            updateData();
-            },
-        [])
-    });
+    const getData = async () => {
+        filters = [];
+        let storage = await AsyncStorage.getItem('filters');
+        let parse = await JSON.parse(storage);
+        for (var i = 2; i < parse.filters.length; i++) {
+            filters.push(
+                parse.filters[i]
+            );
+        }
+        setData(filters);
+    };
+
 
     const fillArray = () => {
-        return(<View>
+        return (
+            <View>
             <View><TouchableOpacity><Text>Enkel</Text></TouchableOpacity></View>
-            <View><TouchableOpacity><Text>Enkel</Text></TouchableOpacity></View>
-            {data.map((info, i) => <View style={styles.container} key={i}><TouchableOpacity><Text key={i} style={styles.content}>{info}</Text></TouchableOpacity><Button title={'Slett'}/><Button  onPress={() => console.log(data[i])} title={"Verdi"}/></View>)}
-            <View><TouchableOpacity onPress={() => goToAddNew()}><Text>Legg til nytt filter</Text><Image source={require('../images/plus.png')} style={styles.icons}/></TouchableOpacity></View>
+            <View><TouchableOpacity><Text>Avansert</Text></TouchableOpacity></View>
+            {data.map((info, i) =>
+                <View style={styles.container} key={i}>
+                    <TouchableOpacity>
+                        <Text key={i} style={styles.content}>{info}</Text>
+                    </TouchableOpacity>
+                    <View style={styles.buttongrp}>
+                    <TouchableOpacity onPress={() => deleteFilter(data[i])} title={"Verdi"} style={styles.delete}>
+                        <Image source={require('../images/delete.png')} style={styles.deleteicon}/>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() =>  props.navigation.navigate('Rediger Filter', {toEdit: data[i]})} style={styles.edit}>
+                        <Image source={require('../images/edit.png')} style={styles.editicon}/>
+                    </TouchableOpacity>
+                    </View>
+                </View>)}
+            <View>
+                <TouchableOpacity onPress={() => goToAddNew()}>
+                    <Text>Legg til nytt filter</Text>
+                    <Image source={require('../images/plus.png')} style={styles.plusicon}/>
+                </TouchableOpacity>
+            </View>
         </View>)
     };
 
+
     const goToAddNew = () => {
-        props.navigation.navigate('NyttFilter')
+        props.navigation.navigate('Nytt Filter')
     };
 
-    return(
+    const deleteFilter = async (filterGettingDeleted) => {
+      filters = [];
+        const filter = await AsyncStorage.getItem('filters');
+        let string = [await JSON.parse(filter)];
+
+        let index = string[0].filters.indexOf(filterGettingDeleted);
+
+        if(index > -1){
+            string[0].filters.splice(index, 1);
+        }
+        let stringify = JSON.stringify(string);
+        let split = stringify.substring(1, stringify.length-1);
+        await AsyncStorage.setItem('filters', split);
+        await AsyncStorage.removeItem(filterGettingDeleted);
+        for (var i = 2; i < string[0].filters.length; i++) {
+            filters.push(
+                string[0].filters[i]
+            );
+        }
+        setData(filters);
+    };
+
+
+    return (
         <View>
             <ScrollView>
-            <Collapsed
-                titleOfCollapsible={"Filter"}
-                contentOfCollapsible={fillArray()}
-            />
-            <View style={styles.container}>
-                <Text style={styles.headerText}>Nattmodus</Text>
-                <Switch style={styles.switchbutton}/>
-            </View>
-            <Button onPress={async () => await AsyncStorage.getItem('filters', (err, res) => console.log(res))} title={"fetch"}/>
-            <Button onPress={async () => {await AsyncStorage.clear(); AsyncStorage.setItem('filters', JSON.stringify(read))}} title={"slett alt"}/>
+                <Collapsed
+                    titleOfCollapsible={"Filter"}
+                    contentOfCollapsible={fillArray()}
+                />
+                <View style={styles.container}>
+                    <Text style={styles.headerText}>Nattmodus</Text>
+                    <Switch style={styles.switchbutton}/>
+                </View>
+                <Button onPress={async () => await AsyncStorage.getItem('filters', (err, res) => console.log(res))}
+                        title={"fetch"}/>
+                <Button onPress={async () => {
+                    await AsyncStorage.clear();
+                    AsyncStorage.setItem('filters', JSON.stringify(read))
+                }} title={"slett alt"}/>
             </ScrollView>
-            </View>
+        </View>
     )
 };
 
@@ -84,7 +114,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         backgroundColor: '#fff',
         alignItems: 'center',
-      },
+        padding: 5,
+    },
     content: {
         padding: 5,
         color: 'rgba(0,0,0,1)',
@@ -102,12 +133,38 @@ const styles = StyleSheet.create({
         position: 'absolute',
         right: 20,
     },
-    icons: {
-        height: 15,
-        width: 15,
+    plusicon: {
+        height: 25,
+        width: 25,
         position: 'absolute',
         right: 10,
-    }
+    },
+    deleteicon: {
+        height: 30,
+        width: 30,
+        alignSelf: 'center'
+    },
+    editicon: {
+        height: 30,
+        width: 30,
+        alignSelf: 'center'
+    },
+    delete: {
+        height: 30,
+        width: 60,
+        backgroundColor: 'rgb(226,6,0)',
+    },
+    edit: {
+        height: 30,
+        width: 60,
+        backgroundColor: 'rgb(41,150,255)',
+        marginStart: 10,
+    },
+    buttongrp: {
+        position: 'absolute',
+        right: 10,
+        flexDirection: 'row',
+    },
 
 });
 

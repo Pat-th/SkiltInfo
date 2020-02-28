@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import {StyleSheet, Switch, Text, View, Button, TextInput, AsyncStorage, Alert,} from 'react-native';
+import {StyleSheet, Switch, Text, View, Button, TextInput, AsyncStorage, Alert, ScrollView,} from 'react-native';
+import FilterSwitches from "../components/FilterSwitches";
 
 const CreateNewFilterScreen = props => {
     const [metadata, setMetadata] = useState(false);
@@ -9,15 +10,12 @@ const CreateNewFilterScreen = props => {
     const [input, setInput] = useState('');
 
     let settings = [];
-    let egenskaper = [];
 
     function createArray(){
         settings = [];
-        egenskaper = [];
         Metadata();
         Skiltnummer();
         AnsiktssideRettetMot();
-        settings.push(egenskaper);
         return settings;
     }
 
@@ -52,8 +50,8 @@ const CreateNewFilterScreen = props => {
             return 'Dette filteret eksisterer allerede'
         }
             await AsyncStorage.setItem(input, json);
-            await newFilters();
-            await props.navigation.goBack();
+            await newFilters().then(props.navigation.goBack());
+
     }
 
     async function getFilter() {
@@ -67,20 +65,11 @@ const CreateNewFilterScreen = props => {
         }
     }
 
-    async function getFilters() {
-        try {
-            const get = await AsyncStorage.getItem('filters');
-            if(get !== null){
-                console.log(get);
-            }
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
     const Metadata = () => {
         if(metadata){
-            settings.push({"Metadata": true});
+            settings.push({"metadata": true});
+        } else {
+            settings.push({"metadata": false});
         }
     };
 
@@ -89,13 +78,17 @@ const CreateNewFilterScreen = props => {
 
     const Skiltnummer = () => {
         if(skiltnummer){
-            egenskaper.push({"Skiltnummer": true})
+            settings.push({"Skiltnummer": true})
+        } else {
+            settings.push({"Skiltnummer": false})
         }
     };
 
     const AnsiktssideRettetMot = () => {
         if(ansikt){
-            egenskaper.push({"Ansiktsside": true})
+            settings.push({"Ansiktsside": true})
+        } else {
+            settings.push({"Ansiktsside": false})
         }
     };
 
@@ -108,9 +101,8 @@ const CreateNewFilterScreen = props => {
     return (
         <View>
             <Text>Navn:</Text><TextInput onChangeText={text => setInput(text)} value={input}/>
-            <Text>Metadata</Text><Switch onValueChange={() => setMetadata(!metadata)} value={metadata}/>
-            <Text>Skiltnummer</Text><Switch onValueChange={() => setSkiltnummer(!skiltnummer)} value={skiltnummer}/>
-            <Text>Ansikt</Text><Switch onValueChange={() => setAnsikt(!ansikt)} value={ansikt}/>
+            <FilterSwitches metadata={metadata} ansikt={ansikt} skiltnummer={skiltnummer}
+                            setMetadata={setMetadata} setAnsikt={setAnsikt} setSkiltnummer={setSkiltnummer}/>
             <Button title={"Lagre"} onPress={() =>createFilter()}/>
         </View>
     )

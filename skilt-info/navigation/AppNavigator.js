@@ -11,6 +11,7 @@ import DisplayInformationScreen from "../screens/DisplayInformationScreen";
 
 import Colors from "../Constants/Colors"
 import CreateNewFilterScreen from "../screens/CreateNewFilterScreen";
+import EditFilterScreen from "../screens/EditFilterScreen";
 
 const stackNavigator = createStackNavigator({
     Kamera : CameraScreen,
@@ -19,7 +20,8 @@ const stackNavigator = createStackNavigator({
 
 const settingsNavigator = createStackNavigator({
     Innstillinger : SettingsScreen,
-    NyttFilter : CreateNewFilterScreen
+    'Nytt Filter' : CreateNewFilterScreen,
+    'Rediger Filter' : EditFilterScreen,
 });
 const TabNavigator = createBottomTabNavigator({
     Innstillinger: {
