@@ -17,14 +17,14 @@ const Collapsed = props => {
 
 
     return(
-        <ScrollView>
-            <TouchableOpacity onPress={toggleExpanded} >
-                <Text style={styles.headerText}>{props.titleOfCollapsible}</Text>
+        <View>
+            <TouchableOpacity onPress={toggleExpanded} style={props.TitleTouchStyle}>
+                <Text style={props.TitleStyle}>{props.titleOfCollapsible}</Text>
             </TouchableOpacity>
             <Collapsible collapsed={collapsed} style={styles.header}>
                {props.contentOfCollapsible}
             </Collapsible>
-        </ScrollView>
+        </View>
     )
 };
 

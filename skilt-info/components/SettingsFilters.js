@@ -1,12 +1,12 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 
 const SettingsFilters = props => {
-    return(
-        <View>
-        <TouchableOpacity>
-            <Text>{props.Text}</Text>
-        </TouchableOpacity>
+    return (
+        <View style={styles.container}>
+            <TouchableOpacity onPress={props.selector} style={props.selectorStyle}>
+                <Text style={props.textStyle}>{props.text}</Text>
+            </TouchableOpacity>
             <View style={styles.buttongrp}>
                 <TouchableOpacity onPress={props.deleteButton} title={"Verdi"} style={styles.delete}>
                     <Image source={require('../images/delete.png')} style={styles.deleteicon}/>
@@ -44,33 +44,7 @@ const SettingsFilters = props => {
 
 const styles = StyleSheet.create({
     container: {
-        flexDirection: 'row',
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        padding: 5,
-    },
-    content: {
-        padding: 5,
-        color: 'rgba(0,0,0,1)',
-        textAlign: 'left',
-    },
-    headerText: {
-        textAlign: 'left',
-        fontSize: 24,
-        fontWeight: '500',
-        color: 'rgba(0,0,0,1)',
-    },
-    switchbutton: {
-        width: 20,
-        height: 15,
-        position: 'absolute',
-        right: 20,
-    },
-    plusicon: {
-        height: 25,
-        width: 25,
-        position: 'absolute',
-        right: 10,
+        height: 40,
     },
     deleteicon: {
         height: 30,
