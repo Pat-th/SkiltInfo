@@ -56,6 +56,7 @@ const SettingsScreen = props => {
                                 deleteButton={() => deleteFilter(item)}
                                 sendToEdit={item}
                                 Text={item}
+                                editButton={() =>  props.navigation.navigate('Rediger Filter', {toEdit: item})}
                             />)}}
                             />
             <View>

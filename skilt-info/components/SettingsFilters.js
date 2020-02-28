@@ -11,7 +11,7 @@ const SettingsFilters = props => {
                 <TouchableOpacity onPress={props.deleteButton} title={"Verdi"} style={styles.delete}>
                     <Image source={require('../images/delete.png')} style={styles.deleteicon}/>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() =>  props.navigation.navigate('Rediger Filter', {toEdit: props.sendToEdit})} style={styles.edit}>
+                <TouchableOpacity onPress={props.editButton} style={styles.edit}>
                     <Image source={require('../images/edit.png')} style={styles.editicon}/>
                 </TouchableOpacity>
             </View>
