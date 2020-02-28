@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {StyleSheet, Switch, Text, View, Button, TextInput, AsyncStorage, Alert, ScrollView,} from 'react-native';
+import {StyleSheet, Text, View, Button, TextInput, AsyncStorage, Alert,} from 'react-native';
 import FilterSwitches from "../components/FilterSwitches";
 
 const CreateNewFilterScreen = props => {
@@ -37,7 +37,7 @@ const CreateNewFilterScreen = props => {
         let json = await JSON.stringify(arr);
         const filter = await AsyncStorage.getItem('filters');
         let string = [await JSON.parse(filter)];
-        if(string[0].filters.includes(input)){
+        if(string[0].filters.includes(input) || input === 'standard' || input === 'filters' || input === 'Enkel' || input === 'Avansert'){
             console.log('Dette filteret eksisterer allerede');
             Alert.alert(
                 'Noe gikk galt!',
@@ -54,16 +54,6 @@ const CreateNewFilterScreen = props => {
 
     }
 
-    async function getFilter() {
-        try {
-            const get = await AsyncStorage.getItem(input);
-            if(get !== null){
-                console.log(get);
-            }
-        } catch (error) {
-            console.log(error)
-        }
-    }
 
     const Metadata = () => {
         if(metadata){
