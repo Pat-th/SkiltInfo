@@ -184,7 +184,7 @@ class Signs {
             JSONObject notARoad = new JSONObject("{Melding: Koordinatene er ikke i nærheten av en vei}");
             list.add(notARoad);
         }
-        System.out.println("Det er " + list.size() + " skilt i av typen i nærheten");
+        System.out.println("Det er " + list.size() + " skilt av typen i nærheten");
         System.out.println(x + " " + y);
         return list;
     }
