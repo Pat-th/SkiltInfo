@@ -161,10 +161,10 @@ class Signs {
 
         HttpRequest request = HttpRequest.newBuilder()
                 .GET()
-                .uri(URI.create("https://apilesv3.utv.atlas.vegvesen.no/vegobjekter/96/?inkluder=alle&kartutsnitt="+latMin+","+lonMin+","+latMax+","+lonMax+"&srid=6173"))
+                .uri(URI.create("https://nvdbapiles-v3.utv.atlas.vegvesen.no/vegobjekter/96/?inkluder=alle&kartutsnitt="+latMin+","+lonMin+","+latMax+","+lonMax+"&srid=6173"))
                 .setHeader("User-Agent", "Skiltinfo")
                 .build();
-        System.out.println("https://apilesv3.utv.atlas.vegvesen.no/vegobjekter/96/?inkluder=alle&kartutsnitt="+latMin+","+lonMin+","+latMax+","+lonMax+"&srid=6173");
+        System.out.println("https://nvdbapiles-v3.utv.atlas.vegvesen.no/vegobjekter/96/?inkluder=alle&kartutsnitt="+latMin+","+lonMin+","+latMax+","+lonMax+"&srid=6173");
 
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
         JSONObject object = new JSONObject(response.body());
