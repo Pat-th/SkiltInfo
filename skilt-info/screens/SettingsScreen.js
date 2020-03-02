@@ -84,8 +84,8 @@ const SettingsScreen = props => {
 
     const deleteFilter = async (filterGettingDeleted) => {
         filters = [];
-        const string = await AsyncStorage.getItem('filters', (err,res) => JSON.parse(res));
-        //let string = await JSON.parse(filter);
+        const filter = await AsyncStorage.getItem('filters');
+        let string = await JSON.parse(filter);
 
         let index = string.filters.indexOf(filterGettingDeleted);
 

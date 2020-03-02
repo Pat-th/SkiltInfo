@@ -27,7 +27,7 @@ class Signs {
     public String getJSONObject(int objectId) throws IOException, InterruptedException {
         HttpRequest request = HttpRequest.newBuilder()
                 .GET()
-                .uri(URI.create("https://apilesv3.utv.atlas.vegvesen.no/vegobjekter/96/" + objectId + "/1"))
+                .uri(URI.create("https://nvdbapiles-v3.atlas.vegvesen.no/vegobjekter/96/" + objectId + "/1"))
                 .setHeader("User-Agent", "Skiltinfo")
                 .build();
 
@@ -59,7 +59,7 @@ class Signs {
         List<JSONObject> list = new ArrayList<>();
         HttpRequest request = HttpRequest.newBuilder()
                 .GET()
-                .uri(URI.create("https://apilesv3.utv.atlas.vegvesen.no/posisjon?lat=" + lat + "&lon=" + lon + "&maks_avstand=50"))
+                .uri(URI.create("https://nvdbapiles-v3.atlas.vegvesen.no/posisjon?lat=" + lat + "&lon=" + lon + "&maks_avstand=50"))
                 .setHeader("User-Agent", "Skiltinfo")
                 .build();
 
@@ -79,7 +79,7 @@ class Signs {
 
             HttpRequest request1 = HttpRequest.newBuilder()
                     .GET()
-                    .uri(URI.create("https://apilesv3.utv.atlas.vegvesen.no/vegobjekter/915/" + object1.getInt("id") + "/1"))
+                    .uri(URI.create("https://nvdbapiles-v3.atlas.vegvesen.no/vegobjekter/915/" + object1.getInt("id") + "/1"))
                     .setHeader("User-Agent", "Skiltinfo")
                     .build();
 
@@ -92,7 +92,7 @@ class Signs {
 
             HttpRequest request2 = HttpRequest.newBuilder()
                     .GET()
-                    .uri(URI.create("https://apilesv3.utv.atlas.vegvesen.no/vegobjekter/96/?inkluder=alle&veglenkesekvens=" + object4.getString("kortform")))
+                    .uri(URI.create("https://nvdbapiles-v3.atlas.vegvesen.no/vegobjekter/96/?inkluder=alle&veglenkesekvens=" + object4.getString("kortform")))
                     .setHeader("User-Agent", "Skiltinfo")
                     .build();
             HttpResponse<String> response2 = httpClient.send(request2, HttpResponse.BodyHandlers.ofString());
@@ -130,18 +130,7 @@ class Signs {
      * @return returns the key
      */
     public String getLinkOrId(String object, String key) throws JSONException {
-        /*
-        try {
-            System.out.println(json.getString(key));
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
-        try{
-            System.out.println(json.getInt(key));
 
-        }catch (Exception e){
-            e.printStackTrace();
-        }*/
         JSONObject json = new JSONObject(object);
         System.out.println(json.get(key).toString());
         return json.get(key).toString();
