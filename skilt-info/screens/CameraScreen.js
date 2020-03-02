@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, ActivityIndicator } from 'react-native';
-import CameraRoll from "react-native-cameraroll"
+import { StyleSheet, Text, View, TouchableOpacity, ActivityIndicator, Alert } from 'react-native';
 import { Camera } from 'expo-camera';
 import SignPicker from "../components/SignPicker";
 
@@ -11,7 +10,10 @@ const CameraScreen = props => {
     const [signsData, setSignsData] = useState(null);
     const [navigation, setNavigation] = useState(null);
     const [picture, setPicture] = useState(null);
+    const [getSignError, setGetSignError] = useState(false);
+
     let camera;
+
     var options = {
       enableHighAccuracy: true,
       timeout: 5000,
@@ -27,13 +29,27 @@ const CameraScreen = props => {
 
       async function fetchSign(latitude, longitude){
           setIsLoading(true);
-          let res = await fetch("http://6ab48ec4.ngrok.io/?lat="+latitude+"&lon="+longitude+"&id=7649");
-          console.log("http://6ab48ec4.ngrok.io/?lat="+latitude+"&lon="+longitude+"&id=7649");
-          let data = await res.json();
-          setIsLoading(false);
-          let numofSigns = Object.keys(data).length;
-          console.log("Number of signs: " + numofSigns);
-          return data;
+          try{
+            let res = await fetch("http://6ab48ec4.ngrok.io/?lat="+latitude+"&lon="+longitude+"&id=7649");
+            console.log("http://6ab48ec4.ngrok.io/?lat="+latitude+"&lon="+longitude+"&id=7649");
+            let data = await res.json();
+            setIsLoading(false);
+            let numofSigns = Object.keys(data).length;
+            console.log("Number of signs: " + numofSigns);
+            return data;
+          }
+          catch(err){
+            Alert.alert(
+              'Feil',
+              'Det oppstod en feil ved henting av informasjon, vennligst prøv igjen',
+              [
+                {text: 'OK', onPress: () => console.log('OK Pressed')},
+              ],
+              {cancelable: false},
+            );
+            setGetSignError(true);
+            setIsLoading(false);
+          }
       }
 
     const getPosSuccess = position => {
@@ -41,9 +57,12 @@ const CameraScreen = props => {
       const longitude = position.coords.longitude;
       fetchSign(latitude, longitude)
       .then(data => setSignsData(data));
-      setIsChooseMode(true);
-      /*fetchSign("63.3610845", "10.3932593")
-      .then(data => props.navigation.navigate("VisInfo", { result: data }));*/
+      if(!getSignError){
+        setIsChooseMode(true);
+        setGetSignError(false);
+      }else{
+        setGetSignError(false);
+      }
     }
 
     const getPosError = err => {
@@ -56,7 +75,6 @@ const CameraScreen = props => {
     }
 
     const getLatLong = () => {
-      //console.log(props.navigation);
       console.log(camera);
       setNavigation(props.navigation)
       navigator.geolocation.getCurrentPosition(
@@ -64,19 +82,8 @@ const CameraScreen = props => {
     )
     }
 
-    const cameraButtonHandler = () => {
-      takePicture()
-      .then(photo => console.log(photo));
-      getLatLong();
-    }
-
     const cancelHandler = () => {
       setIsChooseMode(false);
-    }
-
-    const signChosenHandler = () => {
-      //navigate to diplayinformationscreen
-      console.log("Sign chosen!");
     }
 
     async function takePicture(){
@@ -85,7 +92,6 @@ const CameraScreen = props => {
         let photo = await camera.takePictureAsync(options);
         console.log(photo);
         setPicture(photo);
-        //CameraRoll.saveToCameraRoll(photo.uri);
         return photo;
       }
       else{
@@ -120,7 +126,6 @@ const CameraScreen = props => {
                     <SignPicker 
                     visible={isChooseMode} 
                     onCancel={cancelHandler} 
-                    onSignChosen={signChosenHandler} 
                     data={signsData}
                     image={picture}
                     navigation = {navigation}></SignPicker>
