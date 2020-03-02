@@ -11,15 +11,22 @@ import DisplayInformationScreen from "../screens/DisplayInformationScreen";
 import NewDisplayInformationScreen from "../screens/NewDisplayInformationScreen";
 
 import Colors from "../Constants/Colors"
+import CreateNewFilterScreen from "../screens/CreateNewFilterScreen";
+import EditFilterScreen from "../screens/EditFilterScreen";
 
 const stackNavigator = createStackNavigator({
     Kamera : CameraScreen,
     VisInfo: NewDisplayInformationScreen
 });
 
+const settingsNavigator = createStackNavigator({
+    Innstillinger : SettingsScreen,
+    'Nytt Filter' : CreateNewFilterScreen,
+    'Rediger Filter' : EditFilterScreen,
+});
 const TabNavigator = createBottomTabNavigator({
     Innstillinger: {
-        screen: SettingsScreen,
+        screen: settingsNavigator,
         navigationOptions: {
             tabBarIcon: <Feather name="settings" size={35}></Feather>
         }

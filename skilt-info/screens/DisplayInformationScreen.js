@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, FlatList, ActivityIndicator } from 'react-native';
+import { StyleSheet, Text, View, FlatList, AsyncStorage, Button, ActivityIndicator } from 'react-native';
 
 import ListLevel from "../components/DisplayInfo/ListLevel"
 import ItemInfo from "../components/DisplayInfo/ItemInfo"
@@ -8,10 +8,48 @@ const DisplayInformationScreen = props => {
     const [info, setInfo] = useState([]);
     const [error, setError] = useState(false);
 
+    const read = async result => {
+        let fetch = await AsyncStorage.getItem('standard');
+        let storage = await AsyncStorage.getItem(fetch);
+        let parse = await JSON.parse(storage);
+        console.log(fetch);
+        console.log(parse);
+        setInfo([]);
+        if(parse.metadata === true){
+            addItem("Start Dato", result.metadata.startdato);
+            addItem("Sist Modifisert", result.metadata.sist_modifisert);
+            addItem("Navn", result.metadata.type.navn);
+            addItem("id", result.metadata.type.id);
+        } if(parse.egenskaper.AnsiktssideRettetMot === true) {
+            for(let i in result.egenskaper){
+                if (result.egenskaper[i].id === 1894){
+                    addItem("verdi", result.egenskaper[i].verdi);
+                    addItem('datatype', result.egenskaper[i].datatype);
+                    addItem('enum_id', result.egenskaper[i].enum_id);
+                    addItem('navn', result.egenskaper[i].navn);
+                    addItem('egenskapstype', result.egenskaper[i].egenskapstype);
+                    addItem("id", result.egenskaper[i].id);
+                    break;
+                }
+            }
+        } if(parse.egenskaper.Skiltnummer === true) {
+            for(let i in result.egenskaper) {
+                if (result.egenskaper[i].id === 5530) {
+                    addItem("verdi", result.egenskaper[i].verdi);
+                    addItem('datatype', result.egenskaper[i].datatype);
+                    addItem('enum_id', result.egenskaper[i].enum_id);
+                    addItem('navn', result.egenskaper[i].navn);
+                    addItem('egenskapstype', result.egenskaper[i].egenskapstype);
+                    addItem("id", result.egenskaper[i].id);
+                }
+            }
+        }
+    };
+
 
     async function fetchData(){
         const result = props.navigation.state.params.result;
-        createSimpleView(result);
+        await read(result);
     }
 
     const createSimpleView = result => {
@@ -23,17 +61,17 @@ const DisplayInformationScreen = props => {
             addItem("Start Dato", result.metadata.startdato);
             addItem("Sist Modifisert", result.metadata.sist_modifisert);
         }
-    }
+    };
 
     const addItem = (id, value) => {
         setInfo(item => [
           ...item,
           { id: id, value: value }]);
-      }
+      };
 
     useEffect(() => {
         fetchData();
-    }, [])
+    }, []);
 
     if(error){
         return(
@@ -44,11 +82,13 @@ const DisplayInformationScreen = props => {
     }
 
     return(
+        <View>
         <FlatList style={styles.list1}
-             keyExtractor={(item, index) => item.id}
+             keyExtractor={(item, index) => index.toString()}
              data={info}
              renderItem={itemData => <ItemInfo id={itemData.item.id + ":"} value={itemData.item.value}/>} 
           />
+        </View>
     );
 };
 
@@ -58,9 +98,10 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         alignItems: 'flex-start',
         justifyContent: 'center',
+
       },
       list1: {
-        margin: 10
+        margin: 10,
       },
       loadingSpinner: {
           alignSelf: "center"
