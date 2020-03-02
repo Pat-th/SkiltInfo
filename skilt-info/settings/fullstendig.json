@@ -1,13 +1,11 @@
 {
   "metadata": true,
-  "egenskaper": [
-    {
+  "egenskaper": {
       "Skiltnummer": true,
       "GeometriPunkt": true,
       "AnsiktssideRettetMot": true,
       "Oppsettingsdato": true
-    }
-  ],
+    },
   "id": true,
   "href": true,
   "geometri": true,

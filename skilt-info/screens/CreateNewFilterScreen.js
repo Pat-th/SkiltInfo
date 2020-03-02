@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import {StyleSheet, Text, View, Button, TextInput, AsyncStorage, Alert,} from 'react-native';
 import FilterSwitches from "../components/FilterSwitches";
-import * as Filter from '../functions/EditAndCreateFilter';
 
 const CreateNewFilterScreen = props => {
     const [metadata, setMetadata] = useState(false);
@@ -10,35 +9,18 @@ const CreateNewFilterScreen = props => {
 
     const [input, setInput] = useState('');
 
-    let settings = [];
-
-    function createArray(){
-        settings = [];
-        Filter.Metadata(settings, metadata);
-        Filter.Skiltnummer(settings, skiltnummer);
-        Filter.AnsiktssideRettetMot(settings, ansikt);
-        return settings;
-    }
-
-    async function newFilters() {
-      const filter = await AsyncStorage.getItem('filters');
-      let string = [await JSON.parse(filter)];
-      if(string[0].filters.includes(input)){
-          console.log('Dette filteret eksisterer allerede');
-          return 'Dette filteret eksisterer allerede'
-      }
-      string[0].filters.push(input);
-      let stringify = JSON.stringify(string);
-      let split = stringify.substring(1, stringify.length-1);
-      await AsyncStorage.setItem('filters', split);
-    }
-
     async function createFilter() {
-        let arr = await createArray();
-        let json = await JSON.stringify(arr);
+        let settings = {metadata:  metadata,
+            egenskaper:
+                {AnsiktssideRettetMot: ansikt,
+                    Skiltnummer: skiltnummer},
+
+        };
+        let stringSettings = JSON.stringify(settings);
+        console.log(stringSettings);
         const filter = await AsyncStorage.getItem('filters');
-        let string = [await JSON.parse(filter)];
-        if(string[0].filters.includes(input) || input === 'standard' || input === 'filters' || input === 'Enkel' || input === 'Avansert'){
+        let string = await JSON.parse(filter);
+        if(string.filters.includes(input) || input === 'standard' || input === 'filters' || input === 'Enkel' || input === 'Avansert'){
             console.log('Dette filteret eksisterer allerede');
             Alert.alert(
                 'Noe gikk galt!',
@@ -50,10 +32,13 @@ const CreateNewFilterScreen = props => {
             );
             return 'Dette filteret eksisterer allerede'
         }
-            await AsyncStorage.setItem(input, json);
-            await newFilters().then(props.navigation.goBack());
-
+        string.filters.push(input);
+        let stringify = JSON.stringify(string);
+        //let split = stringify.substring(1, stringify.length-1);
+        await AsyncStorage.setItem('filters', stringify);
+        await AsyncStorage.setItem(input, stringSettings).then(props.navigation.goBack());
     }
+
     return (
         <View>
             <Text>Navn:</Text><TextInput onChangeText={text => setInput(text)} value={input}/>

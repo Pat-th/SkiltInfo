@@ -68,6 +68,45 @@ const SettingsScreen = props => {
         setSelected(filter);
     };
 
+    const goToAddNew = () => {
+        props.navigation.navigate('Nytt Filter')
+    };
+
+    const deleteAlert = filterGettingDeleted => {
+        Alert.alert(
+            'Sletting av filter',
+            'Er du sikker du vil slette dette filteret?'    ,
+            [{text: 'Avbryt', style: 'cancel'},
+                {text: 'SLETT', onPress: () => deleteFilter(filterGettingDeleted)}]
+        )
+
+    };
+
+    const deleteFilter = async (filterGettingDeleted) => {
+        filters = [];
+        const filter = await AsyncStorage.getItem('filters');
+        let string = await JSON.parse(filter);
+
+        let index = string.filters.indexOf(filterGettingDeleted);
+
+        if (index > -1) {
+            string.filters.splice(index, 1);
+        }
+        let stringify = JSON.stringify(string);
+        //let split = stringify.substring(1, stringify.length - 1);
+        await AsyncStorage.setItem('filters', stringify);
+        await AsyncStorage.removeItem(filterGettingDeleted);
+        for (var i = 3; i < string.filters.length; i++) {
+            filters.push(
+                string.filters[i]
+            );
+        }
+        if(filterGettingDeleted === selected){
+            await setFilter('Enkel')
+        }
+        setData(filters);
+    };
+
     const fillArray = () => {
         return (
             <View>
@@ -106,47 +145,6 @@ const SettingsScreen = props => {
             </View>)
     };
 
-
-    const goToAddNew = () => {
-        props.navigation.navigate('Nytt Filter')
-    };
-
-    const deleteAlert = filterGettingDeleted => {
-        Alert.alert(
-            'Sletting av filter',
-            'Er du sikker du vil slette dette filteret?'    ,
-            [{text: 'Avbryt', style: 'cancel'},
-                {text: 'SLETT', onPress: () => deleteFilter(filterGettingDeleted)}]
-        )
-
-    };
-
-    const deleteFilter = async (filterGettingDeleted) => {
-        filters = [];
-        const filter = await AsyncStorage.getItem('filters');
-        let string = [await JSON.parse(filter)];
-
-        let index = string[0].filters.indexOf(filterGettingDeleted);
-
-        if (index > -1) {
-            string[0].filters.splice(index, 1);
-        }
-        let stringify = JSON.stringify(string);
-        let split = stringify.substring(1, stringify.length - 1);
-        await AsyncStorage.setItem('filters', split);
-        await AsyncStorage.removeItem(filterGettingDeleted);
-        for (var i = 3; i < string[0].filters.length; i++) {
-            filters.push(
-                string[0].filters[i]
-            );
-        }
-        if(filterGettingDeleted === selected){
-            await setFilter('Enkel')
-        }
-        setData(filters);
-    };
-
-
     return (
         <View>
             <Collapsed
@@ -163,7 +161,7 @@ const SettingsScreen = props => {
             <Button onPress={async () => {
                 await AsyncStorage.clear();
             }} title={"slett alt"}/>
-            <Button onPress={() => AsyncStorage.getItem('standard', (err, res) => console.log(res))}
+            <Button onPress={() => AsyncStorage.getItem('standard', (err, res) => AsyncStorage.getItem(res, (err, result) => console.log(result)))}
                     title={"selected"}/>
         </View>
     )
