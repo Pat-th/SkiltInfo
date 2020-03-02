@@ -14,7 +14,7 @@ const DisplayInformationScreen = props => {
         let parse = await JSON.parse(storage);
         console.log(fetch);
         console.log(parse);
-
+        setInfo([]);
         if(parse.metadata === true){
             addItem("Start Dato", result.metadata.startdato);
             addItem("Sist Modifisert", result.metadata.sist_modifisert);
@@ -27,7 +27,20 @@ const DisplayInformationScreen = props => {
                     addItem('datatype', result.egenskaper[i].datatype);
                     addItem('enum_id', result.egenskaper[i].enum_id);
                     addItem('navn', result.egenskaper[i].navn);
+                    addItem('egenskapstype', result.egenskaper[i].egenskapstype);
+                    addItem("id", result.egenskaper[i].id);
                     break;
+                }
+            }
+        } if(parse.egenskaper.Skiltnummer === true) {
+            for(let i in result.egenskaper) {
+                if (result.egenskaper[i].id === 5530) {
+                    addItem("verdi", result.egenskaper[i].verdi);
+                    addItem('datatype', result.egenskaper[i].datatype);
+                    addItem('enum_id', result.egenskaper[i].enum_id);
+                    addItem('navn', result.egenskaper[i].navn);
+                    addItem('egenskapstype', result.egenskaper[i].egenskapstype);
+                    addItem("id", result.egenskaper[i].id);
                 }
             }
         }
@@ -71,11 +84,10 @@ const DisplayInformationScreen = props => {
     return(
         <View>
         <FlatList style={styles.list1}
-             keyExtractor={(item, index) => item.id}
+             keyExtractor={(item, index) => index.toString()}
              data={info}
              renderItem={itemData => <ItemInfo id={itemData.item.id + ":"} value={itemData.item.value}/>} 
           />
-          <Button title={'test'} onPress={() => read()}/>
         </View>
     );
 };
@@ -86,9 +98,10 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         alignItems: 'flex-start',
         justifyContent: 'center',
+
       },
       list1: {
-        margin: 10
+        margin: 10,
       },
       loadingSpinner: {
           alignSelf: "center"

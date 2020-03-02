@@ -20,6 +20,7 @@ const CreateNewFilterScreen = props => {
         console.log(stringSettings);
         const filter = await AsyncStorage.getItem('filters');
         let string = await JSON.parse(filter);
+        console.log(string);
         if(string.filters.includes(input) || input === 'standard' || input === 'filters' || input === 'Enkel' || input === 'Avansert'){
             console.log('Dette filteret eksisterer allerede');
             Alert.alert(
