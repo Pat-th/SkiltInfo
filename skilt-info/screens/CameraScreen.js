@@ -26,8 +26,8 @@ const CameraScreen = props => {
 
       async function fetchSign(latitude, longitude){
           setIsLoading(true);
-          let res = await fetch("http://d1eca0b4.ngrok.io/?lat="+latitude+"&lon="+longitude+"&id=7649");
-          console.log("http://d1eca0b4.ngrok.io/?lat="+latitude+"&lon="+longitude+"&id=7649");
+          let res = await fetch("http://6ab48ec4.ngrok.io/?lat="+latitude+"&lon="+longitude+"&id=7649");
+          console.log("http://6ab48ec4.ngrok.io/?lat="+latitude+"&lon="+longitude+"&id=7649");
           let data = await res.json();
           setIsLoading(false);
           let numofSigns = Object.keys(data).length;
