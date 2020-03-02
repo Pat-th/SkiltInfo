@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {AsyncStorage, Button, FlatList, Image, StyleSheet, Switch, Text, TouchableOpacity, View,} from 'react-native';
+import {AsyncStorage, Button, FlatList, Image, StyleSheet, Switch, Text, TouchableOpacity, View, Alert,} from 'react-native';
 import Collapsed from "../components/Collapsed";
 import SettingsFilters from "../components/SettingsFilters";
 
@@ -10,16 +10,10 @@ const SettingsScreen = props => {
     const [dark, setDark] = useState(false);
     const [selected, setSelected] = useState('Enkel');
 
-
     const read = require("../settings/filters.json");
-
-    useEffect(() => {
-        firstRun();
-    }, []);
-
-    useEffect(() => {
-        setDefault();
-    }, [selected]);
+    const enkel = require("../settings/enkel.json");
+    const avansert = require("../settings/avansert.json");
+    const fullstendig = require("../settings/fullstendig.json");
 
     useEffect(() => {
         getData();
@@ -27,12 +21,15 @@ const SettingsScreen = props => {
 
     const getData = async () => {
         filters = [];
+        await firstRun();
         let storage = await AsyncStorage.getItem('filters');
         let parse = await JSON.parse(storage);
-        for (var i = 2; i < parse.filters.length; i++) {
-            filters.push(
-                parse.filters[i]
-            );
+        if(parse.filters.length > 3) {
+            for (var i = 3; i < parse.filters.length; i++) {
+                filters.push(
+                    parse.filters[i]
+                );
+            }
         }
         setData(filters);
     };
@@ -41,25 +38,35 @@ const SettingsScreen = props => {
         await AsyncStorage.getItem('filters', (err, res) => {
             if (res == null){
                 AsyncStorage.setItem('filters', JSON.stringify(read));
-            }
-        });
+            }});
+
         await AsyncStorage.getItem('standard', (err, res) => {
             if(res == null) {
                 AsyncStorage.setItem('standard', 'Enkel');
         }});
+
+        await AsyncStorage.getItem('Enkel', (err, res) => {
+            if(res == null) {
+                AsyncStorage.setItem('Enkel', JSON.stringify(enkel));
+            }});
+
+        await AsyncStorage.getItem('Avansert', (err, res) => {
+            if(res == null) {
+                AsyncStorage.setItem('Avansert', JSON.stringify(avansert));
+            }});
+
+        await AsyncStorage.getItem('Fullstendig', (err, res) => {
+            if(res == null) {
+                AsyncStorage.setItem('Fullstendig', JSON.stringify(fullstendig));
+            }});
+        let standard = await AsyncStorage.getItem('standard');
+        await setSelected(standard);
     };
 
     const setFilter = async filter => {
         await AsyncStorage.setItem('standard', filter);
         setSelected(filter);
     };
-
-    const setDefault = async () => {
-        let filter = await AsyncStorage.getItem('standard');
-        setSelected(filter);
-    };
-
-
 
     const fillArray = () => {
         return (
@@ -70,18 +77,21 @@ const SettingsScreen = props => {
                 <View><TouchableOpacity style={{backgroundColor: selected === 'Avansert' ? '#6e3b6e' : '#f9c2ff'}}
                                         onPress={() => setFilter('Avansert')}><Text
                     style={styles.content}>Avansert</Text></TouchableOpacity></View>
+                <View><TouchableOpacity style={{backgroundColor: selected === 'Fullstendig' ? '#6e3b6e' : '#f9c2ff'}}
+                                        onPress={() => setFilter('Fullstendig')}><Text
+                    style={styles.content}>Fullstendig</Text></TouchableOpacity></View>
                 <FlatList
                     data={data}
+                    keyExtractor={(item, index) => index.toString()}
                     renderItem={({item}) => {
                         return (
                             <SettingsFilters
                                 selectorStyle={{backgroundColor: selected === item ? '#6e3b6e' : '#f9c2ff'}}
                                 selector={() => setFilter(item)}
                                 textStyle={styles.content}
-                                deleteButton={() => deleteFilter(item)}
+                                deleteButton={() => deleteAlert(item)}
                                 sendToEdit={item}
                                 text={item}
-                                keyExtractor={(item, index) => 'filter' + index}
                                 editButton={() => props.navigation.navigate('Rediger Filter', {toEdit: item})}
                                 extraData={selected}
                             />)
@@ -101,6 +111,16 @@ const SettingsScreen = props => {
         props.navigation.navigate('Nytt Filter')
     };
 
+    const deleteAlert = filterGettingDeleted => {
+        Alert.alert(
+            'Sletting av filter',
+            'Er du sikker du vil slette dette filteret?'    ,
+            [{text: 'Avbryt', style: 'cancel'},
+                {text: 'SLETT', onPress: () => deleteFilter(filterGettingDeleted)}]
+        )
+
+    };
+
     const deleteFilter = async (filterGettingDeleted) => {
         filters = [];
         const filter = await AsyncStorage.getItem('filters');
@@ -115,7 +135,7 @@ const SettingsScreen = props => {
         let split = stringify.substring(1, stringify.length - 1);
         await AsyncStorage.setItem('filters', split);
         await AsyncStorage.removeItem(filterGettingDeleted);
-        for (var i = 2; i < string[0].filters.length; i++) {
+        for (var i = 3; i < string[0].filters.length; i++) {
             filters.push(
                 string[0].filters[i]
             );
@@ -142,7 +162,6 @@ const SettingsScreen = props => {
                     title={"fetch"}/>
             <Button onPress={async () => {
                 await AsyncStorage.clear();
-                //AsyncStorage.setItem('filters', JSON.stringify(read))
             }} title={"slett alt"}/>
             <Button onPress={() => AsyncStorage.getItem('standard', (err, res) => console.log(res))}
                     title={"selected"}/>
