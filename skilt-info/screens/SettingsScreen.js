@@ -1,16 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {
-    Button,
-    Image,
-    ScrollView,
-    StyleSheet,
-    Switch,
-    Text,
-    TouchableOpacity,
-    View,
-    AsyncStorage,
-    FlatList,
-} from 'react-native';
+import {AsyncStorage, Button, FlatList, Image, StyleSheet, Switch, Text, TouchableOpacity, View,} from 'react-native';
 import Collapsed from "../components/Collapsed";
 import SettingsFilters from "../components/SettingsFilters";
 
@@ -24,9 +13,13 @@ const SettingsScreen = props => {
 
     const read = require("../settings/filters.json");
 
-    useEffect( () => {
+    useEffect(() => {
         firstRun();
-    },[]);
+    }, []);
+
+    useEffect(() => {
+        setDefault();
+    }, [selected]);
 
     useEffect(() => {
         getData();
@@ -45,48 +38,62 @@ const SettingsScreen = props => {
     };
 
     const firstRun = async () => {
-        if (await AsyncStorage.getItem('filters', res => res === null)) {
-            await AsyncStorage.setItem('filters', JSON.stringify(read));
-        }
-
-        if (await AsyncStorage.getItem('standard', res => res === null)) {
-            await AsyncStorage.setItem('standard', 'Enkel');
-        }};
+        await AsyncStorage.getItem('filters', (err, res) => {
+            if (res == null){
+                AsyncStorage.setItem('filters', JSON.stringify(read));
+            }
+        });
+        await AsyncStorage.getItem('standard', (err, res) => {
+            if(res == null) {
+                AsyncStorage.setItem('standard', 'Enkel');
+        }});
+    };
 
     const setFilter = async filter => {
-        await AsyncStorage.setItem('standard', filter)
-      setSelected(filter);
+        await AsyncStorage.setItem('standard', filter);
+        setSelected(filter);
     };
+
+    const setDefault = async () => {
+        let filter = await AsyncStorage.getItem('standard');
+        setSelected(filter);
+    };
+
 
 
     const fillArray = () => {
         return (
             <View>
-            <View><TouchableOpacity style={{backgroundColor: selected === 'Enkel' ? '#6e3b6e' : '#f9c2ff' }} onPress={() => setFilter('Enkel')}><Text style={styles.content}>Enkel</Text></TouchableOpacity></View>
-            <View><TouchableOpacity style={{backgroundColor: selected === 'Avansert' ? '#6e3b6e' : '#f9c2ff' }} onPress={() => setFilter('Avansert')}><Text style={styles.content}>Avansert</Text></TouchableOpacity></View>
+                <View><TouchableOpacity style={{backgroundColor: selected === 'Enkel' ? '#6e3b6e' : '#f9c2ff'}}
+                                        onPress={() => setFilter('Enkel')}><Text
+                    style={styles.content}>Enkel</Text></TouchableOpacity></View>
+                <View><TouchableOpacity style={{backgroundColor: selected === 'Avansert' ? '#6e3b6e' : '#f9c2ff'}}
+                                        onPress={() => setFilter('Avansert')}><Text
+                    style={styles.content}>Avansert</Text></TouchableOpacity></View>
                 <FlatList
                     data={data}
                     renderItem={({item}) => {
                         return (
                             <SettingsFilters
-                                selectorStyle={{backgroundColor: selected === item ? '#6e3b6e' : '#f9c2ff' }}
+                                selectorStyle={{backgroundColor: selected === item ? '#6e3b6e' : '#f9c2ff'}}
                                 selector={() => setFilter(item)}
                                 textStyle={styles.content}
                                 deleteButton={() => deleteFilter(item)}
                                 sendToEdit={item}
                                 text={item}
                                 keyExtractor={(item, index) => 'filter' + index}
-                                editButton={() =>  props.navigation.navigate('Rediger Filter', {toEdit: item})}
+                                editButton={() => props.navigation.navigate('Rediger Filter', {toEdit: item})}
                                 extraData={selected}
-                            />)}}
-                            />
-            <View>
-                <TouchableOpacity onPress={() => goToAddNew()}>
-                    <Text>Legg til nytt filter</Text>
-                    <Image source={require('../images/plus.png')} style={styles.plusicon}/>
-                </TouchableOpacity>
-            </View>
-        </View>)
+                            />)
+                    }}
+                />
+                <View>
+                    <TouchableOpacity onPress={() => goToAddNew()}>
+                        <Text>Legg til nytt filter</Text>
+                        <Image source={require('../images/plus.png')} style={styles.plusicon}/>
+                    </TouchableOpacity>
+                </View>
+            </View>)
     };
 
 
@@ -95,17 +102,17 @@ const SettingsScreen = props => {
     };
 
     const deleteFilter = async (filterGettingDeleted) => {
-      filters = [];
+        filters = [];
         const filter = await AsyncStorage.getItem('filters');
         let string = [await JSON.parse(filter)];
 
         let index = string[0].filters.indexOf(filterGettingDeleted);
 
-        if(index > -1){
+        if (index > -1) {
             string[0].filters.splice(index, 1);
         }
         let stringify = JSON.stringify(string);
-        let split = stringify.substring(1, stringify.length-1);
+        let split = stringify.substring(1, stringify.length - 1);
         await AsyncStorage.setItem('filters', split);
         await AsyncStorage.removeItem(filterGettingDeleted);
         for (var i = 2; i < string[0].filters.length; i++) {
@@ -113,28 +120,32 @@ const SettingsScreen = props => {
                 string[0].filters[i]
             );
         }
+        if(filterGettingDeleted === selected){
+            await setFilter('Enkel')
+        }
         setData(filters);
     };
 
 
     return (
         <View>
-                <Collapsed
-                    TitleStyle={styles.headerText}
-                    titleOfCollapsible={"Filter"}
-                    contentOfCollapsible={fillArray()}
-                />
-                <View style={styles.container}>
-                    <Text style={styles.headerText}>Nattmodus</Text>
-                    <Switch style={styles.switchbutton} onValueChange={() => setDark(!dark)} value={dark}/>
-                </View>
-                <Button onPress={async () => await AsyncStorage.getItem('filters', (err, res) => console.log(res))}
-                        title={"fetch"}/>
-                <Button onPress={async () => {
-                    await AsyncStorage.clear();
-                    AsyncStorage.setItem('filters', JSON.stringify(read))
-                }} title={"slett alt"}/>
-                <Button onPress={() => AsyncStorage.getItem('standard', (err, res) => console.log(res))} title={"selected"}/>
+            <Collapsed
+                TitleStyle={styles.headerText}
+                titleOfCollapsible={"Filter"}
+                contentOfCollapsible={fillArray()}
+            />
+            <View style={styles.container}>
+                <Text style={styles.headerText}>Nattmodus</Text>
+                <Switch style={styles.switchbutton} onValueChange={() => setDark(!dark)} value={dark}/>
+            </View>
+            <Button onPress={async () => await AsyncStorage.getItem('filters', (err, res) => console.log(res))}
+                    title={"fetch"}/>
+            <Button onPress={async () => {
+                await AsyncStorage.clear();
+                //AsyncStorage.setItem('filters', JSON.stringify(read))
+            }} title={"slett alt"}/>
+            <Button onPress={() => AsyncStorage.getItem('standard', (err, res) => console.log(res))}
+                    title={"selected"}/>
         </View>
     )
 };

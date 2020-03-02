@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {StyleSheet, Text, View, Button, TextInput, AsyncStorage, Alert,} from 'react-native';
 import FilterSwitches from "../components/FilterSwitches";
+import * as Filter from '../functions/EditAndCreateFilter';
 
 const CreateNewFilterScreen = props => {
     const [metadata, setMetadata] = useState(false);
@@ -13,9 +14,9 @@ const CreateNewFilterScreen = props => {
 
     function createArray(){
         settings = [];
-        Metadata();
-        Skiltnummer();
-        AnsiktssideRettetMot();
+        Filter.Metadata(settings, metadata);
+        Filter.Skiltnummer(settings, skiltnummer);
+        Filter.AnsiktssideRettetMot(settings, ansikt);
         return settings;
     }
 
@@ -53,41 +54,6 @@ const CreateNewFilterScreen = props => {
             await newFilters().then(props.navigation.goBack());
 
     }
-
-
-    const Metadata = () => {
-        if(metadata){
-            settings.push({"metadata": true});
-        } else {
-            settings.push({"metadata": false});
-        }
-    };
-
-    const GeometriPunkt = () => {
-    };
-
-    const Skiltnummer = () => {
-        if(skiltnummer){
-            settings.push({"Skiltnummer": true})
-        } else {
-            settings.push({"Skiltnummer": false})
-        }
-    };
-
-    const AnsiktssideRettetMot = () => {
-        if(ansikt){
-            settings.push({"Ansiktsside": true})
-        } else {
-            settings.push({"Ansiktsside": false})
-        }
-    };
-
-
-
-    const Oppsettingsdato = () => {
-    };
-
-
     return (
         <View>
             <Text>Navn:</Text><TextInput onChangeText={text => setInput(text)} value={input}/>

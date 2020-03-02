@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
-import {StyleSheet, Switch, Text, View, Button, TextInput, AsyncStorage, Alert, ScrollView} from 'react-native';
+import {StyleSheet, Text, View, Button, AsyncStorage, ScrollView} from 'react-native';
 import FilterSwitches from "../components/FilterSwitches";
-import CreateNewFilterScreen from "./CreateNewFilterScreen";
+import * as Filter from '../functions/EditAndCreateFilter';
 
 const EditFilterScreen = props => {
     const [metadata, setMetadata] = useState(false);
@@ -17,18 +17,16 @@ const EditFilterScreen = props => {
 
     const createArray = () => {
         settings = [];
-        Metadata();
-        Skiltnummer();
-        AnsiktssideRettetMot();
+        Filter.Metadata(settings, metadata);
+        Filter.Skiltnummer(settings, skiltnummer);
+        Filter.AnsiktssideRettetMot(settings, ansikt);
         return settings;
     };
 
     const saveEdit = async () => {
         let object = await createArray();
         let string = await JSON.stringify(object);
-        console.log(string)
-        //let split = string.substring(1, string.length-1);
-        await AsyncStorage.setItem(props.navigation.state.params.toEdit, string)
+        await AsyncStorage.setItem(props.navigation.state.params.toEdit, string).then(props.navigation.goBack())
     };
 
 
@@ -47,33 +45,6 @@ const EditFilterScreen = props => {
             setAnsikt(true)
         }
 
-    };
-
-    const Metadata = () => {
-        if(metadata){
-            settings.push({"metadata": true});
-        } else {
-            settings.push({"metadata": false});
-        }
-    };
-
-    const GeometriPunkt = () => {
-    };
-
-    const Skiltnummer = () => {
-        if(skiltnummer){
-            settings.push({"Skiltnummer": true})
-        } else {
-            settings.push({"Skiltnummer": false})
-        }
-    };
-
-    const AnsiktssideRettetMot = () => {
-        if(ansikt){
-            settings.push({"Ansiktsside": true})
-        } else {
-            settings.push({"Ansiktsside": false})
-        }
     };
 
     return (
