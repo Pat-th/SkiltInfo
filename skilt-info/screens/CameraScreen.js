@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, ActivityIndicator } from 'react-native';
+import CameraRoll from "react-native-cameraroll"
 import { Camera } from 'expo-camera';
 import SignPicker from "../components/SignPicker";
 
@@ -84,6 +85,7 @@ const CameraScreen = props => {
         let photo = await camera.takePictureAsync(options);
         console.log(photo);
         setPicture(photo);
+        //CameraRoll.saveToCameraRoll(photo.uri);
         return photo;
       }
       else{
@@ -120,6 +122,7 @@ const CameraScreen = props => {
                     onCancel={cancelHandler} 
                     onSignChosen={signChosenHandler} 
                     data={signsData}
+                    image={picture}
                     navigation = {navigation}></SignPicker>
                         <View style={styles.nonClickable} onPress={() => console.log("clicked nonClickable")}>
                             <TouchableOpacity style={styles.buttonContainer} onPress={() => takePicture().then(() => getLatLong())}>

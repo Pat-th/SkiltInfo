@@ -5,9 +5,11 @@ import SignPreview from "../components/SignPreview";
 
 const SignPicker = props => {
     const [navigation, setNavigation] = useState(null);
+    const [picture, setPicture] = useState(null);
 
     useEffect(() => {
-        setNavigation(props.navigation)
+        setNavigation(props.navigation);
+        setPicture(props.image);
     })
 
     return(
@@ -27,6 +29,7 @@ const SignPicker = props => {
                     oppsettingsdato={itemData.item.metadata.startdato} 
                     onClickItem = {props.onCancel}
                     cancel = {props.onCancel}
+                    image={picture}
                     navigation={navigation}
                     ></SignPreview>} 
                 />

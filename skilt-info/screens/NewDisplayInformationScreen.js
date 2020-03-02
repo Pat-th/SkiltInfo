@@ -10,6 +10,7 @@ const NewDisplayInformationScreen = props => {
     async function fetchData(){
         const result = props.navigation.state.params.result;
         createSimpleView(result);
+        console.log("IMAGE!!!: " + props.navigation.state.params.image.uri);
     }
 
     const createSimpleView = result => {
@@ -45,7 +46,7 @@ const NewDisplayInformationScreen = props => {
         <View style={styles.container}>
             <View style={styles.topView}>
                 <View style={styles.imageView}>
-                    <Text>Her kommer bildet</Text>
+                    <Image style={styles.imageStyle} source={{uri: props.navigation.state.params.image.uri}}></Image>
                 </View>
                 <View style={styles.buttonView}>
 
@@ -74,10 +75,16 @@ const styles = StyleSheet.create({
       },
       imageView: {
           backgroundColor: "#fff",
-          flex: 1
+          flex: 1,
+      },
+      imageStyle: {
+          flex: 1,
+          borderRadius: 10,
+          width: undefined, 
+          height: undefined,
       },
       buttonView: {
-          backgroundColor: "brown",
+          backgroundColor: "#fff",
           flex: 1
       },
       bottomView: {
