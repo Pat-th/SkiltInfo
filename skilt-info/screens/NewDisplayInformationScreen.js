@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Image, FlatList, ActivityIndicator, ShadowPropTypesIOS } from 'react-native';
+import { StyleSheet, Text, View, Image, FlatList } from 'react-native';
 import ItemInfo from "../components/DisplayInfo/ItemInfo"
 
 const NewDisplayInformationScreen = props => {
@@ -10,7 +10,7 @@ const NewDisplayInformationScreen = props => {
     async function fetchData(){
         const result = props.navigation.state.params.result;
         createSimpleView(result);
-    }
+    };
 
     const createSimpleView = result => {
         if(typeof result === "undefined"){
@@ -21,17 +21,17 @@ const NewDisplayInformationScreen = props => {
             addItem("Start Dato", result.metadata.startdato);
             addItem("Sist Modifisert", result.metadata.sist_modifisert);
         }
-    }
+    };
 
     const addItem = (id, value) => {
         setInfo(item => [
           ...item,
           { id: id, value: value }]);
-      }
+    };
 
     useEffect(() => {
         fetchData();
-    }, [])
+    }, []);
 
     if(error){
         return(
@@ -45,7 +45,7 @@ const NewDisplayInformationScreen = props => {
         <View style={styles.container}>
             <View style={styles.topView}>
                 <View style={styles.imageView}>
-                    <Image style={styles.imageStyle} source={{uri: props.navigation.state.params.image.uri}}></Image>
+                    <Image style={styles.imageStyle} source={{uri: props.navigation.state.params.image.uri}} />
                 </View>
                 <View style={styles.buttonView}>
 

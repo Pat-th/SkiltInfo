@@ -44,7 +44,7 @@ const CameraScreen = props => {
               'Feil',
               'Det oppstod en feil ved henting av informasjon, vennligst prøv igjen',
               [
-                {text: 'OK', onPress: () => console.log('OK Pressed')},
+                {text: 'OK', onPress: () => console.log('OK')},
               ],
               {cancelable: false},
             );

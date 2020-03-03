@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
 const SignPreview = props => {
@@ -6,7 +6,7 @@ const SignPreview = props => {
     const onPressHandler = () => {
         props.navigation.navigate("Data", { result: props.signItem, image: props.image });
         props.cancel();
-    }
+    };
 
     return(
         <View style={styles.itemStyle}>
