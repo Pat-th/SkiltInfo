@@ -10,7 +10,7 @@ const SignPicker = props => {
     useEffect(() => {
         setNavigation(props.navigation);
         setPicture(props.image);
-    })
+    });
 
     return(
         <Modal 

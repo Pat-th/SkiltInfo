@@ -7,7 +7,6 @@ import React from "react";
 import CameraScreen from "../screens/CameraScreen";
 import HelpScreen from "../screens/HelpScreen";
 import SettingsScreen from "../screens/SettingsScreen";
-import DisplayInformationScreen from "../screens/DisplayInformationScreen";
 import NewDisplayInformationScreen from "../screens/NewDisplayInformationScreen";
 
 import Colors from "../Constants/Colors"
@@ -16,7 +15,7 @@ import EditFilterScreen from "../screens/EditFilterScreen";
 
 const stackNavigator = createStackNavigator({
     Kamera : CameraScreen,
-    VisInfo: NewDisplayInformationScreen
+    Data: NewDisplayInformationScreen
 });
 
 const settingsNavigator = createStackNavigator({
