@@ -10,7 +10,6 @@ import {
     AsyncStorage
 } from 'react-native';
 import ItemInfo from "../components/DisplayInfo/ItemInfo";
-import * as Filter from "./DisplayInformationScreen";
 
 const NewDisplayInformationScreen = props => {
     const [info, setInfo] = useState([]);
@@ -44,24 +43,8 @@ const NewDisplayInformationScreen = props => {
         } if(parse.lokasjon === true){
             addItem("Kommune", result.lokasjon.kommuner[0]);
             addItem("Fylker", result.lokasjon.fylker[0]);
-/*
-            addItem("Vegsystem id", result.lokasjon.vegsystemreferanser.vegsystem.id);
-            addItem("Vegsystem versjon", result.lokasjon.vegsystemreferanser.vegsystem.versjon);
-            addItem("Vegsystem vegkategori", result.lokasjon.vegsystemreferanser.vegsystem.vegkategori);
-            addItem("Vegsystem fase", result.lokasjon.vegsystemreferanser.vegsystem.fase);
-            addItem("Vegsystem nummer", result.lokasjon.vegsystemreferanser.vegsystem.nummer);
-            addItem("Kortform", result.lokasjon.vegsystemreferanser.kortform);*/
-/*
-            addItem("Strekning id", result.lokasjon.vegsystemreferanser.strekning.id);
-            addItem("Strekning versjon", result.lokasjon.vegsystemreferanser.strekning.versjon);
-            addItem("Strekning strekning", result.lokasjon.vegsystemreferanser.strekning.strekning);
-            addItem("Strekning delstrekning", result.lokasjon.vegsystemreferanser.strekning.delstrekning);
-            addItem("Strekning arm", result.lokasjon.vegsystemreferanser.strekning.arm);
-            addItem("Strekning adskilte_løp", result.lokasjon.vegsystemreferanser.strekning.adskilte_løp);
-            addItem("Strekning trafikantgruppe", result.lokasjon.vegsystemreferanser.strekning.trafikantgruppe);
-            addItem("Strekning meter", result.lokasjon.vegsystemreferanser.strekning.meter);
-            addItem("Strekning retning", result.lokasjon.vegsystemreferanser.strekning.retning);
-*/
+            addItem("Kortform", result.lokasjon.vegsystemreferanser[result.lokasjon.vegsystemreferanser.length-1].kortform)
+
             addItem("Stedfesting type", result.lokasjon.stedfestinger[0].type);
             addItem("Stedfesting veglenkesekvensid", result.lokasjon.stedfestinger[0].veglenkesekvensid);
             addItem("Stedfesting relativposisjon", result.lokasjon.stedfestinger[0].relativPosisjon);
@@ -275,17 +258,17 @@ const NewDisplayInformationScreen = props => {
             addItem("Start Dato", result.metadata.startdato);
             addItem("Sist Modifisert", result.metadata.sist_modifisert);
         }
-    }
+    };
 
     const addItem = (id, value) => {
         setInfo(item => [
           ...item,
           { id: id, value: value }]);
-      }
+      };
 
     useEffect(() => {
         fetchData();
-    }, [])
+    }, []);
 
     if(error){
         return(
@@ -299,7 +282,7 @@ const NewDisplayInformationScreen = props => {
         <View style={styles.container}>
             <View style={styles.topView}>
                 <View style={styles.imageView}>
-                    <Image style={styles.imageStyle} source={{uri: props.navigation.state.params.image.uri}}></Image>
+                    <Image style={styles.imageStyle} source={{uri: props.navigation.state.params.image.uri}}/>
                 </View>
                 <View style={styles.buttonView}>
 
