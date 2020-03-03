@@ -11,6 +11,7 @@ const CameraScreen = props => {
     const [navigation, setNavigation] = useState(null);
     const [picture, setPicture] = useState(null);
     const [getSignError, setGetSignError] = useState(false);
+    const URL = "http://39f51343.ngrok.io";
 
     let camera;
 
@@ -30,8 +31,8 @@ const CameraScreen = props => {
       async function fetchSign(latitude, longitude){
           setIsLoading(true);
           try{
-            let res = await fetch("http://6ab48ec4.ngrok.io/?lat="+latitude+"&lon="+longitude+"&id=7649");
-            console.log("http://6ab48ec4.ngrok.io/?lat="+latitude+"&lon="+longitude+"&id=7649");
+            let res = await fetch(URL+"/?lat="+latitude+"&lon="+longitude+"&id=7649");
+            console.log(URL+"/?lat="+latitude+"&lon="+longitude+"&id=7649");
             let data = await res.json();
             setIsLoading(false);
             let numofSigns = Object.keys(data).length;
@@ -50,7 +51,7 @@ const CameraScreen = props => {
             setGetSignError(true);
             setIsLoading(false);
           }
-      }
+      };
 
     const getPosSuccess = position => {
       const latitude = position.coords.latitude;
@@ -63,7 +64,7 @@ const CameraScreen = props => {
       }else{
         setGetSignError(false);
       }
-    }
+    };
 
     const getPosError = err => {
       console.log("Error "+ err);
@@ -72,67 +73,64 @@ const CameraScreen = props => {
           <Text>Klarte ikke å hente GPS posisjon</Text>
         </View>
       )
-    }
+    };
 
     const getLatLong = () => {
-      console.log(camera);
       setNavigation(props.navigation)
       navigator.geolocation.getCurrentPosition(
         getPosSuccess, getPosError, options
-    )
-    }
+      )
+    };
 
     const cancelHandler = () => {
       setIsChooseMode(false);
-    }
+    };
 
     async function takePicture(){
       if (camera) {
         const options = { quality: 0.5 }
         let photo = await camera.takePictureAsync(options);
-        console.log(photo);
         setPicture(photo);
-        return photo;
       }
       else{
         console.log("no camera");
       }
-    }
+    };
 
-      if (hasPermission === null) {
-        return(
-            <View style={styles.cameraContainer}>
-                <Text>Har ikke tilgang til kamera</Text>
-            </View>
-        );
-      }
-      if (hasPermission === false) {
-        return <Text>Har ikke tilgang til kamera</Text>;
-      }
+    if (hasPermission === null) {
+      return(
+          <View style={styles.cameraContainer}>
+              <Text>Har ikke tilgang til kamera</Text>
+          </View>
+      );
+    }
+    else if (hasPermission === false) {
+      return <Text>Har ikke tilgang til kamera</Text>;
+    }
 
     const CameraView = props => {
         if(isLoading){
             return(
-                <View style={styles.container} onPress={() => console.log("clicked cameraContainer")}>
+                <View style={styles.container}>
                     <View style={styles.loadingSpinner}>
                             <ActivityIndicator size="large" color="#0000ff" />
                     </View>
                 </View>
             )
-        }else{
+        }
+        else{
             return(
-                <View style={styles.cameraContainer} onPress={() => console.log("clicked cameraContainer")}>
+                <View style={styles.cameraContainer}>
                     <Camera style={styles.camera} ref={ref => {camera = ref;}}>
                     <SignPicker 
                     visible={isChooseMode} 
                     onCancel={cancelHandler} 
                     data={signsData}
                     image={picture}
-                    navigation = {navigation}></SignPicker>
-                        <View style={styles.nonClickable} onPress={() => console.log("clicked nonClickable")}>
+                    navigation = {navigation} />
+                        <View style={styles.nonClickable}>
                             <TouchableOpacity style={styles.buttonContainer} onPress={() => takePicture().then(() => getLatLong())}>
-                                <View style={styles.captureBtn}>
-                                </View>
+                                <View style={styles.captureBtn} />
                             </TouchableOpacity>
                         </View>
                     </Camera>

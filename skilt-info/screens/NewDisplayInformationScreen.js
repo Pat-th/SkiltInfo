@@ -10,7 +10,6 @@ const NewDisplayInformationScreen = props => {
     async function fetchData(){
         const result = props.navigation.state.params.result;
         createSimpleView(result);
-        console.log("IMAGE!!!: " + props.navigation.state.params.image.uri);
     }
 
     const createSimpleView = result => {

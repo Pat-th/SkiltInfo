@@ -16,7 +16,7 @@ import EditFilterScreen from "../screens/EditFilterScreen";
 
 const stackNavigator = createStackNavigator({
     Kamera : CameraScreen,
-    VisInfo: NewDisplayInformationScreen
+    Data: NewDisplayInformationScreen
 });
 
 const settingsNavigator = createStackNavigator({
