@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Image, FlatList } from 'react-native';
-import ItemInfo from "../components/DisplayInfo/ItemInfo"
+import { StyleSheet, Text, View, Image, FlatList, Clipboard } from 'react-native';
+import ItemInfo from "../components/DisplayInfo/ItemInfo";
+import Colors from "../Constants/Colors";
 
 const NewDisplayInformationScreen = props => {
     const [info, setInfo] = useState([]);
@@ -10,7 +11,8 @@ const NewDisplayInformationScreen = props => {
     async function fetchData(){
         const result = props.navigation.state.params.result;
         createSimpleView(result);
-    };
+        console.log("IMAGE!!!: " + props.navigation.state.params.image.uri);
+    }
 
     const createSimpleView = result => {
         if(typeof result === "undefined"){
@@ -21,17 +23,17 @@ const NewDisplayInformationScreen = props => {
             addItem("Start Dato", result.metadata.startdato);
             addItem("Sist Modifisert", result.metadata.sist_modifisert);
         }
-    };
+    }
 
     const addItem = (id, value) => {
         setInfo(item => [
           ...item,
           { id: id, value: value }]);
-    };
+      }
 
     useEffect(() => {
         fetchData();
-    }, []);
+    }, [])
 
     if(error){
         return(
@@ -45,7 +47,7 @@ const NewDisplayInformationScreen = props => {
         <View style={styles.container}>
             <View style={styles.topView}>
                 <View style={styles.imageView}>
-                    <Image style={styles.imageStyle} source={{uri: props.navigation.state.params.image.uri}} />
+                    <Image style={styles.imageStyle} source={{uri: props.navigation.state.params.image.uri}}></Image>
                 </View>
                 <View style={styles.buttonView}>
 
@@ -79,9 +81,10 @@ const styles = StyleSheet.create({
       imageStyle: {
           flex: 1,
           borderRadius: 10,
-          margin: 5,
           width: undefined, 
           height: undefined,
+          marginTop: 5,
+          marginLeft: 10
       },
       buttonView: {
           backgroundColor: "#fff",
