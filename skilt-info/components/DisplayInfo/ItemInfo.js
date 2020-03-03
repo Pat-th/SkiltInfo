@@ -8,7 +8,7 @@ const ItemInfo = props => {
         console.log("Long press!");
         await Clipboard.setString(props.id + " " + props.value);
         ToastAndroid.show("Kopiert til utklippstavle", ToastAndroid.SHORT);
-        Vibration.vibrate(50);
+        Vibration.vibrate(30);
     }
 
     return(

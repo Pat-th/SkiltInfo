@@ -6,7 +6,7 @@ exports[`<HelpScreen /> Renders correctly 1`] = `
     style={
       Object {
         "alignItems": "center",
-        "backgroundColor": "white",
+        "backgroundColor": undefined,
         "height": 80,
         "justifyContent": "center",
         "paddingTop": 36,
@@ -17,7 +17,7 @@ exports[`<HelpScreen /> Renders correctly 1`] = `
     <Text
       style={
         Object {
-          "color": "#000000",
+          "color": undefined,
           "fontSize": 18,
         }
       }
