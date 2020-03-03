@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {StyleSheet, Text, View, Button, AsyncStorage, ScrollView} from 'react-native';
+import {Text, View, Button, AsyncStorage, ScrollView} from 'react-native';
 import FilterSwitches from "../components/FilterSwitches";
 
 const EditFilterScreen = props => {
@@ -52,6 +52,4 @@ const EditFilterScreen = props => {
 
 };
 
-const styles = StyleSheet.create({
-
-}); export default EditFilterScreen;
+export default EditFilterScreen;
