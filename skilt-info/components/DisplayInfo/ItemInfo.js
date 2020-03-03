@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Clipboard, ToastAndroid, Vibration } from 'react-native';
 import { TouchableHighlight, TouchableOpacity } from 'react-native-gesture-handler';
+import Colors from "../../Constants/Colors";
 
 const ItemInfo = props => {
 
@@ -35,7 +36,9 @@ const styles = StyleSheet.create({
         padding: 10,
         borderRadius: 10, //Rounded corners
         marginTop: 10,
-        backgroundColor: "lightblue"
+        marginLeft: 10,
+        marginRight: 10,
+        backgroundColor: Colors.primaryColor1
     },
     title: {
         fontSize: 18

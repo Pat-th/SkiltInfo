@@ -70,7 +70,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
       },
       topView: {
-          backgroundColor: "yellow",
           flex: 1,
           flexDirection: "row"
       },
@@ -84,15 +83,27 @@ const styles = StyleSheet.create({
           width: undefined, 
           height: undefined,
           marginTop: 5,
-          marginLeft: 10
+          marginLeft: 10,
+          marginBottom: 5
       },
       buttonView: {
-          backgroundColor: "#fff",
-          flex: 1
+        flex: 1,
+        shadowColor: "black",
+        shadowOffset: { width: 0, height: 2},
+        shadowRadius: 6,
+        shadowOpacity: 0.26,
+        elevation: 5, //Shadow on Android
+        backgroundColor: "white",
+        padding: 10,
+        borderRadius: 10, //Rounded corners
+        marginTop: 5,
+        marginLeft: 10,
+        marginRight: 10,
+        marginBottom: 5,
+        backgroundColor: Colors.primaryColor1
       },
       bottomView: {
           flex: 1,
-          margin: 10
       }
 });
 
