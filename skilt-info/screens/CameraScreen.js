@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, ActivityIndicator, Alert, ColorPropType } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, ActivityIndicator, Alert } from 'react-native';
 import { Camera } from 'expo-camera';
 import SignPicker from "../components/SignPicker";
 import Colors from "../Constants/Colors"
@@ -12,7 +12,7 @@ const CameraScreen = props => {
     const [navigation, setNavigation] = useState(null);
     const [picture, setPicture] = useState(null);
     const [getSignError, setGetSignError] = useState(false);
-    const URL = "http://e7344e4e.ngrok.io";
+    const URL = "http://633e8003.ngrok.io";
 
     let camera;
 

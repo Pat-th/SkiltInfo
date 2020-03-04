@@ -100,7 +100,9 @@ const styles = StyleSheet.create({
         marginLeft: 10,
         marginRight: 10,
         marginBottom: 5,
-        backgroundColor: Colors.primaryColor1
+        backgroundColor: Colors.primaryColor1,
+        borderColor: "black",
+        borderWidth: 1
       },
       bottomView: {
           flex: 1,

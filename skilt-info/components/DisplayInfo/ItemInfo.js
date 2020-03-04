@@ -32,13 +32,14 @@ const styles = StyleSheet.create({
         shadowRadius: 6,
         shadowOpacity: 0.26,
         elevation: 5, //Shadow on Android
-        backgroundColor: "white",
         padding: 10,
         borderRadius: 10, //Rounded corners
         marginTop: 10,
         marginLeft: 10,
         marginRight: 10,
-        backgroundColor: Colors.primaryColor1
+        backgroundColor: Colors.primaryColor1,
+        borderColor: "black",
+        borderWidth: 1
     },
     title: {
         fontSize: 18
