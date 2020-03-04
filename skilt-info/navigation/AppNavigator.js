@@ -35,11 +35,6 @@ const TabNavigator = createBottomTabNavigator({
                 focused
                 ? <MaterialCommunityIcons name="settings" size={IconSize} />
                 : <MaterialCommunityIcons name="settings-outline" size={IconSize} />
-             ),
-             tabBarLabel: ({ focused }) => (
-                 focused
-                 ? <View style={styles.labelActive}><Text>Hei</Text></View>
-                 : <View style={styles.labelInactive}><Text>på deg</Text></View>
              )
         }
     },
@@ -72,6 +67,7 @@ const TabNavigator = createBottomTabNavigator({
         activeBackgroundColor: Colors.primaryColor,
         showIcon: true,
         showLabel: true,
+        activeTintColor: "blue"
     }
 });
 
