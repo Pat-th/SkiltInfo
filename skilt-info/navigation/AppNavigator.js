@@ -16,6 +16,7 @@ import EditFilterScreen from "../screens/EditFilterScreen";
 import Icon from "react-native-ionicons";
 
 const IconSize = 30;
+const InactiveIconColor = "#524c4c"
 
 const stackNavigator = createStackNavigator({
     Kamera : CameraScreen,
@@ -34,7 +35,7 @@ const TabNavigator = createBottomTabNavigator({
             tabBarIcon: ({ focused }) =>  (
                 focused
                 ? <MaterialCommunityIcons name="settings" size={IconSize} />
-                : <MaterialCommunityIcons name="settings-outline" size={IconSize} />
+                : <MaterialCommunityIcons name="settings-outline" color={InactiveIconColor} size={IconSize} />
              )
         }
     },
@@ -44,7 +45,7 @@ const TabNavigator = createBottomTabNavigator({
             tabBarIcon: ({ focused }) =>  (
                 focused
                 ? <AntDesign name="camera" size={IconSize} />
-                : <AntDesign name="camerao" size={IconSize} />
+                : <AntDesign name="camerao" color={InactiveIconColor} size={IconSize} />
              )
         }
     },
@@ -54,7 +55,7 @@ const TabNavigator = createBottomTabNavigator({
             tabBarIcon: ({ focused }) =>  (
                 focused
                 ? <Ionicons name="ios-help-circle" size={IconSize} />
-                : <Ionicons name="ios-help-circle-outline" size={IconSize} />
+                : <Ionicons name="ios-help-circle-outline" color={InactiveIconColor} size={IconSize} />
              )
         }
     }
@@ -67,7 +68,8 @@ const TabNavigator = createBottomTabNavigator({
         activeBackgroundColor: Colors.primaryColor,
         showIcon: true,
         showLabel: true,
-        activeTintColor: "blue"
+        activeTintColor: "black",
+        inactiveTintColor: InactiveIconColor
     }
 });
 
