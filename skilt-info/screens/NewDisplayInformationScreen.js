@@ -9,8 +9,8 @@ const NewDisplayInformationScreen = props => {
 
     async function fetchData(){
         const result = props.navigation.state.params.result;
-        createSimpleView(result);
-    };
+        await read(result);
+    }
 
     const read = async result => {
         let fetch = await AsyncStorage.getItem('standard');
