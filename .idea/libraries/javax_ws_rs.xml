@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="javax.ws.rs">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/jersey-client.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jakarta.ws.rs-api-2.1.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jersey-common.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/lib/javax.ws.rs.jar!/" />
+    </SOURCES>
+  </library>
+</component>

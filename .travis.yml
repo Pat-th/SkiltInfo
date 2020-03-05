@@ -7,10 +7,10 @@ matrix:
         - javac -version
       script:
         - cd Java/src
-        - javac -cp "../../lib/*" Signs.java Server.java Deg2UTM.java
+        - javac -cp "../../lib/*" HttpRoadSignDao.java Server.java Deg2UTM.java
         - cd ../test
-        - javac -cp "../../lib/*:../src" SignsTest.java ServerTest.java
-        - java -javaagent:../../lib/jacocoagent.jar=destfile=../jacoco.exec -cp "../../lib/*:../src:." org.junit.runner.JUnitCore SignsTest ServerTest
+        - javac -cp "../../lib/*:../src" HttpRoadSignDaoTest.java ServerTest.java
+        - java -javaagent:../../lib/jacocoagent.jar=destfile=../jacoco.exec -cp "../../lib/*:../src:." org.junit.runner.JUnitCore HttpRoadSignDaoTest ServerTest
         - java -jar "../../lib/jacococli.jar" report ../jacoco.exec --classfiles . --sourcefiles . --xml ../../jacoco*.xml
       after_success:
         - bash <(curl -s https://codecov.io/bash)

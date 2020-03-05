@@ -33,7 +33,7 @@ public class Server {
 
 
     public static void main(final String... args) throws IOException {
-        Signs signs = new Signs();
+        HttpRoadSignDao httpRoadSignDao = new HttpRoadSignDao();
         final HttpServer server = HttpServer.create(new InetSocketAddress(HOSTNAME, PORT), BACKLOG);
         System.out.println("Server online");
         server.createContext("/", he -> {
@@ -46,38 +46,19 @@ public class Server {
                             if (requestParameters.get("lat") != null && requestParameters.get("lon") != null && requestParameters.get("id") != null && isDouble(requestParameters.get("lat")) && isDouble(requestParameters.get("lon")) && isInt(requestParameters.get("id"))) {
                                 double lat = Double.parseDouble(requestParameters.get("lat"));
                                 double lon = Double.parseDouble(requestParameters.get("lon"));
-                                int enum_id = Integer.parseInt(requestParameters.get("id"));
-                                final String responseBody = signs.getBoundingBox(lat, lon, enum_id).toString();
+                                int sign_id = Integer.parseInt(requestParameters.get("id"));
+                                final String responseBody = httpRoadSignDao.getBoundingBox(lat, lon, sign_id).toString();
                                 headers.set(HEADER_CONTENT_TYPE, String.format("application/json; charset=%s", CHARSET));
                                 final byte[] rawResponseBody = responseBody.getBytes(CHARSET);
                                 he.sendResponseHeaders(STATUS_OK, rawResponseBody.length);
                                 he.getResponseBody().write(rawResponseBody);
-                                break;
-                            } else if (he.getRequestURI().toString().equals("/skiltForkjoers")){
-                                final String responseBody = "7644";
-                                final byte[] rawResponseBody = responseBody.getBytes(CHARSET);
-                                he.sendResponseHeaders(STATUS_OK, rawResponseBody.length);
-                                he.getResponseBody().write(rawResponseBody);
-                                break;
-                            } else if (he.getRequestURI().toString().equals("/skiltGangfelt")){
-                                final String responseBody = "7705";
-                                final byte[] rawResponseBody = responseBody.getBytes(CHARSET);
-                                he.sendResponseHeaders(STATUS_OK, rawResponseBody.length);
-                                he.getResponseBody().write(rawResponseBody);
-                                break;
-                            } else if (he.getRequestURI().toString().equals("/skiltVikeplikt")){
-                                final String responseBody = "7642";
-                                final byte[] rawResponseBody = responseBody.getBytes(CHARSET);
-                                he.sendResponseHeaders(STATUS_OK, rawResponseBody.length);
-                                he.getResponseBody().write(rawResponseBody);
-                                break;
                             } else {
                                 final String responseBody = "Dette er ikke en gyldig link";
                                 final byte[] rawResponseBody = responseBody.getBytes(CHARSET);
                                 he.sendResponseHeaders(STATUS_OK, rawResponseBody.length);
                                 he.getResponseBody().write(rawResponseBody);
-                                break;
                             }
+                        break;
                     case METHOD_OPTIONS:
                         headers.set(HEADER_ALLOW, ALLOWED_METHODS);
                         he.sendResponseHeaders(STATUS_OK, NO_RESPONSE_LENGTH);
@@ -136,7 +117,7 @@ public class Server {
             return false;
         }
         try {
-            double i = Integer.parseInt(x);
+            int i = Integer.parseInt(x);
         } catch (NumberFormatException nfe) {
             return false;
         }
