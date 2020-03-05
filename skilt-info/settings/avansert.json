@@ -1,5 +1,8 @@
 {
   "metadata": true,
+  "geometri": true,
+  "lokasjon": true,
+  "relasjoner": true,
   "egenskaper": {
     "PunktTilKnytning": true,
     "Skiltnummer": true,
@@ -23,10 +26,5 @@
     "Arkivnummer": false,
     "Eier": false,
     "Vedlikeholdsansvarlig": false
-  },
-  "id": true,
-  "href": true,
-  "geometri": true,
-  "lokasjon": true,
-  "relasjoner": true
+  }
 }
