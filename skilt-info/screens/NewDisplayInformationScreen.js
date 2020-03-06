@@ -281,7 +281,7 @@ const NewDisplayInformationScreen = props => {
             </View>
             <View style={styles.bottomView}>
                 <FlatList style={styles.list1}
-                keyExtractor={(item, index) => item.id}
+                keyExtractor={(item, index) => index.toString()}
                 data={info}
                 renderItem={itemData => <ItemInfo id={itemData.item.id + ":"} value={itemData.item.value}/>} 
                 />
