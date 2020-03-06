@@ -20,13 +20,13 @@ const NewDisplayInformationScreen = props => {
         console.log(fetch);
         console.log(parse);
         setInfo([]);
+        addItem("id", result.id);
         if(parse.metadata === true){
-            addItem("id", result.id);
-            addItem("Link", result.href);
             addItem("Navn", result.metadata.type.navn);
             addItem("Id for Skiltplate", result.metadata.type.id);
             addItem("Start Dato", result.metadata.startdato);
             addItem("Sist Modifisert", result.metadata.sist_modifisert);
+            addItem("Direkte Link", result.href);
         } if(parse.geometri === true){
             addItem("wkt", result.geometri.wkt);
             addItem("srid", result.geometri.srid);
@@ -65,15 +65,14 @@ const NewDisplayInformationScreen = props => {
             for(let i in result.egenskaper){
                 if (result.egenskaper[i].id === 1894){
                     addItem(result.egenskaper[i].navn, result.egenskaper[i].verdi);
-                    addItem('enum_id', result.egenskaper[i].enum_id);
                     break;
                 }
             }
         } if(parse.egenskaper.Skiltnummer === true) {
             for(let i in result.egenskaper){
                 if (result.egenskaper[i].id === 5530){
-                    addItem(result.egenskaper[i].navn, result.egenskaper[i].verdi);
-                    addItem('enum_id', result.egenskaper[i].enum_id);
+                    addItem(result.egenskaper[i].navn, result.egenskaper[i].verdi) + "-" + result.egenskaper[i].enum_id;
+                    addItem('Id av skilttype', result.egenskaper[i].enum_id);
                     break;
                 }
             }
@@ -88,11 +87,8 @@ const NewDisplayInformationScreen = props => {
         } if(parse.egenskaper.GeometriPunkt === true){
             for(let i in result.egenskaper){
                 if (result.egenskaper[i].id === 4795){
-                    addItem("navn", result.egenskaper[i].navn);
-                    addItem("egenskapstype", result.egenskaper[i].egenskapstype);
-                    addItem("id", result.egenskaper[i].id);
-                    addItem("verdi", result.egenskaper[i].verdi);
-
+                    addItem(result.egenskaper[i].navn, result.egenskaper[i].verdi);
+                    /*
                     addItem("medium",  result.egenskaper[i].medium);
                     addItem("medium_nvdb", result.egenskaper[i].medium_nvdb);
                     addItem("lengde", result.egenskaper[i].lengde);
@@ -104,13 +100,13 @@ const NewDisplayInformationScreen = props => {
                     addItem("Kvalitet målemetodeHøyde", result.egenskaper[i].kvalitet.målemetodeHøyde);
                     addItem("Kvalitet nøyaktighetHøyde", result.egenskaper[i].kvalitet.nøyaktighetHøyde);
                     addItem("Kvalitet maksimaltAvvik", result.egenskaper[i].kvalitet.maksimaltAvvik);
+                    */
                 }
             }
         } if(parse.egenskaper.Tekst === true){
             for(let i in result.egenskaper){
                 if (result.egenskaper[i].id === 1910){
                     addItem(result.egenskaper[i].navn, result.egenskaper[i].verdi);
-                    addItem('enum_id', result.egenskaper[i].enum_id);
                     break;
                 }
             }
@@ -118,7 +114,6 @@ const NewDisplayInformationScreen = props => {
             for(let i in result.egenskaper){
                 if (result.egenskaper[i].id === 5128){
                     addItem(result.egenskaper[i].navn, result.egenskaper[i].verdi);
-                    addItem('enum_id', result.egenskaper[i].enum_id);
                     break;
                 }
             }
@@ -126,7 +121,6 @@ const NewDisplayInformationScreen = props => {
             for(let i in result.egenskaper){
                 if (result.egenskaper[i].id === 9484){
                     addItem(result.egenskaper[i].navn, result.egenskaper[i].verdi);
-                    addItem('enum_id', result.egenskaper[i].enum_id);
                     break;
                 }
             }
@@ -134,7 +128,6 @@ const NewDisplayInformationScreen = props => {
             for(let i in result.egenskaper){
                 if (result.egenskaper[i].id === 1970){
                     addItem(result.egenskaper[i].navn, result.egenskaper[i].verdi);
-                    addItem('enum_id', result.egenskaper[i].enum_id);
                     break;
                 }
             }
@@ -156,7 +149,6 @@ const NewDisplayInformationScreen = props => {
             for(let i in result.egenskaper){
                 if (result.egenskaper[i].id === 1892){
                     addItem(result.egenskaper[i].navn, result.egenskaper[i].verdi);
-                    addItem('enum_id', result.egenskaper[i].enum_id);
                     break;
                 }
             }
@@ -164,7 +156,6 @@ const NewDisplayInformationScreen = props => {
             for(let i in result.egenskaper){
                 if (result.egenskaper[i].id === 1912){
                     addItem(result.egenskaper[i].navn, result.egenskaper[i].verdi);
-                    addItem('enum_id', result.egenskaper[i].enum_id);
                     break;
                 }
             }
@@ -172,7 +163,6 @@ const NewDisplayInformationScreen = props => {
             for(let i in result.egenskaper){
                 if (result.egenskaper[i].id === 1294){
                     addItem(result.egenskaper[i].navn, result.egenskaper[i].verdi);
-                    addItem('enum_id', result.egenskaper[i].enum_id);
                     break;
                 }
             }
@@ -180,7 +170,6 @@ const NewDisplayInformationScreen = props => {
             for(let i in result.egenskaper){
                 if (result.egenskaper[i].id === 1879){
                     addItem(result.egenskaper[i].navn, result.egenskaper[i].verdi);
-                    addItem('enum_id', result.egenskaper[i].enum_id);
                     break;
                 }
             }
@@ -188,7 +177,6 @@ const NewDisplayInformationScreen = props => {
             for(let i in result.egenskaper){
                 if (result.egenskaper[i].id === 1921){
                     addItem(result.egenskaper[i].navn, result.egenskaper[i].verdi);
-                    addItem('enum_id', result.egenskaper[i].enum_id);
                     break;
                 }
             }
@@ -196,7 +184,6 @@ const NewDisplayInformationScreen = props => {
             for(let i in result.egenskaper){
                 if (result.egenskaper[i].id === 8828){
                     addItem(result.egenskaper[i].navn, result.egenskaper[i].verdi);
-                    addItem('enum_id', result.egenskaper[i].enum_id);
                     break;
                 }
             }
@@ -225,7 +212,6 @@ const NewDisplayInformationScreen = props => {
             for(let i in result.egenskaper){
                 if (result.egenskaper[i].id === 11826){
                     addItem(result.egenskaper[i].navn, result.egenskaper[i].verdi);
-                    addItem('enum_id', result.egenskaper[i].enum_id);
                     break;
                 }
             }
@@ -233,7 +219,6 @@ const NewDisplayInformationScreen = props => {
             for(let i in result.egenskaper){
                 if (result.egenskaper[i].id === 8064){
                     addItem(result.egenskaper[i].navn, result.egenskaper[i].verdi);
-                    addItem('enum_id', result.egenskaper[i].enum_id);
                     break;
                 }
             }
@@ -319,7 +304,6 @@ const styles = StyleSheet.create({
         shadowRadius: 6,
         shadowOpacity: 0.26,
         elevation: 5, //Shadow on Android
-        backgroundColor: "white",
         padding: 10,
         borderRadius: 10, //Rounded corners
         marginTop: 5,

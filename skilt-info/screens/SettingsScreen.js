@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {AsyncStorage, Button, FlatList, Image, StyleSheet, Switch, Text, TouchableOpacity, View, Alert,} from 'react-native';
 import Collapsed from "../components/Collapsed";
 import SettingsFilters from "../components/SettingsFilters";
+import Colors  from "../Constants/Colors"
 
 
 const SettingsScreen = props => {
@@ -10,10 +11,10 @@ const SettingsScreen = props => {
     const [dark, setDark] = useState(false);
     const [selected, setSelected] = useState('Enkel');
 
-    const read = require("../settings/filters.json");
-    const enkel = require("../settings/enkel.json");
-    const avansert = require("../settings/avansert.json");
-    const fullstendig = require("../settings/fullstendig.json");
+    const readFilters = require("../settings/filters.json");
+    const readEnkel = require("../settings/enkel.json");
+    const readAvansert = require("../settings/avansert.json");
+    const readFullstendig = require("../settings/fullstendig.json");
 
     useEffect(() => {
         getData();
@@ -22,12 +23,12 @@ const SettingsScreen = props => {
     const getData = async () => {
         filters = [];
         await firstRun();
-        let storage = await AsyncStorage.getItem('filters');
-        let parse = await JSON.parse(storage);
-        if(parse.filters.length > 3) {
-            for (var i = 3; i < parse.filters.length; i++) {
+        let getFilters = await AsyncStorage.getItem('filters');
+        let result = await JSON.parse(getFilters);
+        if(result.filters.length > 3) {
+            for (let i = 3; i < result.filters.length; i++) {
                 filters.push(
-                    parse.filters[i]
+                    result.filters[i]
                 );
             }
         }
@@ -37,7 +38,7 @@ const SettingsScreen = props => {
     const firstRun = async () => {
         await AsyncStorage.getItem('filters', (err, res) => {
             if (res == null){
-                AsyncStorage.setItem('filters', JSON.stringify(read));
+                AsyncStorage.setItem('filters', JSON.stringify(readFilters));
             }});
 
         await AsyncStorage.getItem('standard', (err, res) => {
@@ -47,17 +48,17 @@ const SettingsScreen = props => {
 
         await AsyncStorage.getItem('Enkel', (err, res) => {
             if(res == null) {
-                AsyncStorage.setItem('Enkel', JSON.stringify(enkel));
+                AsyncStorage.setItem('Enkel', JSON.stringify(readEnkel));
             }});
 
         await AsyncStorage.getItem('Avansert', (err, res) => {
             if(res == null) {
-                AsyncStorage.setItem('Avansert', JSON.stringify(avansert));
+                AsyncStorage.setItem('Avansert', JSON.stringify(readAvansert));
             }});
 
         await AsyncStorage.getItem('Fullstendig', (err, res) => {
             if(res == null) {
-                AsyncStorage.setItem('Fullstendig', JSON.stringify(fullstendig));
+                AsyncStorage.setItem('Fullstendig', JSON.stringify(readFullstendig));
             }});
         let standard = await AsyncStorage.getItem('standard');
         await setSelected(standard);
@@ -84,20 +85,20 @@ const SettingsScreen = props => {
 
     const deleteFilter = async (filterGettingDeleted) => {
         filters = [];
-        const filter = await AsyncStorage.getItem('filters');
-        let string = await JSON.parse(filter);
+        const getFilters = await AsyncStorage.getItem('filters');
+        let parseFilters = await JSON.parse(getFilters);
 
-        let index = string.filters.indexOf(filterGettingDeleted);
+        let index = parseFilters.filters.indexOf(filterGettingDeleted);
 
         if (index > -1) {
-            string.filters.splice(index, 1);
+            parseFilters.filters.splice(index, 1);
         }
-        let stringify = JSON.stringify(string);
-        await AsyncStorage.setItem('filters', stringify);
+        let stringifyFilters = JSON.stringify(parseFilters);
+        await AsyncStorage.setItem('filters', stringifyFilters);
         await AsyncStorage.removeItem(filterGettingDeleted);
-        for (var i = 3; i < string.filters.length; i++) {
+        for (let i = 3; i < parseFilters.filters.length; i++) {
             filters.push(
-                string.filters[i]
+                parseFilters.filters[i]
             );
         }
         if(filterGettingDeleted === selected){
@@ -109,13 +110,13 @@ const SettingsScreen = props => {
     const fillArray = () => {
         return (
             <View>
-                <View><TouchableOpacity style={{backgroundColor: selected === 'Enkel' ? '#d5d729' : 'transparent'}}
+                <View><TouchableOpacity style={{backgroundColor: selected === 'Enkel' ? Colors.primaryColor1 : 'transparent'}}
                                         onPress={() => setFilter('Enkel')}><Text
                     style={styles.content}>Enkel</Text></TouchableOpacity></View>
-                <View><TouchableOpacity style={{backgroundColor: selected === 'Avansert' ? '#d5d729' : 'transparent'}}
+                <View><TouchableOpacity style={{backgroundColor: selected === 'Avansert' ? Colors.primaryColor1 : 'transparent'}}
                                         onPress={() => setFilter('Avansert')}><Text
                     style={styles.content}>Avansert</Text></TouchableOpacity></View>
-                <View><TouchableOpacity style={{backgroundColor: selected === 'Fullstendig' ? '#d5d729' : 'transparent'}}
+                <View><TouchableOpacity style={{backgroundColor: selected === 'Fullstendig' ? Colors.primaryColor1 : 'transparent'}}
                                         onPress={() => setFilter('Fullstendig')}><Text
                     style={styles.content}>Fullstendig</Text></TouchableOpacity></View>
                 <FlatList
@@ -124,7 +125,7 @@ const SettingsScreen = props => {
                     renderItem={({item}) => {
                         return (
                             <SettingsFilters
-                                selectorStyle={{backgroundColor: selected === item ? '#d5d729' : 'transparent'}}
+                                selectorStyle={{backgroundColor: selected === item ? Colors.primaryColor1 : 'transparent'}}
                                 selector={() => setFilter(item)}
                                 textStyle={styles.content}
                                 deleteButton={() => deleteAlert(item)}

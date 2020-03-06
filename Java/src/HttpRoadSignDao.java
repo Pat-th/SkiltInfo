@@ -27,14 +27,14 @@ class HttpRoadSignDao {
     public List<JSONObject> getBoundingBox(double lat, double lon, int sign_id) throws Exception {
         List<JSONObject> list = new ArrayList<>();
         Deg2UTM utm = new Deg2UTM(lat, lon); //Converts latitude and longitude to Eastings and Northings
-        double x = utm.getEasting();
-        double y = utm.getNorthing();
-        double radius = 100; //Distance from center to edge of box in cardinal directions
-        double west = x - radius;
-        double east = x + radius;
+        double eastings = utm.getEasting();
+        double northings = utm.getNorthing();
+        double radius = 500; //Distance from center to edge of box in cardinal directions
+        double west = eastings - radius;
+        double east = eastings + radius;
 
-        double south = y - radius;
-        double north = y + radius;
+        double south = northings - radius;
+        double north = northings + radius;
         URI uri = createUri.getNVDB(west, south, east, north);
         HttpRequest request = HttpRequest.newBuilder()
                 .GET()
@@ -61,6 +61,7 @@ class HttpRoadSignDao {
             JSONObject notARoad = new JSONObject("{id: Koordinatene er ikke i nærheten av en vei}");
             list.add(notARoad);
         }
+        System.out.println(uri);
         return list;
     }
 }
