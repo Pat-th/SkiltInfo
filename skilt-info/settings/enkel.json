@@ -1,14 +1,30 @@
 {
   "metadata": true,
-  "egenskaper": {
-      "Skiltnummer": true,
-      "GeometriPunkt": true,
-      "AnsiktssideRettetMot": true,
-      "Oppsettingsdato": true
-    },
-  "id": false,
-  "href": false,
   "geometri": false,
   "lokasjon": false,
-  "relasjoner": false
+  "relasjoner": false,
+  "egenskaper": {
+    "PunktTilKnytning": true,
+    "Skiltnummer": true,
+    "AnsiktssideRettetMot": true,
+    "Oppsettingsdato": true,
+    "GeometriPunkt": true,
+    "Tekst": false,
+    "Plasseringskode": false,
+    "TosidigPlateMedUlikeMotiv": false,
+    "Storrelse": false,
+    "Hoyde": false,
+    "Bredde": false,
+    "Skiltform": false,
+    "TekstOgSymbolhoyde": false,
+    "Farge": false,
+    "Belysning": false,
+    "Folieklasse": false,
+    "Klappskilt": false,
+    "Vedtaksnummer": false,
+    "SkiftetDato": false,
+    "Arkivnummer": false,
+    "Eier": false,
+    "Vedlikeholdsansvarlig": false
+  }
 }

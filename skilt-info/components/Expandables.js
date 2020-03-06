@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
         color: 'rgba(0,0,0,1)',
         borderColor: 'rgb(186,186,186)',
         borderWidth: 3,
-        borderRadius: 0,
+        borderRadius: 10,
     },
     active: {
         marginTop: 0,
@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
         color: 'rgba(0,0,0,1)',
         borderColor: 'rgb(186,186,186)',
         borderWidth: 2,
-        borderRadius: 0,
+        borderRadius: 10,
     },
     inactive: {
         marginTop: 6,
@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
         color: 'rgba(0,0,0,1)',
         borderColor: 'rgb(0,0,0)',
         borderWidth: 3,
-        borderRadius: 0,
+        borderRadius: 10,
     },
     icons: {
         height: 15,

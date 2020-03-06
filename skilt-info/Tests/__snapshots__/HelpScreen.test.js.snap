@@ -56,7 +56,7 @@ exports[`<HelpScreen /> Renders correctly 1`] = `
                       Object {
                         "backgroundColor": "rgb(255,255,255)",
                         "borderColor": "rgb(0,0,0)",
-                        "borderRadius": 0,
+                        "borderRadius": 10,
                         "borderWidth": 3,
                         "color": "rgba(0,0,0,1)",
                         "justifyContent": "center",
@@ -108,7 +108,7 @@ exports[`<HelpScreen /> Renders correctly 1`] = `
                         Object {
                           "backgroundColor": "rgb(255,255,255)",
                           "borderColor": "rgb(0,0,0)",
-                          "borderRadius": 0,
+                          "borderRadius": 10,
                           "borderWidth": 3,
                           "color": "rgba(0,0,0,1)",
                           "marginTop": 6,
@@ -157,7 +157,7 @@ exports[`<HelpScreen /> Renders correctly 1`] = `
                       Object {
                         "backgroundColor": "rgb(255,255,255)",
                         "borderColor": "rgb(0,0,0)",
-                        "borderRadius": 0,
+                        "borderRadius": 10,
                         "borderWidth": 3,
                         "color": "rgba(0,0,0,1)",
                         "justifyContent": "center",
@@ -209,7 +209,7 @@ exports[`<HelpScreen /> Renders correctly 1`] = `
                         Object {
                           "backgroundColor": "rgb(255,255,255)",
                           "borderColor": "rgb(0,0,0)",
-                          "borderRadius": 0,
+                          "borderRadius": 10,
                           "borderWidth": 3,
                           "color": "rgba(0,0,0,1)",
                           "marginTop": 6,
@@ -258,7 +258,7 @@ exports[`<HelpScreen /> Renders correctly 1`] = `
                       Object {
                         "backgroundColor": "rgb(255,255,255)",
                         "borderColor": "rgb(0,0,0)",
-                        "borderRadius": 0,
+                        "borderRadius": 10,
                         "borderWidth": 3,
                         "color": "rgba(0,0,0,1)",
                         "justifyContent": "center",
@@ -310,7 +310,7 @@ exports[`<HelpScreen /> Renders correctly 1`] = `
                         Object {
                           "backgroundColor": "rgb(255,255,255)",
                           "borderColor": "rgb(0,0,0)",
-                          "borderRadius": 0,
+                          "borderRadius": 10,
                           "borderWidth": 3,
                           "color": "rgba(0,0,0,1)",
                           "marginTop": 6,
@@ -359,7 +359,7 @@ exports[`<HelpScreen /> Renders correctly 1`] = `
                       Object {
                         "backgroundColor": "rgb(255,255,255)",
                         "borderColor": "rgb(0,0,0)",
-                        "borderRadius": 0,
+                        "borderRadius": 10,
                         "borderWidth": 3,
                         "color": "rgba(0,0,0,1)",
                         "justifyContent": "center",
@@ -411,7 +411,7 @@ exports[`<HelpScreen /> Renders correctly 1`] = `
                         Object {
                           "backgroundColor": "rgb(255,255,255)",
                           "borderColor": "rgb(0,0,0)",
-                          "borderRadius": 0,
+                          "borderRadius": 10,
                           "borderWidth": 3,
                           "color": "rgba(0,0,0,1)",
                           "marginTop": 6,

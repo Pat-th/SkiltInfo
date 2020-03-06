@@ -93,7 +93,6 @@ const SettingsScreen = props => {
             string.filters.splice(index, 1);
         }
         let stringify = JSON.stringify(string);
-        //let split = stringify.substring(1, stringify.length - 1);
         await AsyncStorage.setItem('filters', stringify);
         await AsyncStorage.removeItem(filterGettingDeleted);
         for (var i = 3; i < string.filters.length; i++) {
