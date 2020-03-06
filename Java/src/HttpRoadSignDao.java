@@ -10,7 +10,7 @@ import java.util.List;
 
 
 class HttpRoadSignDao {
-    CreateUri createUri;
+    CreateUri createUri = new CreateUri();
     private final HttpClient httpClient = HttpClient.newBuilder()
             .version(HttpClient.Version.HTTP_2)
             .build();
@@ -30,12 +30,12 @@ class HttpRoadSignDao {
         double x = utm.getEasting();
         double y = utm.getNorthing();
         double radius = 100; //Distance from center to edge of box in cardinal directions
-        double latMin = x - radius;
-        double latMax = x + radius;
+        double west = x - radius;
+        double east = x + radius;
 
-        double lonMin = y - radius;
-        double lonMax = y + radius;
-        URI uri = createUri.getNVDB(latMin, lonMin, latMax, lonMax);
+        double south = y - radius;
+        double north = y + radius;
+        URI uri = createUri.getNVDB(west, south, east, north);
         HttpRequest request = HttpRequest.newBuilder()
                 .GET()
                 .uri(uri)

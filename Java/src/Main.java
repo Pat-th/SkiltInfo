@@ -1,7 +1,9 @@
 import org.glassfish.jersey.internal.*;
 
+import java.io.IOException;
+
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         HttpRoadSignDao httpRoadSignDao = new HttpRoadSignDao();
         CreateUri createUri = new CreateUri();
         int objectId = 85404247;
@@ -18,6 +20,7 @@ public class Main {
         double y = 7034038.739;
         double lattie = 63.362083;
         double longie = 10.383740;
-        //createUri.getLocalhost(lat, lon, enum_id);
+        //createUri.getNVDB(x-100, y-100, x+100, y+100);
+        httpRoadSignDao.getBoundingBox(lattie, longie, enum_id);
     }
 }

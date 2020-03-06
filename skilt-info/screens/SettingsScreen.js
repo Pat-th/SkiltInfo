@@ -109,13 +109,13 @@ const SettingsScreen = props => {
     const fillArray = () => {
         return (
             <View>
-                <View><TouchableOpacity style={{backgroundColor: selected === 'Enkel' ? '#6e3b6e' : '#f9c2ff'}}
+                <View><TouchableOpacity style={{backgroundColor: selected === 'Enkel' ? '#d5d729' : 'transparent'}}
                                         onPress={() => setFilter('Enkel')}><Text
                     style={styles.content}>Enkel</Text></TouchableOpacity></View>
-                <View><TouchableOpacity style={{backgroundColor: selected === 'Avansert' ? '#6e3b6e' : '#f9c2ff'}}
+                <View><TouchableOpacity style={{backgroundColor: selected === 'Avansert' ? '#d5d729' : 'transparent'}}
                                         onPress={() => setFilter('Avansert')}><Text
                     style={styles.content}>Avansert</Text></TouchableOpacity></View>
-                <View><TouchableOpacity style={{backgroundColor: selected === 'Fullstendig' ? '#6e3b6e' : '#f9c2ff'}}
+                <View><TouchableOpacity style={{backgroundColor: selected === 'Fullstendig' ? '#d5d729' : 'transparent'}}
                                         onPress={() => setFilter('Fullstendig')}><Text
                     style={styles.content}>Fullstendig</Text></TouchableOpacity></View>
                 <FlatList
@@ -124,7 +124,7 @@ const SettingsScreen = props => {
                     renderItem={({item}) => {
                         return (
                             <SettingsFilters
-                                selectorStyle={{backgroundColor: selected === item ? '#6e3b6e' : '#f9c2ff'}}
+                                selectorStyle={{backgroundColor: selected === item ? '#d5d729' : 'transparent'}}
                                 selector={() => setFilter(item)}
                                 textStyle={styles.content}
                                 deleteButton={() => deleteAlert(item)}

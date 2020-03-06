@@ -32,12 +32,13 @@ public class CreateUri {
         return uriBuilder.build();
     }
 
-    public URI getNVDB(double latMin, double lonMin, double latMax, double lonMax) throws IOException {
+    public URI getNVDB(double west, double south, double east, double north) throws IOException {
         getInputStream();
         String nvdburl = prop.getProperty("NVDBURL");
+        String box = west + "," + south + "," + east + "," + north;
         UriBuilder uriBuilder = UriBuilder.fromUri(nvdburl);
-        uriBuilder.queryParam("kartutsnitt", latMin,lonMin,latMax,lonMax);
         uriBuilder.queryParam("inkluder", "alle");
+        uriBuilder.queryParam("kartutsnitt", box);
         uriBuilder.queryParam("srid", 6173);
         return uriBuilder.build();
     }
