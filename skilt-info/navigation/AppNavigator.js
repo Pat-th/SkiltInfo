@@ -1,7 +1,8 @@
 import { createAppContainer } from "react-navigation";
 import { createBottomTabNavigator } from "react-navigation-tabs";
 import { createStackNavigator } from "react-navigation-stack"
-import { AntDesign, Feather, MaterialIcons } from "@expo/vector-icons";
+import { StyleSheet, Text, View } from 'react-native';
+import { AntDesign, Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import React from "react";
 
 import CameraScreen from "../screens/CameraScreen";
@@ -12,6 +13,10 @@ import NewDisplayInformationScreen from "../screens/NewDisplayInformationScreen"
 import Colors from "../Constants/Colors"
 import CreateNewFilterScreen from "../screens/CreateNewFilterScreen";
 import EditFilterScreen from "../screens/EditFilterScreen";
+import Icon from "react-native-ionicons";
+
+const IconSize = 30;
+const InactiveIconColor = "#524c4c"
 
 const stackNavigator = createStackNavigator({
     Kamera : CameraScreen,
@@ -27,30 +32,55 @@ const TabNavigator = createBottomTabNavigator({
     Innstillinger: {
         screen: settingsNavigator,
         navigationOptions: {
-            tabBarIcon: <Feather name="settings" size={35}></Feather>
+            tabBarIcon: ({ focused }) =>  (
+                focused
+                ? <MaterialCommunityIcons name="settings" size={IconSize} />
+                : <MaterialCommunityIcons name="settings-outline" color={InactiveIconColor} size={IconSize} />
+             )
         }
     },
     Kamera: {
         screen: stackNavigator,
         navigationOptions: {
-            tabBarIcon: <AntDesign name="camerao" size={35}></AntDesign>
+            tabBarIcon: ({ focused }) =>  (
+                focused
+                ? <AntDesign name="camera" size={IconSize} />
+                : <AntDesign name="camerao" color={InactiveIconColor} size={IconSize} />
+             )
         }
     },
     Hjelp: {
         screen: HelpScreen,
         navigationOptions: {
-            tabBarIcon: <MaterialIcons name="help-outline" size={35}></MaterialIcons>
+            tabBarIcon: ({ focused }) =>  (
+                focused
+                ? <Ionicons name="ios-help-circle" size={IconSize} />
+                : <Ionicons name="ios-help-circle-outline" color={InactiveIconColor} size={IconSize} />
+             )
         }
     }
 },
 {   initialRouteName: "Kamera",
     tabBarOptions: {
-        activeTintColor: Colors.secondaryColor,
-        inactiveBackgroundColor: Colors.primaryColor,
+        //activeTintColor: Colors.primaryColor1,
+        //inactiveBackgroundColor: Colors.secondaryColor1,
         inactiveTintColor: Colors.accentColor,
         activeBackgroundColor: Colors.primaryColor,
         showIcon: true,
-        showLabel: false
+        showLabel: true,
+        activeTintColor: "black",
+        inactiveTintColor: InactiveIconColor
+    }
+});
+
+const styles = StyleSheet.create({
+    labelInactive: {
+        flex: 1,
+        alignContent: "center"
+    },
+    labelInactive: {
+        flex: 1,
+        alignContent: "center"
     }
 });
 

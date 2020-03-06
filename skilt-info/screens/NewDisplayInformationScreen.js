@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import ItemInfo from "../components/DisplayInfo/ItemInfo";
+import Colors from "../Constants/Colors";
 import { StyleSheet, Text, View, Image, FlatList, AsyncStorage, } from 'react-native';
-import ItemInfo from "../components/DisplayInfo/ItemInfo"
 
 const NewDisplayInformationScreen = props => {
     const [info, setInfo] = useState([]);
@@ -248,7 +249,7 @@ const NewDisplayInformationScreen = props => {
             addItem("Start Dato", result.metadata.startdato);
             addItem("Sist Modifisert", result.metadata.sist_modifisert);
         }
-    };
+    }
 
     const addItem = (id, value) => {
         setInfo(item => [
@@ -258,7 +259,7 @@ const NewDisplayInformationScreen = props => {
 
     useEffect(() => {
         fetchData();
-    }, []);
+    }, [])
 
     if(error){
         return(
@@ -280,7 +281,7 @@ const NewDisplayInformationScreen = props => {
             </View>
             <View style={styles.bottomView}>
                 <FlatList style={styles.list1}
-                keyExtractor={(item, index) => item.id}
+                keyExtractor={(item, index) => index.toString()}
                 data={info}
                 renderItem={itemData => <ItemInfo id={itemData.item.id + ":"} value={itemData.item.value}/>} 
                 />
@@ -295,7 +296,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
       },
       topView: {
-          backgroundColor: "yellow",
           flex: 1,
           flexDirection: "row"
       },
@@ -306,17 +306,32 @@ const styles = StyleSheet.create({
       imageStyle: {
           flex: 1,
           borderRadius: 10,
-          margin: 5,
           width: undefined, 
           height: undefined,
+          marginTop: 5,
+          marginLeft: 10,
+          marginBottom: 5
       },
       buttonView: {
-          backgroundColor: "#fff",
-          flex: 1
+        flex: 1,
+        shadowColor: "black",
+        shadowOffset: { width: 0, height: 2},
+        shadowRadius: 6,
+        shadowOpacity: 0.26,
+        elevation: 5, //Shadow on Android
+        backgroundColor: "white",
+        padding: 10,
+        borderRadius: 10, //Rounded corners
+        marginTop: 5,
+        marginLeft: 10,
+        marginRight: 10,
+        marginBottom: 5,
+        backgroundColor: Colors.primaryColor1,
+        borderColor: "black",
+        borderWidth: 1
       },
       bottomView: {
           flex: 1,
-          margin: 10
       }
 });
 
