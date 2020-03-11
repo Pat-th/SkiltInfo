@@ -7,7 +7,7 @@ matrix:
         - javac -version
       script:
         - cd Java/src
-        - javac -cp "../../lib/*" HttpRoadSignDao.java Server.java WGS2UTM.java CreateUri.java
+        - javac -cp "../../lib/*" HttpRoadSignDao.java Server.java WGS2UTM.java CreateUriUtil.java
         - cd ../test
         - javac -cp "../../lib/*:../src" HttpRoadSignDaoTest.java ServerTest.java
         - java -javaagent:../../lib/jacocoagent.jar=destfile=../jacoco.exec -cp "../../lib/*:../src:." org.junit.runner.JUnitCore HttpRoadSignDaoTest ServerTest
