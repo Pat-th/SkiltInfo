@@ -32,5 +32,6 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="javax.ws.rs" level="project" />
+    <orderEntry type="library" name="LatLongToUTM" level="project" />
   </component>
 </module>
