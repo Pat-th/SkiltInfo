@@ -12,6 +12,34 @@ const NewDisplayInformationScreen = props => {
         const result = props.navigation.state.params.result;
         await read(result);
     }
+    const titleId = {
+        PUNKTTILKNYTNING: 100096,
+        ANSIKTSSIDERETTETMOT: 1894,
+        SKILTNUMMER: 5530,
+        OPPSETTINGSDATO: 2108,
+        GEOMETRIPUNKT: 4795,
+        TEKST: 1910,
+        PLASSERINGSKODE: 5128,
+        TOSIDIGPLATEMEDULIKEMOTIV: 9484,
+        STORRELSE: 1970,
+        HOYDE: 1588,
+        BREDDE: 1328,
+        SKILTFORM: 1892,
+        TEKSTOGSYMBOLHOYDE: 1912,
+        FARGE: 1294,
+        BELYSNING: 1879,
+        FOLIEKLASSE: 1921,
+        KLAPPSKILT: 8828,
+        VEDTAKSNUMMER: 1890,
+        SKIFTETDATO: 2107,
+        ARKIVNUMMER: 9154,
+        EIER: 11826,
+        VEDLIKEHOLDSANSVARLIG: 8064,
+
+
+
+
+    };
 
     const read = async result => {
         let fetch = await AsyncStorage.getItem('standard');
@@ -50,7 +78,7 @@ const NewDisplayInformationScreen = props => {
             addItem("Forelder objektid", result.relasjoner.foreldre[0].vegobjekter[0]);
         } if(parse.egenskaper.PunktTilKnytning === true){
             for(let i in result.egenskaper){
-                if(result.egenskaper[i].id === 100096){
+                if(result.egenskaper[i].id === titleId.PUNKTTILKNYTNING){
                     addItem("navn", result.egenskaper[i].navn);
                     addItem("egenskapstype", result.egenskaper[i].egenskapstype);
                     addItem("datatype", result.egenskaper[i].datatype);
@@ -63,14 +91,14 @@ const NewDisplayInformationScreen = props => {
             }
         } if(parse.egenskaper.AnsiktssideRettetMot === true) {
             for(let i in result.egenskaper){
-                if (result.egenskaper[i].id === 1894){
+                if (result.egenskaper[i].id === titleId.ANSIKTSSIDERETTETMOT){
                     addItem(result.egenskaper[i].navn, result.egenskaper[i].verdi);
                     break;
                 }
             }
         } if(parse.egenskaper.Skiltnummer === true) {
             for(let i in result.egenskaper){
-                if (result.egenskaper[i].id === 5530){
+                if (result.egenskaper[i].id === titleId.SKILTNUMMER){
                     addItem(result.egenskaper[i].navn, result.egenskaper[i].verdi) + "-" + result.egenskaper[i].enum_id;
                     addItem('Id av skilttype', result.egenskaper[i].enum_id);
                     break;
@@ -78,7 +106,7 @@ const NewDisplayInformationScreen = props => {
             }
         } if(parse.egenskaper.Oppsettingsdato === true) {
             for(let i in result.egenskaper){
-                if (result.egenskaper[i].id === 2108){
+                if (result.egenskaper[i].id === titleId.OPPSETTINGSDATO){
                     addItem(result.egenskaper[i].navn, result.egenskaper[i].verdi);
 
                     break;
@@ -86,7 +114,7 @@ const NewDisplayInformationScreen = props => {
             }
         } if(parse.egenskaper.GeometriPunkt === true){
             for(let i in result.egenskaper){
-                if (result.egenskaper[i].id === 4795){
+                if (result.egenskaper[i].id === titleId.GEOMETRIPUNKT){
                     addItem(result.egenskaper[i].navn, result.egenskaper[i].verdi);
                     /*
                     addItem("medium",  result.egenskaper[i].medium);
@@ -105,119 +133,119 @@ const NewDisplayInformationScreen = props => {
             }
         } if(parse.egenskaper.Tekst === true){
             for(let i in result.egenskaper){
-                if (result.egenskaper[i].id === 1910){
+                if (result.egenskaper[i].id === titleId.TEKST){
                     addItem(result.egenskaper[i].navn, result.egenskaper[i].verdi);
                     break;
                 }
             }
         } if(parse.egenskaper.Plasseringskode === true){
             for(let i in result.egenskaper){
-                if (result.egenskaper[i].id === 5128){
+                if (result.egenskaper[i].id === titleId.PLASSERINGSKODE){
                     addItem(result.egenskaper[i].navn, result.egenskaper[i].verdi);
                     break;
                 }
             }
         } if(parse.egenskaper.ToSidigPlateMedUlikeMotiv === true){
             for(let i in result.egenskaper){
-                if (result.egenskaper[i].id === 9484){
+                if (result.egenskaper[i].id === titleId.TOSIDIGPLATEMEDULIKEMOTIV){
                     addItem(result.egenskaper[i].navn, result.egenskaper[i].verdi);
                     break;
                 }
             }
         } if(parse.egenskaper.Storrelse === true){
             for(let i in result.egenskaper){
-                if (result.egenskaper[i].id === 1970){
+                if (result.egenskaper[i].id === titleId.STORRELSE){
                     addItem(result.egenskaper[i].navn, result.egenskaper[i].verdi);
                     break;
                 }
             }
         } if(parse.egenskaper.Hoyde === true){
             for(let i in result.egenskaper){
-                if (result.egenskaper[i].id === 1588){
+                if (result.egenskaper[i].id === titleId.HOYDE){
                     addItem(result.egenskaper[i].navn, result.egenskaper[i].verdi);
                     break;
                 }
             }
         } if(parse.egenskaper.Bredde === true){
             for(let i in result.egenskaper){
-                if (result.egenskaper[i].id === 1328){
+                if (result.egenskaper[i].id === titleId.BREDDE){
                     addItem(result.egenskaper[i].navn, result.egenskaper[i].verdi);
                     break;
                 }
             }
         } if(parse.egenskaper.Skiltform === true){
             for(let i in result.egenskaper){
-                if (result.egenskaper[i].id === 1892){
+                if (result.egenskaper[i].id === titleId.SKILTFORM){
                     addItem(result.egenskaper[i].navn, result.egenskaper[i].verdi);
                     break;
                 }
             }
         } if(parse.egenskaper.TekstOgSymbolhoyde === true){
             for(let i in result.egenskaper){
-                if (result.egenskaper[i].id === 1912){
+                if (result.egenskaper[i].id === titleId.TEKSTOGSYMBOLHOYDE){
                     addItem(result.egenskaper[i].navn, result.egenskaper[i].verdi);
                     break;
                 }
             }
         } if(parse.egenskaper.Farge === true){
             for(let i in result.egenskaper){
-                if (result.egenskaper[i].id === 1294){
+                if (result.egenskaper[i].id === titleId.FARGE){
                     addItem(result.egenskaper[i].navn, result.egenskaper[i].verdi);
                     break;
                 }
             }
         } if(parse.egenskaper.Belysning === true){
             for(let i in result.egenskaper){
-                if (result.egenskaper[i].id === 1879){
+                if (result.egenskaper[i].id === titleId.BELYSNING){
                     addItem(result.egenskaper[i].navn, result.egenskaper[i].verdi);
                     break;
                 }
             }
         } if(parse.egenskaper.Folieklasse === true){
             for(let i in result.egenskaper){
-                if (result.egenskaper[i].id === 1921){
+                if (result.egenskaper[i].id === titleId.FOLIEKLASSE){
                     addItem(result.egenskaper[i].navn, result.egenskaper[i].verdi);
                     break;
                 }
             }
         } if(parse.egenskaper.Klappskilt === true){
             for(let i in result.egenskaper){
-                if (result.egenskaper[i].id === 8828){
+                if (result.egenskaper[i].id === titleId.KLAPPSKILT){
                     addItem(result.egenskaper[i].navn, result.egenskaper[i].verdi);
                     break;
                 }
             }
         } if(parse.egenskaper.Vedtaksnummer === true){
             for(let i in result.egenskaper){
-                if (result.egenskaper[i].id === 1890){
+                if (result.egenskaper[i].id === titleId.VEDTAKSNUMMER){
                     addItem(result.egenskaper[i].navn, result.egenskaper[i].verdi);
                     break;
                 }
             }
         } if(parse.egenskaper.SkiftetDato === true){
             for(let i in result.egenskaper){
-                if (result.egenskaper[i].id === 2107){
+                if (result.egenskaper[i].id === titleId.SKIFTETDATO){
                     addItem(result.egenskaper[i].navn, result.egenskaper[i].verdi);
                     break;
                 }
             }
         } if(parse.egenskaper.Arkivnummer === true){
             for(let i in result.egenskaper){
-                if (result.egenskaper[i].id === 9154){
+                if (result.egenskaper[i].id === titleId.ARKIVNUMMER){
                     addItem(result.egenskaper[i].navn, result.egenskaper[i].verdi);
                     break;
                 }
             }
         } if(parse.egenskaper.Eier === true){
             for(let i in result.egenskaper){
-                if (result.egenskaper[i].id === 11826){
+                if (result.egenskaper[i].id === titleId.EIER){
                     addItem(result.egenskaper[i].navn, result.egenskaper[i].verdi);
                     break;
                 }
             }
         } if(parse.egenskaper.Vedlikeholdsansvarlig === true){
             for(let i in result.egenskaper){
-                if (result.egenskaper[i].id === 8064){
+                if (result.egenskaper[i].id === titleId.VEDLIKEHOLDSANSVARLIG){
                     addItem(result.egenskaper[i].navn, result.egenskaper[i].verdi);
                     break;
                 }

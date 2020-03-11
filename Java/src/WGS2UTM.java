@@ -18,7 +18,6 @@ public class WGS2UTM {
         transform.transform(fromCoord, toCoord);
         setEasting(toCoord.x);
         setNorthing(toCoord.y);
-
     }
 
     public void setEasting(double easting) {

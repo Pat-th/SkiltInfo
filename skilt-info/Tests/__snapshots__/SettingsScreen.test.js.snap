@@ -66,7 +66,7 @@ exports[`<SettingsScreen /> Renders correctly 1`] = `
               onStartShouldSetResponder={[Function]}
               style={
                 Object {
-                  "backgroundColor": "#6e3b6e",
+                  "backgroundColor": "#ffff87",
                   "opacity": 1,
                 }
               }
@@ -98,7 +98,7 @@ exports[`<SettingsScreen /> Renders correctly 1`] = `
               onStartShouldSetResponder={[Function]}
               style={
                 Object {
-                  "backgroundColor": "#f9c2ff",
+                  "backgroundColor": "transparent",
                   "opacity": 1,
                 }
               }
@@ -130,7 +130,7 @@ exports[`<SettingsScreen /> Renders correctly 1`] = `
               onStartShouldSetResponder={[Function]}
               style={
                 Object {
-                  "backgroundColor": "#f9c2ff",
+                  "backgroundColor": "transparent",
                   "opacity": 1,
                 }
               }
