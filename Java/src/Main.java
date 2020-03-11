@@ -1,11 +1,7 @@
-import org.glassfish.jersey.internal.*;
-
-import java.io.IOException;
-
 public class Main {
     public static void main(String[] args) throws Exception {
         HttpRoadSignDao httpRoadSignDao = new HttpRoadSignDao();
-        CreateUri createUri = new CreateUri();
+        CreateUriUtil createUriUtil;
         int objectId = 85404247;
         double lat = 63.365330;
         double lon = 10.372574;
@@ -24,6 +20,5 @@ public class Main {
         //WGS2UTM wgs = new WGS2UTM(lattie, longie);
         //createUri.getNVDB(x-100, y-100, x+100, y+100);
         httpRoadSignDao.getBoundingBox(lattie, longie, enum_id);
-
     }
 }

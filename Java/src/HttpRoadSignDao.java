@@ -1,6 +1,6 @@
 import org.json.JSONArray;
 import org.json.JSONObject;
-import java.io.InputStream;
+
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -10,7 +10,6 @@ import java.util.List;
 
 
 class HttpRoadSignDao {
-    CreateUri createUri = new CreateUri();
     private final HttpClient httpClient = HttpClient.newBuilder()
             .version(HttpClient.Version.HTTP_2)
             .build();
@@ -26,19 +25,15 @@ class HttpRoadSignDao {
      */
     public List<JSONObject> getBoundingBox(double lat, double lon, int sign_id) throws Exception {
         List<JSONObject> list = new ArrayList<>();
-        //Deg2UTM utm = new Deg2UTM(lat, lon); //Converts latitude and longitude to Eastings and Northings
-        WGS2UTM wgs = new WGS2UTM(lat, lon);
+        WGS2UTM wgs = new WGS2UTM(lat, lon); //Converts latitude and longitude to Eastings and Northings
         double eastings = wgs.getEasting();
         double northings = wgs.getNorthing();
-        System.out.println(eastings);
-        System.out.println(northings);
         double radius = 500; //Distance from center to edge of box in cardinal directions
         double west = eastings - radius;
         double east = eastings + radius;
-
         double south = northings - radius;
         double north = northings + radius;
-        URI uri = createUri.getNVDB(west, south, east, north);
+        URI uri = CreateUriUtil.getNVDB(west, south, east, north);
         HttpRequest request = HttpRequest.newBuilder()
                 .GET()
                 .uri(uri)

@@ -3,7 +3,7 @@ import {Image, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 
 const SettingsFilters = props => {
     return (
-        <View style={styles.container}>
+        <View style={styles.textbox}>
             <TouchableOpacity onPress={props.selector} style={props.selectorStyle}>
                 <Text style={props.textStyle}>{props.text}</Text>
             </TouchableOpacity>
@@ -43,9 +43,7 @@ const SettingsFilters = props => {
 };
 
 const styles = StyleSheet.create({
-    container: {
-        height: 40,
-    },
+
     deleteicon: {
         height: 30,
         width: 30,
@@ -71,6 +69,11 @@ const styles = StyleSheet.create({
         position: 'absolute',
         right: 10,
         flexDirection: 'row',
+    },
+    textbox: {
+        margin: 3,
+        borderWidth: 3,
+        borderRadius: 10,
     },
 
 });

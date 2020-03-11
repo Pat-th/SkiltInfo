@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, TouchableOpacity, ActivityIndicator, Alert } fr
 import { Camera } from 'expo-camera';
 import SignPicker from "../components/SignPicker";
 import Colors from "../Constants/Colors"
+import { withNavigationFocus } from 'react-navigation';
 
 const CameraScreen = props => {
     const [hasPermission, setHasPermission] = useState(null);
@@ -12,7 +13,7 @@ const CameraScreen = props => {
     const [navigation, setNavigation] = useState(null);
     const [picture, setPicture] = useState(null);
     const [getSignError, setGetSignError] = useState(false);
-    const URL = "http://6c3f79b5.ngrok.io";
+    const URL = "http://029d5850.ngrok.io";
 
     let camera;
 
@@ -28,6 +29,7 @@ const CameraScreen = props => {
           setHasPermission(status === 'granted');
         })();
       }, []);
+
 
       async function fetchSign(latitude, longitude){
           setIsLoading(true);
@@ -110,39 +112,46 @@ const CameraScreen = props => {
     }
 
     const CameraView = props => {
-        if(isLoading){
-            return(
-                <View style={styles.container}>
-                    <View style={styles.loadingSpinner}>
-                            <ActivityIndicator size="large" color={Colors.accentColor1} />
-                    </View>
-                </View>
-            )
-        }
-        else{
-            return(
-                <View style={styles.cameraContainer}>
-                    <Camera style={styles.camera} ref={ref => {camera = ref;}}>
-                    <SignPicker 
-                    visible={isChooseMode} 
-                    onCancel={cancelHandler} 
-                    data={signsData}
-                    image={picture}
-                    navigation = {navigation} />
-                        <View style={styles.nonClickable}>
-                            <TouchableOpacity style={styles.buttonContainer} onPress={() => takePicture().then(() => getLatLong())}>
-                                <View style={styles.captureBtn} />
-                            </TouchableOpacity>
+            if (isLoading) {
+                return (
+                    <View style={styles.container}>
+                        <View style={styles.loadingSpinner}>
+                            <ActivityIndicator size="large" color={Colors.accentColor1}/>
                         </View>
-                    </Camera>
-                </View>
-            );
-        }
-    }
-
-    return(
+                    </View>
+                )
+            } else {
+                return (
+                    <View style={styles.cameraContainer}>
+                        <Camera style={styles.camera} ref={ref => {
+                            camera = ref;
+                        }}>
+                            <SignPicker
+                                visible={isChooseMode}
+                                onCancel={cancelHandler}
+                                data={signsData}
+                                image={picture}
+                                navigation={navigation}/>
+                            <View style={styles.nonClickable}>
+                                <TouchableOpacity style={styles.buttonContainer}
+                                                  onPress={() => takePicture().then(() => getLatLong())}>
+                                    <View style={styles.captureBtn}/>
+                                </TouchableOpacity>
+                            </View>
+                        </Camera>
+                    </View>
+                );
+            }
+    };
+    if (props.isFocused) {
+        return(
             <CameraView/>
-    )
+        )
+    } else {
+        return(
+            <Text>Ikke i fokus</Text>
+        )
+    }
 };
 
 const styles = StyleSheet.create({
@@ -184,4 +193,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default CameraScreen;
+export default withNavigationFocus(CameraScreen);

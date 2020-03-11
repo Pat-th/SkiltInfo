@@ -6,15 +6,17 @@ import java.net.URI;
 import java.util.Properties;
 
 
-public class CreateUri {
+public final class CreateUriUtil {
+    private CreateUriUtil() {
+    }
 
-    Properties prop = new Properties();
-    String propFileName = "config.properties";
-    private final int SRID = 6173;
+    private static Properties prop = new Properties();
+    private static final String propFileName = "config.properties";
+    private final static int SRID = 6173;
 
-    public InputStream getInputStream() throws IOException {
+    private static InputStream getInputStream() throws IOException {
         InputStream inputStream;
-        inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
+        inputStream = CreateUriUtil.class.getClassLoader().getResourceAsStream(propFileName);
         if(inputStream != null){
             prop.load(inputStream);
         } else {
@@ -33,10 +35,10 @@ public class CreateUri {
         return uriBuilder.build();
     }
 
-    public URI getNVDB(double west, double south, double east, double north) throws IOException {
+    public static URI getNVDB(double west, double south, double east, double north) throws IOException {
         getInputStream();
         String nvdburl = prop.getProperty("NVDBURL");
-        String box = west + "," + south + "," + east + "," + north;
+        String box = String.format("%s,%s,%s,%s",west, south, east, north);
         UriBuilder uriBuilder = UriBuilder.fromUri(nvdburl);
         uriBuilder.queryParam("inkluder", "alle");
         uriBuilder.queryParam("kartutsnitt", box);

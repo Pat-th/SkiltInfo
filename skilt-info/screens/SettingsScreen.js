@@ -110,13 +110,13 @@ const SettingsScreen = props => {
     const fillArray = () => {
         return (
             <View>
-                <View><TouchableOpacity style={{backgroundColor: selected === 'Enkel' ? Colors.primaryColor1 : 'transparent'}}
+                <View style={styles.textbox}><TouchableOpacity style={{backgroundColor: selected === 'Enkel' ? Colors.primaryColor1 : 'transparent', borderRadius: 10,}}
                                         onPress={() => setFilter('Enkel')}><Text
                     style={styles.content}>Enkel</Text></TouchableOpacity></View>
-                <View><TouchableOpacity style={{backgroundColor: selected === 'Avansert' ? Colors.primaryColor1 : 'transparent'}}
+                <View style={styles.textbox}><TouchableOpacity style={{backgroundColor: selected === 'Avansert' ? Colors.primaryColor1 : 'transparent', borderRadius: 10,}}
                                         onPress={() => setFilter('Avansert')}><Text
                     style={styles.content}>Avansert</Text></TouchableOpacity></View>
-                <View><TouchableOpacity style={{backgroundColor: selected === 'Fullstendig' ? Colors.primaryColor1 : 'transparent'}}
+                <View style={styles.textbox}><TouchableOpacity style={{backgroundColor: selected === 'Fullstendig' ? Colors.primaryColor1 : 'transparent', borderRadius: 10,}}
                                         onPress={() => setFilter('Fullstendig')}><Text
                     style={styles.content}>Fullstendig</Text></TouchableOpacity></View>
                 <FlatList
@@ -125,7 +125,7 @@ const SettingsScreen = props => {
                     renderItem={({item}) => {
                         return (
                             <SettingsFilters
-                                selectorStyle={{backgroundColor: selected === item ? Colors.primaryColor1 : 'transparent'}}
+                                selectorStyle={{backgroundColor: selected === item ? Colors.primaryColor1 : 'transparent', borderRadius: 10}}
                                 selector={() => setFilter(item)}
                                 textStyle={styles.content}
                                 deleteButton={() => deleteAlert(item)}
@@ -136,7 +136,7 @@ const SettingsScreen = props => {
                             />)
                     }}
                 />
-                <View>
+                <View style={styles.textbox}>
                     <TouchableOpacity onPress={() => goToAddNew()}>
                         <Text>Legg til nytt filter</Text>
                         <Image source={require('../images/plus.png')} style={styles.plusicon}/>
@@ -197,7 +197,11 @@ const styles = StyleSheet.create({
         position: 'absolute',
         right: 10,
     },
-
+    textbox: {
+        margin: 3,
+        borderWidth: 3,
+        borderRadius: 10,
+    },
 });
 
 export default SettingsScreen;

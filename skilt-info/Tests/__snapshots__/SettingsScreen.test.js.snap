@@ -52,7 +52,15 @@ exports[`<SettingsScreen /> Renders correctly 1`] = `
         }
       >
         <View>
-          <View>
+          <View
+            style={
+              Object {
+                "borderRadius": 10,
+                "borderWidth": 3,
+                "margin": 3,
+              }
+            }
+          >
             <View
               accessible={true}
               focusable={true}
@@ -67,6 +75,7 @@ exports[`<SettingsScreen /> Renders correctly 1`] = `
               style={
                 Object {
                   "backgroundColor": "#ffff87",
+                  "borderRadius": 10,
                   "opacity": 1,
                 }
               }
@@ -84,7 +93,15 @@ exports[`<SettingsScreen /> Renders correctly 1`] = `
               </Text>
             </View>
           </View>
-          <View>
+          <View
+            style={
+              Object {
+                "borderRadius": 10,
+                "borderWidth": 3,
+                "margin": 3,
+              }
+            }
+          >
             <View
               accessible={true}
               focusable={true}
@@ -99,6 +116,7 @@ exports[`<SettingsScreen /> Renders correctly 1`] = `
               style={
                 Object {
                   "backgroundColor": "transparent",
+                  "borderRadius": 10,
                   "opacity": 1,
                 }
               }
@@ -116,7 +134,15 @@ exports[`<SettingsScreen /> Renders correctly 1`] = `
               </Text>
             </View>
           </View>
-          <View>
+          <View
+            style={
+              Object {
+                "borderRadius": 10,
+                "borderWidth": 3,
+                "margin": 3,
+              }
+            }
+          >
             <View
               accessible={true}
               focusable={true}
@@ -131,6 +157,7 @@ exports[`<SettingsScreen /> Renders correctly 1`] = `
               style={
                 Object {
                   "backgroundColor": "transparent",
+                  "borderRadius": 10,
                   "opacity": 1,
                 }
               }
@@ -175,7 +202,15 @@ exports[`<SettingsScreen /> Renders correctly 1`] = `
           >
             <View />
           </RCTScrollView>
-          <View>
+          <View
+            style={
+              Object {
+                "borderRadius": 10,
+                "borderWidth": 3,
+                "margin": 3,
+              }
+            }
+          >
             <View
               accessible={true}
               focusable={true}
