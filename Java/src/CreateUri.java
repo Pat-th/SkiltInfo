@@ -10,6 +10,7 @@ public class CreateUri {
 
     Properties prop = new Properties();
     String propFileName = "config.properties";
+    private final int SRID = 6173;
 
     public InputStream getInputStream() throws IOException {
         InputStream inputStream;
@@ -39,7 +40,7 @@ public class CreateUri {
         UriBuilder uriBuilder = UriBuilder.fromUri(nvdburl);
         uriBuilder.queryParam("inkluder", "alle");
         uriBuilder.queryParam("kartutsnitt", box);
-        uriBuilder.queryParam("srid", 6173);
+        uriBuilder.queryParam("srid", SRID);
         return uriBuilder.build();
     }
 }

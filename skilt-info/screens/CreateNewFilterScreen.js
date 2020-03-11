@@ -96,8 +96,9 @@ const CreateNewFilterScreen = props => {
 
     return (
         <ScrollView>
-            <Text>Navn:</Text><TextInput onChangeText={text => setInput(text)}
-                                         value={input} placeholder={'Trykk her for å skrive inn navn på filter'}/>
+            <Text style={{fontSize: 32}}>Navn:</Text><View style={{margin: 5, borderRadius: 10, height: 50}}><TextInput onChangeText={text => setInput(text)}
+                                         value={input} placeholder={'Trykk her for å skrive navn'}
+                                                                style={{fontSize: 20}}/></View>
             <FilterSwitches metadata={metadata} setMetadata={setMetadata}
                             geometri={geometri} setGeometri={setGeometri}
                             lokasjon={lokasjon} setLokasjon={setLokasjon}
@@ -129,5 +130,6 @@ const CreateNewFilterScreen = props => {
         </ScrollView>
     )
 };
+
 
 export default CreateNewFilterScreen;

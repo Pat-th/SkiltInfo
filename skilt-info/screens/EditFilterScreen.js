@@ -105,7 +105,7 @@ const EditFilterScreen = props => {
     return (
         <View>
             <ScrollView>
-            <Text>{props.navigation.state.params.toEdit}</Text>
+            <Text style={{fontSize: 32}}>Filter: {props.navigation.state.params.toEdit}</Text>
                 <FilterSwitches metadata={metadata} setMetadata={setMetadata}
                                 geometri={geometri} setGeometri={setGeometri}
                                 lokasjon={lokasjon} setLokasjon={setLokasjon}
