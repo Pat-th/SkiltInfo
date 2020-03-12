@@ -17,29 +17,6 @@ const SettingsFilters = props => {
             </View>
         </View>
     )
-    /*return (
-        <View>
-            {data.map((info, i) =>
-                <View style={styles.container} key={i}>
-                    <TouchableOpacity>
-                        <Text key={i} style={styles.content}>{info}</Text>
-                    </TouchableOpacity>
-                    <View style={styles.buttongrp}>
-                        <TouchableOpacity onPress={() => deleteFilter(data[i])} title={"Verdi"} style={styles.delete}>
-                            <Image source={require('../images/delete.png')} style={styles.deleteicon}/>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={() =>  props.navigation.navigate('Rediger Filter', {toEdit: data[i]})} style={styles.edit}>
-                            <Image source={require('../images/edit.png')} style={styles.editicon}/>
-                        </TouchableOpacity>
-                    </View>
-                </View>)}
-            <View>
-                <TouchableOpacity onPress={() => goToAddNew()}>
-                    <Text>Legg til nytt filter</Text>
-                    <Image source={require('../images/plus.png')} style={styles.plusicon}/>
-                </TouchableOpacity>
-            </View>
-        </View>)*/
 };
 
 const styles = StyleSheet.create({

@@ -43,11 +43,12 @@ public class Server {
                 switch (requestMethod) {
                     case METHOD_GET:
                         Map<String, String> requestParameters = getRequestParameters(he.getRequestURI());
-                            if (requestParameters.get("lat") != null && requestParameters.get("lon") != null && requestParameters.get("id") != null && isDouble(requestParameters.get("lat")) && isDouble(requestParameters.get("lon")) && isInt(requestParameters.get("id"))) {
+                            if (requestParameters.get("lat") != null && requestParameters.get("lon") != null && requestParameters.get("id") != null && requestParameters.get("radius") != null && isDouble(requestParameters.get("lat")) && isDouble(requestParameters.get("lon")) && isInt(requestParameters.get("id")) && isInt(requestParameters.get("radius"))) {
                                 double lat = Double.parseDouble(requestParameters.get("lat"));
                                 double lon = Double.parseDouble(requestParameters.get("lon"));
                                 int sign_id = Integer.parseInt(requestParameters.get("id"));
-                                final String responseBody = httpRoadSignDao.getBoundingBox(lat, lon, sign_id).toString();
+                                int radius = Integer.parseInt(requestParameters.get("radius"));
+                                final String responseBody = httpRoadSignDao.getBoundingBox(lat, lon, sign_id, radius).toString();
                                 headers.set(HEADER_CONTENT_TYPE, String.format("application/json; charset=%s", CHARSET));
                                 final byte[] rawResponseBody = responseBody.getBytes(CHARSET);
                                 he.sendResponseHeaders(STATUS_OK, rawResponseBody.length);

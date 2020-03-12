@@ -19,6 +19,6 @@ public class Main {
         //63.362083 10.383740
         //WGS2UTM wgs = new WGS2UTM(lattie, longie);
         //createUri.getNVDB(x-100, y-100, x+100, y+100);
-        httpRoadSignDao.getBoundingBox(lattie, longie, enum_id);
+        httpRoadSignDao.getBoundingBox(lattie, longie, enum_id, 500);
     }
 }

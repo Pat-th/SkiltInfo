@@ -35,13 +35,13 @@ public final class CreateUriUtil {
         return uriBuilder.build();
     }
 
-    public static URI getNVDB(double west, double south, double east, double north) throws IOException {
+    public static URI getNVDB(String boundingBox) throws IOException {
         getInputStream();
         String nvdburl = prop.getProperty("NVDBURL");
-        String box = String.format("%s,%s,%s,%s",west, south, east, north);
+        //String box = String.format("%s,%s,%s,%s",west, south, east, north);
         UriBuilder uriBuilder = UriBuilder.fromUri(nvdburl);
         uriBuilder.queryParam("inkluder", "alle");
-        uriBuilder.queryParam("kartutsnitt", box);
+        uriBuilder.queryParam("kartutsnitt", boundingBox);
         uriBuilder.queryParam("srid", SRID);
         return uriBuilder.build();
     }

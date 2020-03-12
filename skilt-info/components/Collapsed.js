@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {ScrollView, StyleSheet, Text, TouchableOpacity, View, Switch,} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View, } from 'react-native';
 import Collapsible from "react-native-collapsible";
 
 
@@ -17,7 +17,7 @@ const Collapsed = props => {
 
 
     return(
-        <View>
+        <View style={props.viewStyle}>
             <TouchableOpacity onPress={toggleExpanded} style={props.TitleTouchStyle}>
                 <Text style={props.TitleStyle}>{props.titleOfCollapsible}</Text>
             </TouchableOpacity>

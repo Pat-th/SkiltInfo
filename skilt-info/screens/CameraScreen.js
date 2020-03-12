@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, ActivityIndicator, Alert } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, ActivityIndicator, Alert, AsyncStorage } from 'react-native';
 import { Camera } from 'expo-camera';
 import SignPicker from "../components/SignPicker";
 import Colors from "../Constants/Colors"
@@ -13,7 +13,7 @@ const CameraScreen = props => {
     const [navigation, setNavigation] = useState(null);
     const [picture, setPicture] = useState(null);
     const [getSignError, setGetSignError] = useState(false);
-    const URL = "http://029d5850.ngrok.io";
+    const URL = "http://2c21cb4a.ngrok.io";
 
     let camera;
 
@@ -34,7 +34,8 @@ const CameraScreen = props => {
       async function fetchSign(latitude, longitude){
           setIsLoading(true);
           try{
-            let res = await fetch(URL+"/?lat="+latitude+"&lon="+longitude+"&id=7649");
+              let radius = await AsyncStorage.getItem('radius');
+            let res = await fetch(URL+"/?lat="+latitude+"&lon="+longitude+"&id=7649&radius="+radius);
             console.log(URL+"/?lat="+latitude+"&lon="+longitude+"&id=7649");
             let data = await res.json();
             setIsLoading(false);

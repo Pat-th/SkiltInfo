@@ -14,35 +14,20 @@ class HttpRoadSignDao {
             .version(HttpClient.Version.HTTP_2)
             .build();
 
-    /**
-     *
-     * @param lat latitude value that get sent from the frontend
-     * @param lon longitude value that get sent from the frontend
-     * @param sign_id the unique id of the type of sign (Yield, priority, speed limit etc)
-     * @return returns a list of the signs with matching sign_id within a square bounding box where the distance from
-     * center to the edge is decided by radius. Make radius an argument?
-     * @throws Exception JSONException
-     */
-    public List<JSONObject> getBoundingBox(double lat, double lon, int sign_id) throws Exception {
-        List<JSONObject> list = new ArrayList<>();
+    private static String setBoundingBox(double lat, double lon, int radius){
         WGS2UTM wgs = new WGS2UTM(lat, lon); //Converts latitude and longitude to Eastings and Northings
         double eastings = wgs.getEasting();
         double northings = wgs.getNorthing();
-        double radius = 500; //Distance from center to edge of box in cardinal directions
         double west = eastings - radius;
         double east = eastings + radius;
         double south = northings - radius;
         double north = northings + radius;
-        URI uri = CreateUriUtil.getNVDB(west, south, east, north);
-        HttpRequest request = HttpRequest.newBuilder()
-                .GET()
-                .uri(uri)
-                .setHeader("User-Agent", "Skiltinfo")
-                .build();
+        return String.format("%s,%s,%s,%s",west, south, east, north);
+    }
 
-        HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-
-        JSONObject object = new JSONObject(response.body());
+    private static List <JSONObject> handleResponse(String response, int sign_id){
+        List <JSONObject> list = new ArrayList<>();
+        JSONObject object = new JSONObject(response);
         JSONArray array = object.getJSONArray("objekter");
         for (int index = 0; index < array.length(); index++) {
             JSONObject object1 = array.getJSONObject(index);
@@ -55,7 +40,31 @@ class HttpRoadSignDao {
                 }
             }
         }
-        System.out.println(uri);
+        return list;
+    }
+
+    /**
+     *
+     * @param lat latitude value that get sent from the frontend
+     * @param lon longitude value that get sent from the frontend
+     * @param sign_id the unique id of the type of sign (Yield, priority, speed limit etc)
+     * @param radius the distance from the center of the map to the edges.
+     * @return returns a list of the signs with matching sign_id within a square bounding box where the distance from
+     * center to the edge is decided by radius. Make radius an argument?
+     * @throws Exception JSONException
+     */
+    public List<JSONObject> getBoundingBox(double lat, double lon, int sign_id, int radius) throws Exception {
+        List<JSONObject> list;
+        String box = setBoundingBox(lat, lon, radius);
+        URI uri = CreateUriUtil.getNVDB(box);
+        HttpRequest request = HttpRequest.newBuilder()
+                .GET()
+                .uri(uri)
+                .setHeader("User-Agent", "Skiltinfo")
+                .build();
+
+        HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        list = handleResponse(response.body(), sign_id);
         return list;
     }
 }
