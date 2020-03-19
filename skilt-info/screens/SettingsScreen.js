@@ -21,6 +21,15 @@ const SettingsScreen = props => {
         getData();
     }, [filters]);
 
+    useEffect(()=> {
+        distance();
+    },[]);
+
+    const distance = async () => {
+        let distance = await AsyncStorage.getItem('radius');
+        setRadius(distance);
+    };
+
     const getData = async () => {
         filters = [];
         await firstRun();
@@ -33,6 +42,8 @@ const SettingsScreen = props => {
                 );
             }
         }
+        let standard = await AsyncStorage.getItem('standard');
+        await setSelected(standard);
         setData(filters);
     };
 
@@ -65,8 +76,8 @@ const SettingsScreen = props => {
             if(res == null) {
                 AsyncStorage.setItem('radius', radius);
             }});
-        let standard = await AsyncStorage.getItem('standard');
-        await setSelected(standard);
+
+
     };
 
     const setFilter = async filter => {
