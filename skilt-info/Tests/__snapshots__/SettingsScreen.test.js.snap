@@ -2,7 +2,13 @@
 
 exports[`<SettingsScreen /> Renders correctly 1`] = `
 <View>
-  <View>
+  <View
+    style={
+      Object {
+        "padding": 5,
+      }
+    }
+  >
     <View
       accessible={true}
       focusable={true}
@@ -57,6 +63,7 @@ exports[`<SettingsScreen /> Renders correctly 1`] = `
               Object {
                 "borderRadius": 10,
                 "borderWidth": 3,
+                "justifyContent": "center",
                 "margin": 3,
               }
             }
@@ -83,7 +90,6 @@ exports[`<SettingsScreen /> Renders correctly 1`] = `
               <Text
                 style={
                   Object {
-                    "color": "rgba(0,0,0,1)",
                     "padding": 5,
                     "textAlign": "left",
                   }
@@ -98,6 +104,7 @@ exports[`<SettingsScreen /> Renders correctly 1`] = `
               Object {
                 "borderRadius": 10,
                 "borderWidth": 3,
+                "justifyContent": "center",
                 "margin": 3,
               }
             }
@@ -124,7 +131,6 @@ exports[`<SettingsScreen /> Renders correctly 1`] = `
               <Text
                 style={
                   Object {
-                    "color": "rgba(0,0,0,1)",
                     "padding": 5,
                     "textAlign": "left",
                   }
@@ -139,6 +145,7 @@ exports[`<SettingsScreen /> Renders correctly 1`] = `
               Object {
                 "borderRadius": 10,
                 "borderWidth": 3,
+                "justifyContent": "center",
                 "margin": 3,
               }
             }
@@ -165,7 +172,6 @@ exports[`<SettingsScreen /> Renders correctly 1`] = `
               <Text
                 style={
                   Object {
-                    "color": "rgba(0,0,0,1)",
                     "padding": 5,
                     "textAlign": "left",
                   }
@@ -207,6 +213,7 @@ exports[`<SettingsScreen /> Renders correctly 1`] = `
               Object {
                 "borderRadius": 10,
                 "borderWidth": 3,
+                "justifyContent": "center",
                 "margin": 3,
               }
             }
@@ -228,7 +235,14 @@ exports[`<SettingsScreen /> Renders correctly 1`] = `
                 }
               }
             >
-              <Text>
+              <Text
+                style={
+                  Object {
+                    "padding": 5,
+                    "textAlign": "left",
+                  }
+                }
+              >
                 Legg til nytt filter
               </Text>
               <Image
@@ -252,7 +266,6 @@ exports[`<SettingsScreen /> Renders correctly 1`] = `
     style={
       Object {
         "alignItems": "center",
-        "backgroundColor": "#fff",
         "flexDirection": "row",
         "padding": 5,
       }
@@ -291,6 +304,88 @@ exports[`<SettingsScreen /> Renders correctly 1`] = `
       }
       value={false}
     />
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "padding": 5,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "rgba(0,0,0,1)",
+          "fontSize": 24,
+          "fontWeight": "500",
+          "textAlign": "left",
+        }
+      }
+    >
+      Radius
+    </Text>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "position": "absolute",
+          "right": 10,
+        }
+      }
+    >
+      <TextInput
+        allowFontScaling={true}
+        keyboardType="numeric"
+        onChangeText={[Function]}
+        rejectResponderTermination={true}
+        style={
+          Object {
+            "backgroundColor": "rgb(41,150,255)",
+            "fontSize": 24,
+            "height": 30,
+            "textAlign": "center",
+            "width": 60,
+          }
+        }
+        underlineColorAndroid="transparent"
+        value="500"
+      />
+      <View
+        accessible={true}
+        focusable={true}
+        isTVSelectable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "rgb(41,150,255)",
+            "height": 30,
+            "margin": 10,
+            "opacity": 1,
+            "width": 50,
+          }
+        }
+      >
+        <Image
+          source={1}
+          style={
+            Object {
+              "height": 30,
+              "width": 30,
+            }
+          }
+        />
+      </View>
+    </View>
   </View>
   <View
     accessibilityRole="button"
@@ -415,6 +510,90 @@ exports[`<SettingsScreen /> Renders correctly 1`] = `
         }
       >
         selected
+      </Text>
+    </View>
+  </View>
+  <View
+    accessibilityRole="button"
+    accessibilityStates={Array []}
+    accessible={true}
+    focusable={true}
+    isTVSelectable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "opacity": 1,
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {},
+        ]
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#007AFF",
+              "fontSize": 18,
+              "padding": 8,
+              "textAlign": "center",
+            },
+          ]
+        }
+      >
+        radius
+      </Text>
+    </View>
+  </View>
+  <View
+    accessibilityRole="button"
+    accessibilityStates={Array []}
+    accessible={true}
+    focusable={true}
+    isTVSelectable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "opacity": 1,
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {},
+        ]
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#007AFF",
+              "fontSize": 18,
+              "padding": 8,
+              "textAlign": "center",
+            },
+          ]
+        }
+      >
+        radius state
       </Text>
     </View>
   </View>
