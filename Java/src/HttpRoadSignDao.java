@@ -1,4 +1,5 @@
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.net.URI;
@@ -25,7 +26,7 @@ class HttpRoadSignDao {
         return String.format("%s,%s,%s,%s",west, south, east, north);
     }
 
-    private static List <JSONObject> handleResponse(String response, int sign_id){
+    private static List <JSONObject> handleResponse(String response, int sign_id) throws JSONException {
         List <JSONObject> list = new ArrayList<>();
         JSONObject object = new JSONObject(response);
         JSONArray array = object.getJSONArray("objekter");
