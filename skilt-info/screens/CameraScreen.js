@@ -13,7 +13,7 @@ const CameraScreen = props => {
     const [navigation, setNavigation] = useState(null);
     const [picture, setPicture] = useState(null);
     const [getSignError, setGetSignError] = useState(false);
-    const URL = "http://2c21cb4a.ngrok.io";
+    const URL = "http://9032b9ae.ngrok.io";
 
     let camera;
 
@@ -36,7 +36,7 @@ const CameraScreen = props => {
           try{
               let radius = await AsyncStorage.getItem('radius');
             let res = await fetch(URL+"/?lat="+latitude+"&lon="+longitude+"&id=7649&radius="+radius);
-            console.log(URL+"/?lat="+latitude+"&lon="+longitude+"&id=7649");
+            console.log(URL+"/?lat="+latitude+"&lon="+longitude+"&id=7649&radius="+radius);
             let data = await res.json();
             setIsLoading(false);
             let numofSigns = Object.keys(data).length;
