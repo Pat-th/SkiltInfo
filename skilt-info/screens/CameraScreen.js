@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, ActivityIndicator, Alert, AsyncStorage } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, ActivityIndicator, Alert, AsyncStorage, Button } from 'react-native';
 import { Camera } from 'expo-camera';
 import SignPicker from "../components/SignPicker";
+import MapSignPicker from "../components/MapSignPicker";
 import Colors from "../Constants/Colors"
 import { withNavigationFocus } from 'react-navigation';
 
@@ -13,6 +14,8 @@ const CameraScreen = props => {
     const [navigation, setNavigation] = useState(null);
     const [picture, setPicture] = useState(null);
     const [getSignError, setGetSignError] = useState(false);
+    const [latitude, setLatitude] = useState(null);
+    const [longitude, setLongitude] = useState(null);
     const URL = "http://9032b9ae.ngrok.io";
 
     let camera;
@@ -52,7 +55,7 @@ const CameraScreen = props => {
               ],
               {cancelable: false},
             );
-            setGetSignError(true);
+            //setGetSignError(true); UNCOMMENT WHEN NVDB UP
             setIsLoading(false);
           }
       };
@@ -60,6 +63,8 @@ const CameraScreen = props => {
     const getPosSuccess = position => {
       const latitude = position.coords.latitude;
       const longitude = position.coords.longitude;
+      setLongitude(position.coords.longitude);
+      setLatitude(position.coords.latitude);
       fetchSign(latitude, longitude)
       .then(data => setSignsData(data));
       if(!getSignError){
@@ -127,10 +132,12 @@ const CameraScreen = props => {
                         <Camera style={styles.camera} ref={ref => {
                             camera = ref;
                         }}>
-                            <SignPicker
+                            <MapSignPicker
                                 visible={isChooseMode}
                                 onCancel={cancelHandler}
                                 data={signsData}
+                                longitude={longitude}
+                                latitude={latitude}
                                 image={picture}
                                 navigation={navigation}/>
                             <View style={styles.nonClickable}>
