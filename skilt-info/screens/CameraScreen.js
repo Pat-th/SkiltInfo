@@ -5,18 +5,23 @@ import SignPicker from "../components/SignPicker";
 import MapSignPicker from "../components/MapSignPicker";
 import Colors from "../Constants/Colors"
 import { withNavigationFocus } from 'react-navigation';
+import { utmToLatLon } from "../scripts/utm33ToLatLong";
 
 const CameraScreen = props => {
     const [hasPermission, setHasPermission] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const [isChooseMode, setIsChooseMode] = useState(false);
-    const [signsData, setSignsData] = useState(null);
+    const [signsData, setSignsData] = useState([]);
     const [navigation, setNavigation] = useState(null);
     const [picture, setPicture] = useState(null);
     const [getSignError, setGetSignError] = useState(false);
     const [latitude, setLatitude] = useState(null);
     const [longitude, setLongitude] = useState(null);
-    const URL = "http://9032b9ae.ngrok.io";
+    const [geoCoordinates, setGeoCoordinates] = useState([]);
+    const [numOfSigns, setNumOfSigns] = useState(null);
+    const [hasFetched, setHasFetched] = useState(false);
+    const [completeSignData, setCompleteSignData] = useState([]);
+    const URL = "http://90c5f10d.ngrok.io";
 
     let camera;
 
@@ -26,6 +31,25 @@ const CameraScreen = props => {
       maximumAge: 0
     };
 
+    const createMarkers = (data) => {
+      for(var i = 0; i < numOfSigns; i++){
+        console.log("Signs: "+ numOfSigns);
+        var point = data[i].geometri.wkt;
+        var res = point.replace("POINT Z(", "");
+        var res1 = res.replace(")", "");
+        console.log(res1);
+        var points = res1.split(" ");
+        var east = points[0];
+        var north = points[1];
+        var latlon = utmToLatLon(east, north)
+        console.log(latlon);
+        setGeoCoordinates(item => [
+          ...item,
+          latlon]);
+        };
+        console.log(geoCoordinates);
+      };
+
     useEffect(() => {
         (async () => {
           const { status } = await Camera.requestPermissionsAsync();
@@ -33,17 +57,22 @@ const CameraScreen = props => {
         })();
       }, []);
 
+    useEffect(() => {
+        console.log("Number of signs: " + numOfSigns); // This will be executed when `numOfSigns` state changes
+    }, [numOfSigns])
+
 
       async function fetchSign(latitude, longitude){
           setIsLoading(true);
           try{
             let radius = await AsyncStorage.getItem('radius');
-            let res = await fetch(URL+"/?lat="+latitude+"&lon="+longitude+"&id=7649&radius="+radius);
-            console.log("URL: "+URL+"/?lat="+latitude+"&lon="+longitude+"&id=7649&radius="+radius);
+            let res = await fetch(URL+"/?lat="+latitude+"&lon="+longitude+"&id=7642&radius="+radius);
+            console.log("URL: "+URL+"/?lat="+latitude+"&lon="+longitude+"&id=7642&radius="+radius);
             let data = await res.json();
             setIsLoading(false);
-            let numofSigns = Object.keys(data).length;
-            console.log("Number of signs: " + numofSigns);
+            setHasFetched(true);
+            setNumOfSigns(Object.keys(data).length);
+            //console.log("Number of signs: " + numofSigns);
             return data;
           }
           catch(err){
@@ -60,13 +89,50 @@ const CameraScreen = props => {
           }
       };
 
+      useEffect(() => {
+        var completeData = [];
+        if(hasFetched){
+          for(var i = 0; i < numOfSigns; i++){
+            //console.log("signsData: " + JSON.stringify("Sign " + i + ": " + signsData[i].geometri.wkt)); // This will be executed when `signsData` state changes
+            var point = signsData[i].geometri.wkt;
+            if(point.includes("POINT Z")){
+              var res = point.replace("POINT Z(", "");
+            }
+            else{
+              var res = point.replace("POINT (", "");
+            }
+            var res1 = res.replace(")", "");
+            //console.log(res1);
+            var points = res1.split(" ");
+            console.log("----------------------");
+            console.log(point);
+            console.log(points);
+            var east = points[0];
+            var north = points[1];
+            var latlon = utmToLatLon(east, north)
+            console.log(latlon);
+            console.log("-----------------------");
+            //console.log(latlon);
+            var currentSign = signsData[i];
+            completeData.push({ coords: latlon, data: currentSign });
+          }
+          setCompleteSignData(completeData);
+        }
+    }, [signsData])
+
+    useEffect(() => {
+      if(hasFetched){
+        //console.log("Complete Signs DATA 0: " + JSON.stringify(completeSignData[0])); // This will be executed when `numOfSigns` state changes
+      }
+  }, [completeSignData])
+
     const getPosSuccess = position => {
       const latitude = position.coords.latitude;
       const longitude = position.coords.longitude;
       setLongitude(position.coords.longitude);
       setLatitude(position.coords.latitude);
       fetchSign(latitude, longitude)
-      .then(data => setSignsData(data));
+      .then(data => setSignsData(data))
       if(!getSignError){
         setIsChooseMode(true);
         setGetSignError(false);
@@ -136,9 +202,11 @@ const CameraScreen = props => {
                                 visible={isChooseMode}
                                 onCancel={cancelHandler}
                                 data={signsData}
+                                completedata = {completeSignData}
                                 longitude={longitude}
                                 latitude={latitude}
                                 image={picture}
+                                hasfetched = {hasFetched}
                                 navigation={navigation}/>
                             <View style={styles.nonClickable}>
                                 <TouchableOpacity style={styles.buttonContainer}
