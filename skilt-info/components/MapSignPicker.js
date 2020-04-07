@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, FlatList, Dimensions } from 'react-native';
 import Modal from "react-native-modal";
 import SignPreview from "../components/SignPreview";
-import MapView, { Marker } from "react-native-maps";
+import MapView, { Marker, Callout } from "react-native-maps";
+import SignCallout from './SignCallout';
 
 const MapSignPicker = props => {
     const [navigation, setNavigation] = useState(null);
@@ -44,7 +45,13 @@ const MapSignPicker = props => {
                           <Marker
                               coordinate = { marker.coords }
                               title = {"ID: " + marker.data.id}
-                              />
+                              key = {marker.data.id}
+                              onPress = {() => console.log(marker.data.id)}
+                              >
+                                  <Callout onPress={() => navigation.navigate("Data", { result: marker.data, image: picture })}>
+                                    <SignCallout id={marker.data.id}></SignCallout>
+                                  </Callout>
+                            </Marker>
                       ))
                       }
                   </MapView>

@@ -21,7 +21,7 @@ const CameraScreen = props => {
     const [numOfSigns, setNumOfSigns] = useState(null);
     const [hasFetched, setHasFetched] = useState(false);
     const [completeSignData, setCompleteSignData] = useState([]);
-    const URL = "http://90c5f10d.ngrok.io";
+    const URL = "http://96ba8390.ngrok.io";
 
     let camera;
 
@@ -30,25 +30,6 @@ const CameraScreen = props => {
       timeout: 5000,
       maximumAge: 0
     };
-
-    const createMarkers = (data) => {
-      for(var i = 0; i < numOfSigns; i++){
-        console.log("Signs: "+ numOfSigns);
-        var point = data[i].geometri.wkt;
-        var res = point.replace("POINT Z(", "");
-        var res1 = res.replace(")", "");
-        console.log(res1);
-        var points = res1.split(" ");
-        var east = points[0];
-        var north = points[1];
-        var latlon = utmToLatLon(east, north)
-        console.log(latlon);
-        setGeoCoordinates(item => [
-          ...item,
-          latlon]);
-        };
-        console.log(geoCoordinates);
-      };
 
     useEffect(() => {
         (async () => {
@@ -104,14 +85,14 @@ const CameraScreen = props => {
             var res1 = res.replace(")", "");
             //console.log(res1);
             var points = res1.split(" ");
-            console.log("----------------------");
-            console.log(point);
-            console.log(points);
+           // console.log("----------------------");
+            //console.log(point);
+            //console.log(points);
             var east = points[0];
             var north = points[1];
             var latlon = utmToLatLon(east, north)
-            console.log(latlon);
-            console.log("-----------------------");
+            //console.log(latlon);
+            //console.log("-----------------------");
             //console.log(latlon);
             var currentSign = signsData[i];
             completeData.push({ coords: latlon, data: currentSign });
