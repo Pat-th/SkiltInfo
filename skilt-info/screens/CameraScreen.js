@@ -17,7 +17,6 @@ const CameraScreen = props => {
     const [getSignError, setGetSignError] = useState(false);
     const [latitude, setLatitude] = useState(null);
     const [longitude, setLongitude] = useState(null);
-    const [geoCoordinates, setGeoCoordinates] = useState([]);
     const [numOfSigns, setNumOfSigns] = useState(null);
     const [hasFetched, setHasFetched] = useState(false);
     const [completeSignData, setCompleteSignData] = useState([]);
@@ -53,7 +52,6 @@ const CameraScreen = props => {
             setIsLoading(false);
             setHasFetched(true);
             setNumOfSigns(Object.keys(data).length);
-            //console.log("Number of signs: " + numofSigns);
             return data;
           }
           catch(err){
@@ -74,7 +72,6 @@ const CameraScreen = props => {
         var completeData = [];
         if(hasFetched){
           for(var i = 0; i < numOfSigns; i++){
-            //console.log("signsData: " + JSON.stringify("Sign " + i + ": " + signsData[i].geometri.wkt)); // This will be executed when `signsData` state changes
             var point = signsData[i].geometri.wkt;
             if(point.includes("POINT Z")){
               var res = point.replace("POINT Z(", "");
@@ -83,29 +80,16 @@ const CameraScreen = props => {
               var res = point.replace("POINT (", "");
             }
             var res1 = res.replace(")", "");
-            //console.log(res1);
             var points = res1.split(" ");
-           // console.log("----------------------");
-            //console.log(point);
-            //console.log(points);
             var east = points[0];
             var north = points[1];
             var latlon = utmToLatLon(east, north)
-            //console.log(latlon);
-            //console.log("-----------------------");
-            //console.log(latlon);
             var currentSign = signsData[i];
             completeData.push({ coords: latlon, data: currentSign });
           }
           setCompleteSignData(completeData);
         }
     }, [signsData])
-
-    useEffect(() => {
-      if(hasFetched){
-        //console.log("Complete Signs DATA 0: " + JSON.stringify(completeSignData[0])); // This will be executed when `numOfSigns` state changes
-      }
-  }, [completeSignData])
 
     const getPosSuccess = position => {
       const latitude = position.coords.latitude;

@@ -25,7 +25,6 @@ const MapSignPicker = props => {
     }, [signData])
 
     if(signData != null && JSON.stringify(signData) != [] && signData != ""){
-        //console.log("Complete Signs DATAHA: " + JSON.stringify(signData[0].data.id)); // This will be executed when `numOfSigns` state changes
         return(
           <Modal 
           isVisible={props.visible} 
@@ -46,7 +45,6 @@ const MapSignPicker = props => {
                               coordinate = { marker.coords }
                               title = {"ID: " + marker.data.id}
                               key = {marker.data.id}
-                              onPress = {() => console.log(marker.data.id)}
                               >
                                   <Callout onPress={() => navigation.navigate("Data", { result: marker.data, image: picture })}>
                                     <SignCallout id={marker.data.id}></SignCallout>
