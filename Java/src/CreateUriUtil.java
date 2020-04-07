@@ -14,7 +14,7 @@ public final class CreateUriUtil {
     private static final String propFileName = "config.properties";
     private final static int SRID = 6173;
 
-    private static InputStream getInputStream() throws IOException {
+    private static void getInputStream() throws IOException {
         InputStream inputStream;
         inputStream = CreateUriUtil.class.getClassLoader().getResourceAsStream(propFileName);
         if(inputStream != null){
@@ -22,7 +22,6 @@ public final class CreateUriUtil {
         } else {
             throw new FileNotFoundException("property file " + propFileName + " not found");
         }
-        return inputStream;
     }
 
     public URI getLocalhost(double lat, double lon, int sign_id) throws IOException {

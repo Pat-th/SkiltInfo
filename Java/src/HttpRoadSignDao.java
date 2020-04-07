@@ -9,7 +9,6 @@ import java.net.http.HttpResponse;
 import java.util.ArrayList;
 import java.util.List;
 
-
 class HttpRoadSignDao {
     private final HttpClient httpClient = HttpClient.newBuilder()
             .version(HttpClient.Version.HTTP_2)
