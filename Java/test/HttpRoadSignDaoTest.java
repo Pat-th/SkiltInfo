@@ -27,8 +27,8 @@ public class HttpRoadSignDaoTest {
             sb.append(str);
         }
 
-        JSONObject obj = new JSONObject(sb.toString());
+        JSONObject actual = new JSONObject(sb.toString());
         JSONObject result = new JSONObject(httpRoadSignDao.getBoundingBox(lat, lon, sign_id, 500).get(0).toString());
-        JSONAssert.assertEquals(result, obj, false);
+        JSONAssert.assertEquals(result, actual, false);
     }
 }
