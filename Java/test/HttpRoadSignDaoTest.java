@@ -5,6 +5,7 @@ import java.io.InputStream;
 import org.json.JSONObject;
 import org.skyscreamer.jsonassert.JSONAssert;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 
 public class HttpRoadSignDaoTest {
     HttpRoadSignDao httpRoadSignDao = new HttpRoadSignDao();
@@ -19,16 +20,15 @@ public class HttpRoadSignDaoTest {
     @Test
     public void testGetBoundingBox() throws Exception{
         InputStream input = getClass().getResourceAsStream("SingleSign.json");
-        InputStreamReader isReader = new InputStreamReader(input);
-        BufferedReader reader = new BufferedReader(isReader);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(input));
         StringBuilder sb = new StringBuilder();
         String str;
         while((str = reader.readLine()) != null){
             sb.append(str);
         }
 
-        JSONObject actual = new JSONObject(sb.toString());
+        JSONObject expected = new JSONObject(sb.toString());
         JSONObject result = new JSONObject(httpRoadSignDao.getBoundingBox(lat, lon, sign_id, 500).get(0).toString());
-        JSONAssert.assertEquals(result, actual, false);
+        JSONAssert.assertEquals(expected, result, false);
     }
 }
