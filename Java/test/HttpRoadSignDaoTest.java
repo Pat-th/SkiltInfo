@@ -20,7 +20,7 @@ public class HttpRoadSignDaoTest {
     @Test
     public void testGetBoundingBox() throws Exception{
         InputStream input = getClass().getResourceAsStream("SingleSign.json");
-        BufferedReader reader = new BufferedReader(new InputStreamReader(input));
+        BufferedReader reader = new BufferedReader(new InputStreamReader(input, StandardCharsets.ISO_8859_1));
         StringBuilder sb = new StringBuilder();
         String str;
         while((str = reader.readLine()) != null){
