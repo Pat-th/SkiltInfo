@@ -388,6 +388,72 @@ exports[`<SettingsScreen /> Renders correctly 1`] = `
     </View>
   </View>
   <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "padding": 5,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "rgba(0,0,0,1)",
+          "fontSize": 24,
+          "fontWeight": "500",
+          "textAlign": "left",
+        }
+      }
+    >
+      Skilttype
+    </Text>
+    <View
+      style={
+        Object {
+          "height": 50,
+          "position": "absolute",
+          "right": 10,
+          "width": 150,
+        }
+      }
+    >
+      <RCTPicker
+        items={
+          Array [
+            Object {
+              "label": "Forkj�rsveg",
+              "textColor": undefined,
+              "value": "7644",
+            },
+            Object {
+              "label": "Vikeplikt",
+              "textColor": undefined,
+              "value": "7642",
+            },
+            Object {
+              "label": "Gangfelt",
+              "textColor": undefined,
+              "value": "7705",
+            },
+          ]
+        }
+        onChange={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        selectedIndex={0}
+        style={
+          Array [
+            Object {
+              "height": 216,
+            },
+            undefined,
+          ]
+        }
+      />
+    </View>
+  </View>
+  <View
     accessibilityRole="button"
     accessibilityStates={Array []}
     accessible={true}
