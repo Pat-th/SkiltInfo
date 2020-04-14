@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {AsyncStorage, Button, FlatList, Image, StyleSheet, Switch, Text, TouchableOpacity, View, Alert, TextInput} from 'react-native';
+import {AsyncStorage, Button, FlatList, Image, StyleSheet, Switch, Text, TouchableOpacity, View, Alert, TextInput, Picker} from 'react-native';
 import Collapsed from "../components/Collapsed";
 import SettingsFilters from "../components/SettingsFilters";
 import Colors  from "../Constants/Colors"
@@ -11,6 +11,7 @@ const SettingsScreen = props => {
     const [dark, setDark] = useState(false);
     const [selected, setSelected] = useState('Enkel');
     const [radius, setRadius] = useState('500');
+    const [selectedSign, setSelectedSign] = useState("7644");
 
     const readFilters = require("../settings/filters.json");
     const readEnkel = require("../settings/enkel.json");
@@ -22,12 +23,14 @@ const SettingsScreen = props => {
     }, [filters]);
 
     useEffect(()=> {
-        distance();
+        setStates();
     },[]);
 
-    const distance = async () => {
+    const setStates = async () => {
         let distance = await AsyncStorage.getItem('radius');
         setRadius(distance);
+        let signType = await AsyncStorage.getItem('signType');
+        setSelectedSign(signType);
     };
 
     const getData = async () => {
@@ -76,7 +79,11 @@ const SettingsScreen = props => {
             if(res == null) {
                 AsyncStorage.setItem('radius', radius);
             }});
-
+        await AsyncStorage.getItem('signType', (err, res) => {
+            if(res == null) {
+                AsyncStorage.setItem('signType', selectedSign)
+            }
+        })
 
     };
 
@@ -132,6 +139,12 @@ const SettingsScreen = props => {
           [{text: 'OK', onPress: () => console.log(storagedRadius)}]
 
       )
+    };
+
+    const saveSignType = async signValue => {
+        setSelectedSign(signValue);
+        console.log(signValue);
+        await AsyncStorage.setItem('signType', signValue, (err, res) => console.log(res));
     };
 
     const onChangeTextInput = (text) => {
@@ -201,6 +214,18 @@ const SettingsScreen = props => {
                     onChangeText={onChangeTextInput}/>
                     <TouchableOpacity style={styles.save} onPress={() => saveRadius()}><Image source={require('../images/save.png')} style={styles.saveicon}/></TouchableOpacity>
                 </View>
+            </View>
+            <View style={styles.container}>
+                <Text style={styles.headerText}>Skilttype</Text>
+                <Picker
+                    selectedValue={selectedSign}
+                    style={{ height: 50, width: 150, position: "absolute", right: 10 }}
+                    onValueChange={(signValue) => saveSignType(signValue)}
+                >
+                    <Picker.Item label="Forkjørsveg" value="7644" />
+                    <Picker.Item label="Vikeplikt" value="7642" />
+                    <Picker.Item label="Gangfelt" value="7705" />
+                </Picker>
             </View>
             <Button onPress={async () => await AsyncStorage.getItem('filters', (err, res) => console.log(res))}
                     title={"fetch"}/>
