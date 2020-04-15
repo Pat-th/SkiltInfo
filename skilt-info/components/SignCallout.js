@@ -15,8 +15,4 @@ const SignCallout = props => {
     );
 };
 
-const styles = StyleSheet.create({
-    
-});
-
 export default SignCallout;
