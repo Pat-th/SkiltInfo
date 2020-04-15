@@ -13,7 +13,7 @@ const CameraScreen = props => {
     const [navigation, setNavigation] = useState(null);
     const [picture, setPicture] = useState(null);
     const [getSignError, setGetSignError] = useState(false);
-    const URL = "http://3d2169ba.ngrok.io";
+    const URL = "http://dae02b78.ngrok.io";
 
     let camera;
 
