@@ -1,18 +1,24 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, ActivityIndicator, Alert, AsyncStorage } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, ActivityIndicator, Alert, AsyncStorage, Button } from 'react-native';
 import { Camera } from 'expo-camera';
-import SignPicker from "../components/SignPicker";
+import MapSignPicker from "../components/MapSignPicker";
 import Colors from "../Constants/Colors"
 import { withNavigationFocus } from 'react-navigation';
+import { utmToLatLon } from "../scripts/utm33ToLatLong";
 
 const CameraScreen = props => {
     const [hasPermission, setHasPermission] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const [isChooseMode, setIsChooseMode] = useState(false);
-    const [signsData, setSignsData] = useState(null);
+    const [signsData, setSignsData] = useState([]);
     const [navigation, setNavigation] = useState(null);
     const [picture, setPicture] = useState(null);
     const [getSignError, setGetSignError] = useState(false);
+    const [latitude, setLatitude] = useState(null);
+    const [longitude, setLongitude] = useState(null);
+    const [numOfSigns, setNumOfSigns] = useState(null);
+    const [hasFetched, setHasFetched] = useState(false);
+    const [completeSignData, setCompleteSignData] = useState([]);
     const URL = "http://dae02b78.ngrok.io";
 
     let camera;
@@ -30,6 +36,10 @@ const CameraScreen = props => {
         })();
       }, []);
 
+    useEffect(() => {
+        console.log("Number of signs: " + numOfSigns); // This will be executed when `numOfSigns` state changes
+    }, [numOfSigns])
+
 
       async function fetchSign(latitude, longitude){
           setIsLoading(true);
@@ -40,8 +50,8 @@ const CameraScreen = props => {
             console.log(URL+"/?lat="+latitude+"&lon="+longitude+"&id="+signId+"&radius="+radius);
             let data = await res.json();
             setIsLoading(false);
-            let numofSigns = Object.keys(data).length;
-            console.log("Number of signs: " + numofSigns);
+            setHasFetched(true);
+            setNumOfSigns(Object.keys(data).length);
             return data;
           }
           catch(err){
@@ -53,16 +63,41 @@ const CameraScreen = props => {
               ],
               {cancelable: false},
             );
-            setGetSignError(true);
+            //setGetSignError(true); UNCOMMENT WHEN NVDB UP
             setIsLoading(false);
           }
       };
 
+      useEffect(() => {
+        var completeData = [];
+        if(hasFetched){
+          for(var i = 0; i < numOfSigns; i++){
+            var point = signsData[i].geometri.wkt;
+            if(point.includes("POINT Z")){
+              var res = point.replace("POINT Z(", "");
+            }
+            else{
+              var res = point.replace("POINT (", "");
+            }
+            var res1 = res.replace(")", "");
+            var points = res1.split(" ");
+            var east = points[0];
+            var north = points[1];
+            var latlon = utmToLatLon(east, north)
+            var currentSign = signsData[i];
+            completeData.push({ coords: latlon, data: currentSign });
+          }
+          setCompleteSignData(completeData);
+        }
+    }, [signsData])
+
     const getPosSuccess = position => {
       const latitude = position.coords.latitude;
       const longitude = position.coords.longitude;
+      setLongitude(position.coords.longitude);
+      setLatitude(position.coords.latitude);
       fetchSign(latitude, longitude)
-      .then(data => setSignsData(data));
+      .then(data => setSignsData(data))
       if(!getSignError){
         setIsChooseMode(true);
         setGetSignError(false);
@@ -128,11 +163,15 @@ const CameraScreen = props => {
                         <Camera style={styles.camera} ref={ref => {
                             camera = ref;
                         }}>
-                            <SignPicker
+                            <MapSignPicker
                                 visible={isChooseMode}
                                 onCancel={cancelHandler}
                                 data={signsData}
+                                completedata = {completeSignData}
+                                longitude={longitude}
+                                latitude={latitude}
                                 image={picture}
+                                hasfetched = {hasFetched}
                                 navigation={navigation}/>
                             <View style={styles.nonClickable}>
                                 <TouchableOpacity style={styles.buttonContainer}
