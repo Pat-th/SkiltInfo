@@ -14,7 +14,7 @@ public final class CreateUriUtil {
     private static final String propFileName = "config.properties";
     private final static int SRID = 6173;
 
-    private static InputStream getInputStream() throws IOException {
+    private static void getInputStream() throws IOException {
         InputStream inputStream;
         inputStream = CreateUriUtil.class.getClassLoader().getResourceAsStream(propFileName);
         if(inputStream != null){
@@ -22,26 +22,15 @@ public final class CreateUriUtil {
         } else {
             throw new FileNotFoundException("property file " + propFileName + " not found");
         }
-        return inputStream;
     }
 
-    public URI getLocalhost(double lat, double lon, int sign_id) throws IOException {
-        getInputStream();
-        String localhost = prop.getProperty("LOCALHOST");
-        UriBuilder uriBuilder = UriBuilder.fromUri(localhost);
-        uriBuilder.queryParam("lat", lat);
-        uriBuilder.queryParam("lon", lon);
-        uriBuilder.queryParam("id", sign_id);
-        return uriBuilder.build();
-    }
-
-    public static URI getNVDB(String boundingBox) throws IOException {
+    public static URI getNVDB(String boundingBox, int signId) throws IOException {
         getInputStream();
         String nvdburl = prop.getProperty("NVDBURL");
-        //String box = String.format("%s,%s,%s,%s",west, south, east, north);
         UriBuilder uriBuilder = UriBuilder.fromUri(nvdburl);
         uriBuilder.queryParam("inkluder", "alle");
         uriBuilder.queryParam("kartutsnitt", boundingBox);
+        uriBuilder.queryParam("egenskap", "5530="+signId);
         uriBuilder.queryParam("srid", SRID);
         return uriBuilder.build();
     }

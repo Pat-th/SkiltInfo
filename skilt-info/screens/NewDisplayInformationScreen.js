@@ -42,24 +42,22 @@ const NewDisplayInformationScreen = props => {
     };
 
     const read = async result => {
-        let fetch = await AsyncStorage.getItem('standard');
-        let storage = await AsyncStorage.getItem(fetch);
-        let parse = await JSON.parse(storage);
-        console.log(fetch);
-        console.log(parse);
+        let whatIsCurrentFilter = await AsyncStorage.getItem('standard');
+        let getCurrentFilter = await AsyncStorage.getItem(whatIsCurrentFilter);
+        let checkFilter = await JSON.parse(getCurrentFilter);
         setInfo([]);
         addItem("id", result.id);
-        if(parse.metadata === true){
+        if(checkFilter.metadata === true){
             addItem("Navn", result.metadata.type.navn);
             addItem("Id for Skiltplate", result.metadata.type.id);
             addItem("Start Dato", result.metadata.startdato);
             addItem("Sist Modifisert", result.metadata.sist_modifisert);
             addItem("Direkte Link", result.href);
-        } if(parse.geometri === true){
+        } if(checkFilter.geometri === true){
             addItem("wkt", result.geometri.wkt);
             addItem("srid", result.geometri.srid);
             addItem("Egengeometri", result.geometri.egengeometri)
-        } if(parse.lokasjon === true){
+        } if(checkFilter.lokasjon === true){
             addItem("Kommune", result.lokasjon.kommuner[0]);
             addItem("Fylker", result.lokasjon.fylker[0]);
             addItem("Kortform", result.lokasjon.vegsystemreferanser[result.lokasjon.vegsystemreferanser.length-1].kortform)
@@ -70,13 +68,13 @@ const NewDisplayInformationScreen = props => {
             addItem("Stedfesting kortform", result.lokasjon.stedfestinger[0].kortform);
             addItem("Stedfesting retning", result.lokasjon.stedfestinger[0].retning);
             addItem("Stedfesting sideposisjon", result.lokasjon.stedfestinger[0].sideposisjon);
-        } if(parse.relasjoner === true){
+        } if(checkFilter.relasjoner === true){
             addItem("Forelder listeid", result.relasjoner.foreldre[0].listeid);
             addItem("Forelder id", result.relasjoner.foreldre[0].id);
             addItem("Forelder type", result.relasjoner.foreldre[0].type.navn);
             addItem("Forelder type id", result.relasjoner.foreldre[0].type.id);
             addItem("Forelder objektid", result.relasjoner.foreldre[0].vegobjekter[0]);
-        } if(parse.egenskaper.PunktTilKnytning === true){
+        } if(checkFilter.egenskaper.PunktTilKnytning === true){
             for(let i in result.egenskaper){
                 if(result.egenskaper[i].id === titleId.PUNKTTILKNYTNING){
                     addItem("navn", result.egenskaper[i].navn);
@@ -89,14 +87,14 @@ const NewDisplayInformationScreen = props => {
                     addItem("sideposisjon", result.egenskaper[i].sideposisjon);
                 }
             }
-        } if(parse.egenskaper.AnsiktssideRettetMot === true) {
+        } if(checkFilter.egenskaper.AnsiktssideRettetMot === true) {
             for(let i in result.egenskaper){
                 if (result.egenskaper[i].id === titleId.ANSIKTSSIDERETTETMOT){
                     addItem(result.egenskaper[i].navn, result.egenskaper[i].verdi);
                     break;
                 }
             }
-        } if(parse.egenskaper.Skiltnummer === true) {
+        } if(checkFilter.egenskaper.Skiltnummer === true) {
             for(let i in result.egenskaper){
                 if (result.egenskaper[i].id === titleId.SKILTNUMMER){
                     addItem(result.egenskaper[i].navn, result.egenskaper[i].verdi) + "-" + result.egenskaper[i].enum_id;
@@ -104,7 +102,7 @@ const NewDisplayInformationScreen = props => {
                     break;
                 }
             }
-        } if(parse.egenskaper.Oppsettingsdato === true) {
+        } if(checkFilter.egenskaper.Oppsettingsdato === true) {
             for(let i in result.egenskaper){
                 if (result.egenskaper[i].id === titleId.OPPSETTINGSDATO){
                     addItem(result.egenskaper[i].navn, result.egenskaper[i].verdi);
@@ -112,7 +110,7 @@ const NewDisplayInformationScreen = props => {
                     break;
                 }
             }
-        } if(parse.egenskaper.GeometriPunkt === true){
+        } if(checkFilter.egenskaper.GeometriPunkt === true){
             for(let i in result.egenskaper){
                 if (result.egenskaper[i].id === titleId.GEOMETRIPUNKT){
                     addItem(result.egenskaper[i].navn, result.egenskaper[i].verdi);
@@ -131,119 +129,119 @@ const NewDisplayInformationScreen = props => {
                     */
                 }
             }
-        } if(parse.egenskaper.Tekst === true){
+        } if(checkFilter.egenskaper.Tekst === true){
             for(let i in result.egenskaper){
                 if (result.egenskaper[i].id === titleId.TEKST){
                     addItem(result.egenskaper[i].navn, result.egenskaper[i].verdi);
                     break;
                 }
             }
-        } if(parse.egenskaper.Plasseringskode === true){
+        } if(checkFilter.egenskaper.Plasseringskode === true){
             for(let i in result.egenskaper){
                 if (result.egenskaper[i].id === titleId.PLASSERINGSKODE){
                     addItem(result.egenskaper[i].navn, result.egenskaper[i].verdi);
                     break;
                 }
             }
-        } if(parse.egenskaper.ToSidigPlateMedUlikeMotiv === true){
+        } if(checkFilter.egenskaper.ToSidigPlateMedUlikeMotiv === true){
             for(let i in result.egenskaper){
                 if (result.egenskaper[i].id === titleId.TOSIDIGPLATEMEDULIKEMOTIV){
                     addItem(result.egenskaper[i].navn, result.egenskaper[i].verdi);
                     break;
                 }
             }
-        } if(parse.egenskaper.Storrelse === true){
+        } if(checkFilter.egenskaper.Storrelse === true){
             for(let i in result.egenskaper){
                 if (result.egenskaper[i].id === titleId.STORRELSE){
                     addItem(result.egenskaper[i].navn, result.egenskaper[i].verdi);
                     break;
                 }
             }
-        } if(parse.egenskaper.Hoyde === true){
+        } if(checkFilter.egenskaper.Hoyde === true){
             for(let i in result.egenskaper){
                 if (result.egenskaper[i].id === titleId.HOYDE){
                     addItem(result.egenskaper[i].navn, result.egenskaper[i].verdi);
                     break;
                 }
             }
-        } if(parse.egenskaper.Bredde === true){
+        } if(checkFilter.egenskaper.Bredde === true){
             for(let i in result.egenskaper){
                 if (result.egenskaper[i].id === titleId.BREDDE){
                     addItem(result.egenskaper[i].navn, result.egenskaper[i].verdi);
                     break;
                 }
             }
-        } if(parse.egenskaper.Skiltform === true){
+        } if(checkFilter.egenskaper.Skiltform === true){
             for(let i in result.egenskaper){
                 if (result.egenskaper[i].id === titleId.SKILTFORM){
                     addItem(result.egenskaper[i].navn, result.egenskaper[i].verdi);
                     break;
                 }
             }
-        } if(parse.egenskaper.TekstOgSymbolhoyde === true){
+        } if(checkFilter.egenskaper.TekstOgSymbolhoyde === true){
             for(let i in result.egenskaper){
                 if (result.egenskaper[i].id === titleId.TEKSTOGSYMBOLHOYDE){
                     addItem(result.egenskaper[i].navn, result.egenskaper[i].verdi);
                     break;
                 }
             }
-        } if(parse.egenskaper.Farge === true){
+        } if(checkFilter.egenskaper.Farge === true){
             for(let i in result.egenskaper){
                 if (result.egenskaper[i].id === titleId.FARGE){
                     addItem(result.egenskaper[i].navn, result.egenskaper[i].verdi);
                     break;
                 }
             }
-        } if(parse.egenskaper.Belysning === true){
+        } if(checkFilter.egenskaper.Belysning === true){
             for(let i in result.egenskaper){
                 if (result.egenskaper[i].id === titleId.BELYSNING){
                     addItem(result.egenskaper[i].navn, result.egenskaper[i].verdi);
                     break;
                 }
             }
-        } if(parse.egenskaper.Folieklasse === true){
+        } if(checkFilter.egenskaper.Folieklasse === true){
             for(let i in result.egenskaper){
                 if (result.egenskaper[i].id === titleId.FOLIEKLASSE){
                     addItem(result.egenskaper[i].navn, result.egenskaper[i].verdi);
                     break;
                 }
             }
-        } if(parse.egenskaper.Klappskilt === true){
+        } if(checkFilter.egenskaper.Klappskilt === true){
             for(let i in result.egenskaper){
                 if (result.egenskaper[i].id === titleId.KLAPPSKILT){
                     addItem(result.egenskaper[i].navn, result.egenskaper[i].verdi);
                     break;
                 }
             }
-        } if(parse.egenskaper.Vedtaksnummer === true){
+        } if(checkFilter.egenskaper.Vedtaksnummer === true){
             for(let i in result.egenskaper){
                 if (result.egenskaper[i].id === titleId.VEDTAKSNUMMER){
                     addItem(result.egenskaper[i].navn, result.egenskaper[i].verdi);
                     break;
                 }
             }
-        } if(parse.egenskaper.SkiftetDato === true){
+        } if(checkFilter.egenskaper.SkiftetDato === true){
             for(let i in result.egenskaper){
                 if (result.egenskaper[i].id === titleId.SKIFTETDATO){
                     addItem(result.egenskaper[i].navn, result.egenskaper[i].verdi);
                     break;
                 }
             }
-        } if(parse.egenskaper.Arkivnummer === true){
+        } if(checkFilter.egenskaper.Arkivnummer === true){
             for(let i in result.egenskaper){
                 if (result.egenskaper[i].id === titleId.ARKIVNUMMER){
                     addItem(result.egenskaper[i].navn, result.egenskaper[i].verdi);
                     break;
                 }
             }
-        } if(parse.egenskaper.Eier === true){
+        } if(checkFilter.egenskaper.Eier === true){
             for(let i in result.egenskaper){
                 if (result.egenskaper[i].id === titleId.EIER){
                     addItem(result.egenskaper[i].navn, result.egenskaper[i].verdi);
                     break;
                 }
             }
-        } if(parse.egenskaper.Vedlikeholdsansvarlig === true){
+        } if(checkFilter.egenskaper.Vedlikeholdsansvarlig === true){
             for(let i in result.egenskaper){
                 if (result.egenskaper[i].id === titleId.VEDLIKEHOLDSANSVARLIG){
                     addItem(result.egenskaper[i].navn, result.egenskaper[i].verdi);

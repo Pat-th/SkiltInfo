@@ -33,5 +33,6 @@
     </orderEntry>
     <orderEntry type="library" name="javax.ws.rs" level="project" />
     <orderEntry type="library" name="LatLongToUTM" level="project" />
+    <orderEntry type="library" name="wiremock-jre8-standalone-2.26.3" level="project" />
   </component>
 </module>

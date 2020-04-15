@@ -9,7 +9,6 @@ import java.net.http.HttpResponse;
 import java.util.ArrayList;
 import java.util.List;
 
-
 class HttpRoadSignDao {
     private final HttpClient httpClient = HttpClient.newBuilder()
             .version(HttpClient.Version.HTTP_2)
@@ -26,20 +25,13 @@ class HttpRoadSignDao {
         return String.format("%s,%s,%s,%s",west, south, east, north);
     }
 
-    private static List <JSONObject> handleResponse(String response, int sign_id) throws JSONException {
+    private static List <JSONObject> handleResponse(String response) throws JSONException {
         List <JSONObject> list = new ArrayList<>();
         JSONObject object = new JSONObject(response);
         JSONArray array = object.getJSONArray("objekter");
         for (int index = 0; index < array.length(); index++) {
             JSONObject object1 = array.getJSONObject(index);
-            JSONArray array1 = object1.getJSONArray("egenskaper");
-            for(int index1 = 0; index1 <array1.length(); index1++){
-                JSONObject object2 = array1.getJSONObject(index1);
-                if (object2.has("enum_id") && object2.getInt("enum_id") == sign_id && object2.getString("navn").equals("Skiltnummer")) {
-                    list.add(object1);
-                    break;
-                }
-            }
+            list.add(object1);
         }
         return list;
     }
@@ -57,7 +49,7 @@ class HttpRoadSignDao {
     public List<JSONObject> getBoundingBox(double lat, double lon, int sign_id, int radius) throws Exception {
         List<JSONObject> list;
         String box = setBoundingBox(lat, lon, radius);
-        URI uri = CreateUriUtil.getNVDB(box);
+        URI uri = CreateUriUtil.getNVDB(box, sign_id);
         HttpRequest request = HttpRequest.newBuilder()
                 .GET()
                 .uri(uri)
@@ -65,7 +57,8 @@ class HttpRoadSignDao {
                 .build();
 
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-        list = handleResponse(response.body(), sign_id);
+        list = handleResponse(response.body());
+        System.out.println(uri);
         return list;
     }
 }

@@ -44,9 +44,10 @@ const CameraScreen = props => {
       async function fetchSign(latitude, longitude){
           setIsLoading(true);
           try{
-            let radius = await AsyncStorage.getItem('radius');
-            let res = await fetch(URL+"/?lat="+latitude+"&lon="+longitude+"&id=7642&radius="+radius);
-            console.log("URL: "+URL+"/?lat="+latitude+"&lon="+longitude+"&id=7642&radius="+radius);
+              let radius = await AsyncStorage.getItem('radius');
+              let signId = await AsyncStorage.getItem('signType');
+            let res = await fetch(URL+"/?lat="+latitude+"&lon="+longitude+"&id="+signId+"&radius="+radius);
+            console.log(URL+"/?lat="+latitude+"&lon="+longitude+"&id="+signId+"&radius="+radius);
             let data = await res.json();
             setIsLoading(false);
             setHasFetched(true);
