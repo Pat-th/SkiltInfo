@@ -68,13 +68,13 @@ const CreateNewFilterScreen = props => {
         let string = await JSON.parse(filter);
         if(input.length < 5 || input.length > 20){
             Alert.alert('Noe gikk galt!',
-                'Navnet på filteret må være mellom 5 og 20 tegn!',
+                'Navnet pÃ¥ filteret mÃ¥ vÃ¦re mellom 5 og 20 tegn!',
                 [
                     {text: 'OK'}
                 ],
                 {cancelable: false},
                 );
-            return 'Navnet på filteret er ikke mellom 5 og 20 tegn.'
+            return 'Navnet pÃ¥ filteret er ikke mellom 5 og 20 tegn.'
         }
         if(string.filters.includes(input) || input === 'standard' || input === 'filters' || input === 'Enkel' || input === 'Avansert'){
             console.log('Dette filteret eksisterer allerede');
@@ -97,7 +97,7 @@ const CreateNewFilterScreen = props => {
     return (
         <ScrollView>
             <Text style={{fontSize: 32}}>Navn:</Text><View style={{margin: 5, borderRadius: 10, height: 50}}><TextInput onChangeText={text => setInput(text)}
-                                         value={input} placeholder={'Trykk her for å skrive navn'}
+                                         value={input} placeholder={'Trykk her for Ã¥ skrive navn'}
                                                                 style={{fontSize: 20}}/></View>
             <FilterSwitches metadata={metadata} setMetadata={setMetadata}
                             geometri={geometri} setGeometri={setGeometri}

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, FlatList, Dimensions } from 'react-native';
 import Modal from "react-native-modal";
-import SignPreview from "../components/SignPreview";
 import MapView, { Marker, Callout } from "react-native-maps";
 import SignCallout from './SignCallout';
 
@@ -73,13 +72,6 @@ const MapSignPicker = props => {
                         longitudeDelta: 0.01,
                     }}
                     style={StyleSheet.absoluteFillObject}>
-                        {//signData.map(marker => (
-                         //   <Marker
-                         //       coordinate = { signData.coords.latitude, signData.coords.longitude}
-                         //       title = {"HEI"}
-                         //       />
-                        //))
-                        }
                     </MapView>
                 </View>
             </Modal>

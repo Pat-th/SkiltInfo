@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, ActivityIndicator, Alert, AsyncStorage, Button } from 'react-native';
 import { Camera } from 'expo-camera';
-import SignPicker from "../components/SignPicker";
 import MapSignPicker from "../components/MapSignPicker";
 import Colors from "../Constants/Colors"
 import { withNavigationFocus } from 'react-navigation';

@@ -458,8 +458,6 @@ var UTMScaleFactor = 0.9996;
 
         y = parseFloat (north);
 
-        //console.log("x: " + x + " y: " + y);
-
         zone = parseFloat (33);
         
         southhemi = false;
@@ -469,7 +467,6 @@ var UTMScaleFactor = 0.9996;
         
         var longitude = RadToDeg (latlon[1]);
         var latitude = RadToDeg (latlon[0]);
-        //console.log("latitude: " + latitude + " longitude: " + longitude);
 
         return {longitude: longitude, latitude: latitude};
     }
