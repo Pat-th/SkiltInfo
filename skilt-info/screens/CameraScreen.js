@@ -19,7 +19,7 @@ const CameraScreen = props => {
     const [numOfSigns, setNumOfSigns] = useState(null);
     const [hasFetched, setHasFetched] = useState(false);
     const [completeSignData, setCompleteSignData] = useState([]);
-    const URL = "http://dae02b78.ngrok.io";
+    const URL = "http://67d54f8a.ngrok.io";
 
     let camera;
 
@@ -153,7 +153,7 @@ const CameraScreen = props => {
                 return (
                     <View style={styles.container}>
                         <View style={styles.loadingSpinner}>
-                            <ActivityIndicator size="large" color={Colors.accentColor1}/>
+                            <ActivityIndicator size="large" color={Colors.primaryColor1}/>
                         </View>
                     </View>
                 )

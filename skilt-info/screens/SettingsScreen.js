@@ -156,13 +156,13 @@ const SettingsScreen = props => {
     const fillArray = () => {
         return (
             <View>
-                <View style={styles.textbox}><TouchableOpacity style={{backgroundColor: selected === 'Enkel' ? Colors.primaryColor1 : 'transparent', borderRadius: 10,}}
+                <View style={styles.textbox}><TouchableOpacity style={{backgroundColor: selected === 'Enkel' ? Colors.accentColor1 : 'transparent', borderRadius: 10,}}
                                         onPress={() => setFilter('Enkel')}><Text
                     style={styles.content}>Enkel</Text></TouchableOpacity></View>
-                <View style={styles.textbox}><TouchableOpacity style={{backgroundColor: selected === 'Avansert' ? Colors.primaryColor1 : 'transparent', borderRadius: 10,}}
+                <View style={styles.textbox}><TouchableOpacity style={{backgroundColor: selected === 'Avansert' ? Colors.accentColor1 : 'transparent', borderRadius: 10,}}
                                         onPress={() => setFilter('Avansert')}><Text
                     style={styles.content}>Avansert</Text></TouchableOpacity></View>
-                <View style={styles.textbox}><TouchableOpacity style={{backgroundColor: selected === 'Fullstendig' ? Colors.primaryColor1 : 'transparent', borderRadius: 10,}}
+                <View style={styles.textbox}><TouchableOpacity style={{backgroundColor: selected === 'Fullstendig' ? Colors.accentColor1 : 'transparent', borderRadius: 10,}}
                                         onPress={() => setFilter('Fullstendig')}><Text
                     style={styles.content}>Fullstendig</Text></TouchableOpacity></View>
                 <FlatList
@@ -171,7 +171,7 @@ const SettingsScreen = props => {
                     renderItem={({item}) => {
                         return (
                             <SettingsFilters
-                                selectorStyle={{backgroundColor: selected === item ? Colors.primaryColor1 : 'transparent', borderRadius: 10}}
+                                selectorStyle={{backgroundColor: selected === item ? Colors.accentColor1 : 'transparent', borderRadius: 10}}
                                 selector={() => setFilter(item)}
                                 textStyle={styles.content}
                                 deleteButton={() => deleteAlert(item)}
@@ -222,20 +222,11 @@ const SettingsScreen = props => {
                     style={{ height: 50, width: 150, position: "absolute", right: 10 }}
                     onValueChange={(signValue) => saveSignType(signValue)}
                 >
-                    <Picker.Item label="Forkjørsveg" value="7644" />
+                    <Picker.Item label="ForkjÃ¸rsveg" value="7644" />
                     <Picker.Item label="Vikeplikt" value="7642" />
                     <Picker.Item label="Gangfelt" value="7705" />
                 </Picker>
             </View>
-            <Button onPress={async () => await AsyncStorage.getItem('filters', (err, res) => console.log(res))}
-                    title={"fetch"}/>
-            <Button onPress={async () => {
-                await AsyncStorage.clear();
-            }} title={"slett alt"}/>
-            <Button onPress={() => AsyncStorage.getItem('standard', (err, res) => AsyncStorage.getItem(res, (err, result) => console.log(result)))}
-                    title={"selected"}/>
-                    <Button onPress={() => AsyncStorage.getItem('radius', (err, res) => console.log(res))} title={"radius"}/>
-                    <Button onPress={() => console.log(radius)} title={"radius state"}/>
         </View>
     )
 };
@@ -263,11 +254,11 @@ const styles = StyleSheet.create({
         right: 20,
     },
     plusicon: {
-        height: 25,
-        width: 25,
+        height: 20,
+        width: 20,
         position: 'absolute',
         right: 10,
-
+        marginTop: 4
     },
     saveicon: {
         height: 30,
@@ -282,7 +273,7 @@ const styles = StyleSheet.create({
     },
     textbox: {
         margin: 3,
-        borderWidth: 3,
+        borderWidth: 1,
         borderRadius: 10,
         justifyContent: 'center',
     },

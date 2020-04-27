@@ -1,5 +1,6 @@
 import React from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import Colors from "../Constants/Colors"
 
 const SettingsFilters = props => {
     return (
@@ -22,25 +23,31 @@ const SettingsFilters = props => {
 const styles = StyleSheet.create({
 
     deleteicon: {
-        height: 30,
-        width: 30,
-        alignSelf: 'center'
+        height: 20,
+        width: 20,
+        alignSelf: 'center',
+        marginTop: 2
     },
     editicon: {
-        height: 30,
-        width: 30,
-        alignSelf: 'center'
+        height: 20,
+        width: 20,
+        alignSelf: 'center',
+        marginTop: 2
     },
     delete: {
-        height: 30,
-        width: 60,
-        backgroundColor: 'rgb(226,6,0)',
+        height: 25,
+        width: 40,
+        backgroundColor: Colors.primaryColor1,
+        borderRadius: 5, 
+        marginTop: 2
     },
     edit: {
-        height: 30,
-        width: 60,
+        height: 25,
+        width: 40,
         backgroundColor: 'rgb(41,150,255)',
         marginStart: 10,
+        borderRadius: 5,
+        marginTop: 2
     },
     buttongrp: {
         position: 'absolute',
@@ -49,7 +56,7 @@ const styles = StyleSheet.create({
     },
     textbox: {
         margin: 3,
-        borderWidth: 3,
+        borderWidth: 1,
         borderRadius: 10,
     },
 

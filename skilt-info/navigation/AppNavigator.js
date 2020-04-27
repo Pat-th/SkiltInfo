@@ -1,7 +1,7 @@
 import { createAppContainer } from "react-navigation";
 import { createBottomTabNavigator } from "react-navigation-tabs";
 import { createStackNavigator } from "react-navigation-stack"
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
 import { AntDesign, Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import React from "react";
 
@@ -34,8 +34,8 @@ const TabNavigator = createBottomTabNavigator({
         navigationOptions: {
             tabBarIcon: ({ focused }) =>  (
                 focused
-                ? <MaterialCommunityIcons name="settings" size={IconSize} />
-                : <MaterialCommunityIcons name="settings-outline" color={InactiveIconColor} size={IconSize} />
+                ? <Image style={styles.icons} source={require("../icons/settings_filled_t.png")} />
+                : <Image style={styles.icons} source={require("../icons/settings_t.png")} />
              )
         }
     },
@@ -44,8 +44,8 @@ const TabNavigator = createBottomTabNavigator({
         navigationOptions: {
             tabBarIcon: ({ focused }) =>  (
                 focused
-                ? <AntDesign name="camera" size={IconSize} />
-                : <AntDesign name="camerao" color={InactiveIconColor} size={IconSize} />
+                ? <Image style={styles.icons} source={require("../icons/camera_filled_t.png")} />
+                : <Image style={styles.icons} source={require("../icons/camera_t.png")} />
              )
         }
     },
@@ -54,8 +54,8 @@ const TabNavigator = createBottomTabNavigator({
         navigationOptions: {
             tabBarIcon: ({ focused }) =>  (
                 focused
-                ? <Ionicons name="ios-help-circle" size={IconSize} />
-                : <Ionicons name="ios-help-circle-outline" color={InactiveIconColor} size={IconSize} />
+                ? <Image style={styles.icons} source={require("../icons/help_filled_t.png")} />
+                : <Image style={styles.icons} source={require("../icons/help_t.png")} />
              )
         }
     }
@@ -81,6 +81,12 @@ const styles = StyleSheet.create({
     labelInactive: {
         flex: 1,
         alignContent: "center"
+    },
+    icons: {
+        width: 27,
+        height: 27,
+        resizeMode: "contain",
+        marginTop: 4
     }
 });
 
