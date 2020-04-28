@@ -73,6 +73,7 @@ const styles = StyleSheet.create({
     header: {
         backgroundColor: '#000000',
         padding: 10,
+        margin: 5,
         justifyContent: 'center',
     },
     headerText: {
@@ -86,21 +87,22 @@ const styles = StyleSheet.create({
         padding: 5,
         color: 'rgba(0,0,0,1)',
         textAlign: 'left',
+        margin: 5,
     },
     headeractive: {
         marginTop: 6,
         backgroundColor: 'rgb(255,255,255)',
         color: 'rgba(0,0,0,1)',
         borderColor: 'rgb(186,186,186)',
-        borderWidth: 3,
-        borderRadius: 10,
+        borderWidth: 1,
+        borderRadius: 3,
     },
     active: {
         marginTop: 0,
         backgroundColor: 'rgb(255,255,255)',
         color: 'rgba(0,0,0,1)',
         borderColor: 'rgb(186,186,186)',
-        borderWidth: 2,
+        borderWidth: 1,
         borderRadius: 10,
     },
     inactive: {
@@ -108,7 +110,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgb(255,255,255)',
         color: 'rgba(0,0,0,1)',
         borderColor: 'rgb(0,0,0)',
-        borderWidth: 3,
+        borderWidth: 1,
         borderRadius: 10,
     },
     icons: {
