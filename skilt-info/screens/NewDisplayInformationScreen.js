@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ItemInfo from "../components/DisplayInfo/ItemInfo";
 import Colors from "../Constants/Colors";
+import MapView, { Marker, Callout } from "react-native-maps";
 import { StyleSheet, Text, View, Image, FlatList, AsyncStorage, } from 'react-native';
 
 const NewDisplayInformationScreen = props => {
@@ -286,11 +287,28 @@ const NewDisplayInformationScreen = props => {
                 <View style={styles.imageView}>
                     <Image style={styles.imageStyle} source={{uri: props.navigation.state.params.image.uri}}/>
                 </View>
+                <View style={styles.lineVertical}></View>
                 <View style={styles.buttonView}>
-
+                <MapView 
+                  initialRegion={{
+                      latitude: props.navigation.state.params.coordinates.latitude, 
+                      longitude: props.navigation.state.params.coordinates.longitude,
+                      latitudeDelta: 0.007,
+                      longitudeDelta: 0.007,
+                  }}
+                  style={StyleSheet.absoluteFillObject}
+                  scrollEnabled={false}
+                  zoomEnabled={false}
+                  rotateEnabled={false}>
+                      <Marker
+                          coordinate = { props.navigation.state.params.coordinates }
+                          >
+                        </Marker>
+                  </MapView>
                 </View>
             </View>
             <View style={styles.bottomView}>
+                <View style={styles.line}></View>
                 <FlatList style={styles.list1}
                 keyExtractor={(item, index) => index.toString()}
                 data={info}
@@ -312,37 +330,44 @@ const styles = StyleSheet.create({
       },
       imageView: {
           backgroundColor: "#fff",
-          flex: 4,
+          flex: 1 ,
       },
       imageStyle: {
           flex: 1,
-          borderRadius: 10,
           width: undefined, 
           height: undefined,
           marginTop: 5,
-          marginLeft: 10,
-          marginBottom: 5
+          marginLeft: 18,
+          marginBottom: 5,
+          marginRight: 5
       },
       buttonView: {
-        flex: 3,
-        shadowColor: "black",
-        shadowOffset: { width: 0, height: 2},
-        shadowRadius: 6,
-        shadowOpacity: 0.26,
-        elevation: 5, //Shadow on Android
-        padding: 10,
-        borderRadius: 10, //Rounded corners
+        flex: 1,
         marginTop: 5,
-        marginLeft: 10,
-        marginRight: 10,
+        marginRight: 18,
         marginBottom: 5,
-        backgroundColor: Colors.accentColor1,
-        borderColor: "black",
-        borderWidth: 1
+        marginLeft: 5
       },
       bottomView: {
           flex: 1,
-      }
+      },
+      line: {
+        borderBottomColor: "#a38e8c",
+        borderBottomWidth: .8,
+        marginLeft: 18,
+        marginRight: 18,
+    },
+    lineVertical: {
+        borderColor: "#a38e8c",
+        borderLeftWidth: .8,
+        marginBottom: 5,
+        marginTop: 5
+    },
+    heading: {
+        fontSize: 18,
+        marginLeft: 5,
+        marginTop: 10
+    }
 });
 
 export default NewDisplayInformationScreen;

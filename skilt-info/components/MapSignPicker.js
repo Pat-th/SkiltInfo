@@ -45,7 +45,7 @@ const MapSignPicker = props => {
                               title = {"ID: " + marker.data.id}
                               key = {marker.data.id}
                               >
-                                  <Callout onPress={() => navigation.navigate("Data", { result: marker.data, image: picture })}>
+                                  <Callout onPress={() => navigation.navigate("Data", { result: marker.data, image: picture, coordinates: marker.coords, latitude: latitude, longitude: longitude })}>
                                     <SignCallout id={marker.data.id}></SignCallout>
                                   </Callout>
                             </Marker>

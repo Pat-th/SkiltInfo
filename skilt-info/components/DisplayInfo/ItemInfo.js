@@ -13,7 +13,9 @@ const ItemInfo = props => {
     }
 
     return(
+        <View>
             <View style={styles.card}>
+                <View style={styles.lines}></View>
                 <TouchableOpacity onLongPress={() => longPressHandler()}>
                     <View>
                         <Text style={styles.title}>{props.id}</Text>
@@ -21,28 +23,27 @@ const ItemInfo = props => {
                     </View>
                 </TouchableOpacity>
             </View>
+            <View style={styles.line}></View>
+        </View>
     );
 };
 
 const styles = StyleSheet.create({
     card: {
         //Shadow props only work on IOS
-        shadowColor: "black",
-        shadowOffset: { width: 0, height: 2},
-        shadowRadius: 6,
-        shadowOpacity: 0.26,
-        elevation: 5, //Shadow on Android
         padding: 10,
-        borderRadius: 10, //Rounded corners
-        marginTop: 10,
         marginLeft: 10,
         marginRight: 10,
-        backgroundColor: Colors.accentColor1,
         borderColor: "black",
-        borderWidth: 1
     },
     title: {
         fontSize: 18
+    },
+    line: {
+        borderBottomColor: "#a38e8c",
+        borderBottomWidth: .8,
+        marginLeft: 18,
+        marginRight: 18,
     }
 });
 
