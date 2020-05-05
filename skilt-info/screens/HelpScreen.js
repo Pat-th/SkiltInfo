@@ -7,7 +7,7 @@ const HelpScreen = () => {
     const name = [
         {
             title: 'Hvordan bruke appen',
-            content: 'Trykk på kameraknappen på bunnen av appen. Trykk på sirkelen rett over kameraknappen. Du vil så få et valg over',
+            content: 'Ta bilde av et veiskilt fra kamerasiden og vent på at kartet skal åpne seg. Velg så skiltet ditt fra markørene på kartet',
         },
         {
             title: 'Vanlige feil',
@@ -16,10 +16,6 @@ const HelpScreen = () => {
         {
             title: 'Opphavsrett',
             content: 'test',
-        },
-        {
-            title: 'Heisann Patrick',
-            content: 'heihei',
         }
     ];
 

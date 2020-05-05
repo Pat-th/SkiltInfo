@@ -34,8 +34,8 @@ const TabNavigator = createBottomTabNavigator({
         navigationOptions: {
             tabBarIcon: ({ focused }) =>  (
                 focused
-                ? <Image style={styles.icons} source={require("../icons/settings_filled_t.png")} />
-                : <Image style={styles.icons} source={require("../icons/settings_t.png")} />
+                ? <Image style={styles.icons} source={require("../icons/settings_new_filled.png")} />
+                : <Image style={styles.icons} source={require("../icons/settings_new.png")} />
              )
         }
     },
@@ -44,8 +44,8 @@ const TabNavigator = createBottomTabNavigator({
         navigationOptions: {
             tabBarIcon: ({ focused }) =>  (
                 focused
-                ? <Image style={styles.icons} source={require("../icons/camera_filled_t.png")} />
-                : <Image style={styles.icons} source={require("../icons/camera_t.png")} />
+                ? <Image style={styles.icons} source={require("../icons/camera_new_filled.png")} />
+                : <Image style={styles.icons} source={require("../icons/camera_new.png")} />
              )
         }
     },
@@ -54,8 +54,8 @@ const TabNavigator = createBottomTabNavigator({
         navigationOptions: {
             tabBarIcon: ({ focused }) =>  (
                 focused
-                ? <Image style={styles.icons} source={require("../icons/help_filled_t.png")} />
-                : <Image style={styles.icons} source={require("../icons/help_t.png")} />
+                ? <Image style={styles.icons} source={require("../icons/help_new_filled.png")} />
+                : <Image style={styles.icons} source={require("../icons/help_new.png")} />
              )
         }
     }

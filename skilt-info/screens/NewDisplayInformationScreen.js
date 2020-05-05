@@ -312,7 +312,7 @@ const styles = StyleSheet.create({
       },
       imageView: {
           backgroundColor: "#fff",
-          flex: 1,
+          flex: 4,
       },
       imageStyle: {
           flex: 1,
@@ -324,7 +324,7 @@ const styles = StyleSheet.create({
           marginBottom: 5
       },
       buttonView: {
-        flex: 1,
+        flex: 3,
         shadowColor: "black",
         shadowOffset: { width: 0, height: 2},
         shadowRadius: 6,
