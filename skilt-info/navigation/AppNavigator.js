@@ -28,6 +28,11 @@ const settingsNavigator = createStackNavigator({
     'Nytt Filter' : CreateNewFilterScreen,
     'Rediger Filter' : EditFilterScreen,
 });
+
+const helpNavigator = createStackNavigator({
+    Hjelp: HelpScreen
+})
+
 const TabNavigator = createBottomTabNavigator({
     Innstillinger: {
         screen: settingsNavigator,
@@ -50,7 +55,7 @@ const TabNavigator = createBottomTabNavigator({
         }
     },
     Hjelp: {
-        screen: HelpScreen,
+        screen: helpNavigator,
         navigationOptions: {
             tabBarIcon: ({ focused }) =>  (
                 focused

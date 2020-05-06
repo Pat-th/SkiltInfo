@@ -192,17 +192,13 @@ const SettingsScreen = props => {
     };
 
     return (
-        <View>
+        <View style={styles.bigContainer}>
             <Collapsed
                 TitleStyle={styles.headerText}
                 titleOfCollapsible={"Filter"}
                 contentOfCollapsible={fillArray()}
                 viewStyle={{padding: 5}}
             />
-            <View style={styles.container}>
-                <Text style={styles.headerText}>Nattmodus</Text>
-                <Switch style={styles.switchbutton} onValueChange={() => setDark(!dark)} value={dark}/>
-            </View>
             <View style={styles.container}>
                 <Text style={styles.headerText}>Radius</Text>
                 <View style={styles.radiusgroup}>
@@ -261,14 +257,14 @@ const styles = StyleSheet.create({
         marginTop: 4
     },
     saveicon: {
-        height: 30,
-        width: 30,
+        height: 25,
+        width: 25,
+        marginTop: 3
     },
     save: {
         margin: 10,
         height: 30,
         width: 50,
-        backgroundColor: ('rgb(41,150,255)'),
         alignItems: 'center'
     },
     textbox: {
@@ -285,11 +281,15 @@ const styles = StyleSheet.create({
     },
     radiusinput: {
         fontSize: 24,
-        backgroundColor: ('rgb(41,150,255)'),
         width: 60,
+        borderBottomColor: "#a38e8c",
+        borderBottomWidth: 0.8,
         textAlign: 'center',
         height: 30,
     },
+    bigContainer: {
+        margin: 10
+    }
 });
 
 export default SettingsScreen;

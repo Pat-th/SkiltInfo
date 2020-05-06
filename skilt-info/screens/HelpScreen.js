@@ -21,7 +21,6 @@ const HelpScreen = () => {
 
     return (
         <View>
-            <Header title={'Hjelp'}/>
             <ScrollView>
                 <Expandables sections={name}/>
             </ScrollView>
