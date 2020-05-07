@@ -1,7 +1,7 @@
 import org.osgeo.proj4j.*;
 
 /**
- * @author Tran, Quan
+ * @author Quan Tran
  */
 public class WGS2UTM {
     /**

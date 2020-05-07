@@ -7,7 +7,7 @@ import java.util.Properties;
 
 
 /**
- * @author Tran, Quan
+ * @author Quan Tran
  */
 public final class CreateUriUtil {
     private CreateUriUtil() {

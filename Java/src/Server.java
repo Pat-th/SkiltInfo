@@ -13,7 +13,7 @@ import java.util.*;
 //https://stackoverflow.com/questions/28571086/java-simple-http-server-application-that-responds-in-json?fbclid=IwAR0eQm5OywnkrP3YrUlSdeU1kvpQ24oTOOkmO8YgYnaAU8uu5LvpLX1qCo0
 
 /**
- * @author Thorkildsen, Patrick and Tran, Quan
+ * @author Patrick Thorkildsen and Quan Tran
  */
 public class Server {
     private static final String HOSTNAME = "localhost";
