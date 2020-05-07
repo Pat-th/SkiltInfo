@@ -48,7 +48,7 @@ class HttpRoadSignDao {
     /**
      * Method to go one step further in the JSON-array given from the database to lessen the load on the client
      * @param response - the body of the response given from the database
-     * @return List <JSONObject>, returns a list of JSON objects
+     * @return List of JSONObject, returns a list of JSON objects
      * @throws JSONException throws an exception in case objects are not JSON-objects
      */
 

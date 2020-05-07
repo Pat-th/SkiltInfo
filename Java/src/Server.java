@@ -85,7 +85,7 @@ public class Server {
      * Extracts parameters and their values from the URI
      *
      * <p>
-     *     This method uses regular expression to split the uri into multiple parts. First regex splits on & and ;,
+     *     This method uses regular expression to split the uri into multiple parts. First regex splits
      *     and find the parameters and their values.
      *     The next regex splits for =, which separates the parameter and the parameter value.
      * </p>
