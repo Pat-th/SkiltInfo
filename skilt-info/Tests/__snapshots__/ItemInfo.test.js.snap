@@ -1,63 +1,64 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<ItemInfo /> Renders correctly 1`] = `
-<View
-  style={
-    Object {
-      "backgroundColor": "#ffff87",
-      "borderColor": "black",
-      "borderRadius": 10,
-      "borderWidth": 1,
-      "elevation": 5,
-      "marginLeft": 10,
-      "marginRight": 10,
-      "marginTop": 10,
-      "padding": 10,
-      "shadowColor": "black",
-      "shadowOffset": Object {
-        "height": 2,
-        "width": 0,
-      },
-      "shadowOpacity": 0.26,
-      "shadowRadius": 6,
-    }
-  }
->
-  <RNGestureHandlerButton
-    collapsable={false}
-    onGestureEvent={[Function]}
-    onGestureHandlerEvent={[Function]}
-    onGestureHandlerStateChange={[Function]}
-    onHandlerStateChange={[Function]}
-    rippleColor={0}
+<View>
+  <View
     style={
-      Array [
-        Object {
-          "overflow": "hidden",
-        },
-        undefined,
-      ]
+      Object {
+        "borderColor": "black",
+        "marginLeft": 10,
+        "marginRight": 10,
+        "padding": 10,
+      }
     }
   >
-    <View
-      accessible={true}
+    <View />
+    <RNGestureHandlerButton
+      collapsable={false}
+      onGestureEvent={[Function]}
+      onGestureHandlerEvent={[Function]}
+      onGestureHandlerStateChange={[Function]}
+      onHandlerStateChange={[Function]}
+      rippleColor={0}
       style={
-        Object {
-          "opacity": 1,
-        }
+        Array [
+          Object {
+            "overflow": "hidden",
+          },
+          undefined,
+        ]
       }
     >
-      <View>
-        <Text
-          style={
-            Object {
-              "fontSize": 18,
-            }
+      <View
+        accessible={true}
+        style={
+          Object {
+            "opacity": 1,
           }
-        />
-        <Text />
+        }
+      >
+        <View>
+          <Text
+            style={
+              Object {
+                "fontSize": 18,
+              }
+            }
+          />
+          <Text />
+        </View>
       </View>
-    </View>
-  </RNGestureHandlerButton>
+    </RNGestureHandlerButton>
+  </View>
+  <View
+    style={
+      Object {
+        "borderBottomColor": "#a38e8c",
+        "borderBottomWidth": 0.8,
+        "marginLeft": 18,
+        "marginRight": 18,
+      }
+    }
+  />
 </View>
 `;

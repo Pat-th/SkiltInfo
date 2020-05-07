@@ -2,29 +2,6 @@
 
 exports[`<HelpScreen /> Renders correctly 1`] = `
 <View>
-  <View
-    style={
-      Object {
-        "alignItems": "center",
-        "backgroundColor": undefined,
-        "height": 80,
-        "justifyContent": "center",
-        "paddingTop": 36,
-        "width": "100%",
-      }
-    }
-  >
-    <Text
-      style={
-        Object {
-          "color": undefined,
-          "fontSize": 18,
-        }
-      }
-    >
-      Hjelp
-    </Text>
-  </View>
   <RCTScrollView>
     <View>
       <View>
@@ -57,9 +34,10 @@ exports[`<HelpScreen /> Renders correctly 1`] = `
                         "backgroundColor": "rgb(255,255,255)",
                         "borderColor": "rgb(0,0,0)",
                         "borderRadius": 10,
-                        "borderWidth": 3,
+                        "borderWidth": 1,
                         "color": "rgba(0,0,0,1)",
                         "justifyContent": "center",
+                        "margin": 5,
                         "marginTop": 6,
                         "padding": 10,
                       }
@@ -75,7 +53,7 @@ exports[`<HelpScreen /> Renders correctly 1`] = `
                         }
                       }
                     >
-                      Hvordan bruke appen
+                      Bruk
                     </Text>
                     <Image
                       source={1}
@@ -109,8 +87,9 @@ exports[`<HelpScreen /> Renders correctly 1`] = `
                           "backgroundColor": "rgb(255,255,255)",
                           "borderColor": "rgb(0,0,0)",
                           "borderRadius": 10,
-                          "borderWidth": 3,
+                          "borderWidth": 1,
                           "color": "rgba(0,0,0,1)",
+                          "margin": 5,
                           "marginTop": 6,
                           "padding": 5,
                           "textAlign": "left",
@@ -121,12 +100,13 @@ exports[`<HelpScreen /> Renders correctly 1`] = `
                         style={
                           Object {
                             "color": "rgba(0,0,0,1)",
+                            "margin": 5,
                             "padding": 5,
                             "textAlign": "left",
                           }
                         }
                       >
-                        Trykk på kameraknappen på bunnen av appen. Trykk på sirkelen rett over kameraknappen. Du vil så få et valg over
+                        Ta bilde av et veiskilt fra kamerasiden og vent på at bildet skal gjenkjennes og kartet skal åpne seg. Velg så skiltet ditt fra markørene på kartet. Velger du feil skilt kan du trykke på tilbakeknappen og velge et annet.
                       </Text>
                     </View>
                   </View>
@@ -158,9 +138,10 @@ exports[`<HelpScreen /> Renders correctly 1`] = `
                         "backgroundColor": "rgb(255,255,255)",
                         "borderColor": "rgb(0,0,0)",
                         "borderRadius": 10,
-                        "borderWidth": 3,
+                        "borderWidth": 1,
                         "color": "rgba(0,0,0,1)",
                         "justifyContent": "center",
+                        "margin": 5,
                         "marginTop": 6,
                         "padding": 10,
                       }
@@ -176,7 +157,7 @@ exports[`<HelpScreen /> Renders correctly 1`] = `
                         }
                       }
                     >
-                      Vanlige feil
+                      Skiltet mitt er ikke på kartet
                     </Text>
                     <Image
                       source={1}
@@ -210,8 +191,9 @@ exports[`<HelpScreen /> Renders correctly 1`] = `
                           "backgroundColor": "rgb(255,255,255)",
                           "borderColor": "rgb(0,0,0)",
                           "borderRadius": 10,
-                          "borderWidth": 3,
+                          "borderWidth": 1,
                           "color": "rgba(0,0,0,1)",
+                          "margin": 5,
                           "marginTop": 6,
                           "padding": 5,
                           "textAlign": "left",
@@ -222,12 +204,13 @@ exports[`<HelpScreen /> Renders correctly 1`] = `
                         style={
                           Object {
                             "color": "rgba(0,0,0,1)",
+                            "margin": 5,
                             "padding": 5,
                             "textAlign": "left",
                           }
                         }
                       >
-                        Unngå å stå i veikryss eller under/på bruer.
+                        Vennligst prøv å ta et nytt bilde i tilfelle vi har gjort en feil i gjenkjenning av bildet
                       </Text>
                     </View>
                   </View>
@@ -259,9 +242,10 @@ exports[`<HelpScreen /> Renders correctly 1`] = `
                         "backgroundColor": "rgb(255,255,255)",
                         "borderColor": "rgb(0,0,0)",
                         "borderRadius": 10,
-                        "borderWidth": 3,
+                        "borderWidth": 1,
                         "color": "rgba(0,0,0,1)",
                         "justifyContent": "center",
+                        "margin": 5,
                         "marginTop": 6,
                         "padding": 10,
                       }
@@ -277,7 +261,7 @@ exports[`<HelpScreen /> Renders correctly 1`] = `
                         }
                       }
                     >
-                      Opphavsrett
+                      Sikkerhet
                     </Text>
                     <Image
                       source={1}
@@ -311,8 +295,9 @@ exports[`<HelpScreen /> Renders correctly 1`] = `
                           "backgroundColor": "rgb(255,255,255)",
                           "borderColor": "rgb(0,0,0)",
                           "borderRadius": 10,
-                          "borderWidth": 3,
+                          "borderWidth": 1,
                           "color": "rgba(0,0,0,1)",
+                          "margin": 5,
                           "marginTop": 6,
                           "padding": 5,
                           "textAlign": "left",
@@ -323,12 +308,13 @@ exports[`<HelpScreen /> Renders correctly 1`] = `
                         style={
                           Object {
                             "color": "rgba(0,0,0,1)",
+                            "margin": 5,
                             "padding": 5,
                             "textAlign": "left",
                           }
                         }
                       >
-                        test
+                        Applikasjonen lagrer ingen data fra brukerne. Bilder som tas i applikasjonen og posisjonen til brukeren brukes kun til å finne riktig skilt
                       </Text>
                     </View>
                   </View>
@@ -360,9 +346,10 @@ exports[`<HelpScreen /> Renders correctly 1`] = `
                         "backgroundColor": "rgb(255,255,255)",
                         "borderColor": "rgb(0,0,0)",
                         "borderRadius": 10,
-                        "borderWidth": 3,
+                        "borderWidth": 1,
                         "color": "rgba(0,0,0,1)",
                         "justifyContent": "center",
+                        "margin": 5,
                         "marginTop": 6,
                         "padding": 10,
                       }
@@ -378,7 +365,7 @@ exports[`<HelpScreen /> Renders correctly 1`] = `
                         }
                       }
                     >
-                      Heisann Patrick
+                      Info og Opphavsrett
                     </Text>
                     <Image
                       source={1}
@@ -412,8 +399,9 @@ exports[`<HelpScreen /> Renders correctly 1`] = `
                           "backgroundColor": "rgb(255,255,255)",
                           "borderColor": "rgb(0,0,0)",
                           "borderRadius": 10,
-                          "borderWidth": 3,
+                          "borderWidth": 1,
                           "color": "rgba(0,0,0,1)",
+                          "margin": 5,
                           "marginTop": 6,
                           "padding": 5,
                           "textAlign": "left",
@@ -424,12 +412,13 @@ exports[`<HelpScreen /> Renders correctly 1`] = `
                         style={
                           Object {
                             "color": "rgba(0,0,0,1)",
+                            "margin": 5,
                             "padding": 5,
                             "textAlign": "left",
                           }
                         }
                       >
-                        heihei
+                        Applikasjonen er utviklet av Patrick Thorkildsen og Quan Tran i samarbeid med Triona AS som del av bacheloroppgaven på dataingeniørstudiet ved NTNU i 2020
                       </Text>
                     </View>
                   </View>
