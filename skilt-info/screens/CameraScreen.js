@@ -19,7 +19,7 @@ const CameraScreen = props => {
     const [numOfSigns, setNumOfSigns] = useState(null);
     const [hasFetched, setHasFetched] = useState(false);
     const [completeSignData, setCompleteSignData] = useState([]);
-    const URL = "http://9bcac597.ngrok.io";
+    const URL = "http://e15c04ca.ngrok.io";
 
     let camera;
 
