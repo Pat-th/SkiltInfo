@@ -1,10 +1,25 @@
 import org.osgeo.proj4j.*;
+
+/**
+ * @author Tran, Quan
+ */
 public class WGS2UTM {
+    /**
+     * The Eastings value in UTM-33
+     */
     double Easting;
+    /**
+     * the Northings value in UTM-33
+     */
     double Northing;
 
     /**
+     * Method to convert from WGS84 to UTM-33
      *
+     * <p>
+     *     Method uses the library proj4j. Method defines the two geodetical systems as Strings, and uses the library
+     *     to convert the parameter values from WGS84 to UTM-33
+     * </p>
      * @param lat latitude value of current position
      * @param lon longitude value of current position;
      *
@@ -26,18 +41,31 @@ public class WGS2UTM {
         setNorthing(toCoord.y);
     }
 
+    /**
+     * @param easting - positional value east/west in utm-33
+     */
     public void setEasting(double easting) {
         Easting = easting;
     }
 
+    /**
+     * @param northing - positional value south/north in utm-33
+     */
     public void setNorthing(double northing) {
         Northing = northing;
     }
 
+    /**
+     * @return double - positional value east/west in utm-33
+     */
     public double getEasting() {
         return Easting;
     }
 
+    /**
+     *
+     * @return double - positional value south/north in utm-33
+     */
     public double getNorthing() {
         return Northing;
     }

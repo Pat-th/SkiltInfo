@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Text, View, Button, AsyncStorage, ScrollView} from 'react-native';
+import {Text, View, Button, AsyncStorage, ScrollView, StyleSheet} from 'react-native';
 import FilterSwitches from "../components/FilterSwitches";
 
 const EditFilterScreen = props => {
@@ -103,7 +103,7 @@ const EditFilterScreen = props => {
     };
 
     return (
-        <View>
+        <View style={{flex: 1}}>
             <ScrollView>
             <Text style={{fontSize: 32}}>Filter: {props.navigation.state.params.toEdit}</Text>
                 <FilterSwitches metadata={metadata} setMetadata={setMetadata}
@@ -133,11 +133,16 @@ const EditFilterScreen = props => {
                                 eier={eier} setEier={setEier}
                                 vedlikehold={vedlikehold} setVedlikehold={setVedlikehold}
                 />
-                <Button onPress={() => saveEdit()} title={"Lagre endringer"}/>
             </ScrollView>
+            <View><Button onPress={() => saveEdit()} title={"Lagre endringer"} style={styles.saveButton}/></View>
         </View>
     )
 
 };
-
+const styles = StyleSheet.create({
+    saveButton: {
+        position: 'absolute',
+        bottom: 0,
+    },
+});
 export default EditFilterScreen;
