@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Text, View, Button, TextInput, AsyncStorage, Alert, ScrollView} from 'react-native';
+import {Text, View, Button, TextInput, AsyncStorage, Alert, ScrollView, StyleSheet} from 'react-native';
 import FilterSwitches from "../components/FilterSwitches";
 
 const CreateNewFilterScreen = props => {
@@ -95,6 +95,7 @@ const CreateNewFilterScreen = props => {
     };
 
     return (
+        <View style={{flex: 1}}>
         <ScrollView>
             <Text style={{fontSize: 32}}>Navn:</Text><View style={{margin: 5, borderRadius: 10, height: 50}}><TextInput onChangeText={text => setInput(text)}
                                          value={input} placeholder={'Trykk her for å skrive navn'}
@@ -126,10 +127,20 @@ const CreateNewFilterScreen = props => {
                             eier={eier} setEier={setEier}
                             vedlikehold={vedlikehold} setVedlikehold={setVedlikehold}
             />
-            <Button title={"Lagre"} onPress={() =>createFilter()}/>
         </ScrollView>
+            <View>
+            <Button title={"Lagre"} onPress={() =>createFilter()} style={styles.saveButton}/>
+            </View>
+        </View>
     )
 };
+
+const styles = StyleSheet.create({
+   saveButton: {
+     position: 'absolute',
+     bottom: 0,
+   },
+});
 
 
 export default CreateNewFilterScreen;

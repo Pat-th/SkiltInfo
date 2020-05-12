@@ -12,6 +12,9 @@ import java.util.*;
 
 //https://stackoverflow.com/questions/28571086/java-simple-http-server-application-that-responds-in-json?fbclid=IwAR0eQm5OywnkrP3YrUlSdeU1kvpQ24oTOOkmO8YgYnaAU8uu5LvpLX1qCo0
 
+/**
+ * @author Patrick Thorkildsen and Quan Tran
+ */
 public class Server {
     private static final String HOSTNAME = "localhost";
     private static final int PORT = 8080;
@@ -78,6 +81,18 @@ public class Server {
         server.start();
     }
 
+    /**
+     * Extracts parameters and their values from the URI
+     *
+     * <p>
+     *     This method uses regular expression to split the uri into multiple parts. First regex splits
+     *     and find the parameters and their values.
+     *     The next regex splits for =, which separates the parameter and the parameter value.
+     * </p>
+     * @param requestUri - the URI that the method gets the parameters from.
+     * @return a Map of the paramaters and their values
+     */
+
     static Map<String, String> getRequestParameters(final URI requestUri) {
         final Map<String, String> requestParameters = new HashMap<>();
         final String requestQuery = requestUri.getRawQuery();
@@ -101,6 +116,12 @@ public class Server {
         }
     }
 
+    /**
+     * Method to check for whether a value is a double or not
+     * @param x - a value in String format to be checked
+     * @return true if x is a double, false if it isn't
+     */
+
     static boolean isDouble(String x) {
         if (x == null) {
             return false;
@@ -112,6 +133,12 @@ public class Server {
         }
         return true;
     }
+
+    /**
+     * Method to check for whether a value is an integer or not
+     * @param x - a value in String format to be checked
+     * @return true if x is an integer, false if it isn't
+     */
 
     static boolean isInt(String x) {
         if (x == null) {

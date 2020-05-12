@@ -9,11 +9,31 @@ import java.net.http.HttpResponse;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Quan Tran
+ */
 class HttpRoadSignDao {
+
+    /**
+     * Builder for httpClient
+     */
     private final HttpClient httpClient = HttpClient.newBuilder()
             .version(HttpClient.Version.HTTP_2)
             .build();
 
+    /**
+     * Method to create the bounding box values.
+     *
+     * <p>
+     *     Method uses the geodetical systems converter in WGS2UTM to convert the values.
+     *     Creates a String based on the returned eastings and northings values and the radius to set a bounding box
+     * </p>
+     * @param lat - latitude value in wsg84
+     * @param lon - latitude value in wsg84
+     * @param radius - how far away from the center in north, east, south and west direction
+     *              the bounding box is to be set
+     * @return the String that sets the bounding box for the map
+     */
     private static String setBoundingBox(double lat, double lon, int radius){
         WGS2UTM wgs = new WGS2UTM(lat, lon); //Converts latitude and longitude to Eastings and Northings
         double eastings = wgs.getEasting();
@@ -24,6 +44,13 @@ class HttpRoadSignDao {
         double north = northings + radius;
         return String.format("%s,%s,%s,%s",west, south, east, north);
     }
+
+    /**
+     * Method to go one step further in the JSON-array given from the database to lessen the load on the client
+     * @param response - the body of the response given from the database
+     * @return List of JSONObject, returns a list of JSON objects
+     * @throws JSONException throws an exception in case objects are not JSON-objects
+     */
 
     private static List <JSONObject> handleResponse(String response) throws JSONException {
         List <JSONObject> list = new ArrayList<>();
