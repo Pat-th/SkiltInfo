@@ -1,0 +1,1395 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<FilterSwitches /> Renders correctly 1`] = `
+<View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "margin": 5,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "flex": 0.8,
+          "fontSize": 20,
+          "marginLeft": 10,
+        }
+      }
+    >
+      Metadata
+    </Text>
+    <RCTSwitch
+      accessibilityRole="button"
+      onChange={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      onTintColor="#e53938"
+      style={
+        Array [
+          Object {
+            "height": 31,
+            "width": 51,
+          },
+          Object {
+            "flex": 0.2,
+          },
+        ]
+      }
+      thumbTintColor="white"
+      value={false}
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "borderBottomColor": "#a38e8c",
+        "borderBottomWidth": 0.8,
+        "marginBottom": 3,
+        "marginLeft": 15,
+        "marginRight": 15,
+        "marginTop": 3,
+      }
+    }
+  />
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "margin": 5,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "flex": 0.8,
+          "fontSize": 20,
+          "marginLeft": 10,
+        }
+      }
+    >
+      Geometri
+    </Text>
+    <RCTSwitch
+      accessibilityRole="button"
+      onChange={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      onTintColor="#e53938"
+      style={
+        Array [
+          Object {
+            "height": 31,
+            "width": 51,
+          },
+          Object {
+            "flex": 0.2,
+          },
+        ]
+      }
+      thumbTintColor="white"
+      value={false}
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "borderBottomColor": "#a38e8c",
+        "borderBottomWidth": 0.8,
+        "marginBottom": 3,
+        "marginLeft": 15,
+        "marginRight": 15,
+        "marginTop": 3,
+      }
+    }
+  />
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "margin": 5,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "flex": 0.8,
+          "fontSize": 20,
+          "marginLeft": 10,
+        }
+      }
+    >
+      Lokasjon
+    </Text>
+    <RCTSwitch
+      accessibilityRole="button"
+      onChange={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      onTintColor="#e53938"
+      style={
+        Array [
+          Object {
+            "height": 31,
+            "width": 51,
+          },
+          Object {
+            "flex": 0.2,
+          },
+        ]
+      }
+      thumbTintColor="white"
+      value={false}
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "borderBottomColor": "#a38e8c",
+        "borderBottomWidth": 0.8,
+        "marginBottom": 3,
+        "marginLeft": 15,
+        "marginRight": 15,
+        "marginTop": 3,
+      }
+    }
+  />
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "margin": 5,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "flex": 0.8,
+          "fontSize": 20,
+          "marginLeft": 10,
+        }
+      }
+    >
+      Relasjoner
+    </Text>
+    <RCTSwitch
+      accessibilityRole="button"
+      onChange={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      onTintColor="#e53938"
+      style={
+        Array [
+          Object {
+            "height": 31,
+            "width": 51,
+          },
+          Object {
+            "flex": 0.2,
+          },
+        ]
+      }
+      thumbTintColor="white"
+      value={false}
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "borderBottomColor": "#a38e8c",
+        "borderBottomWidth": 0.8,
+        "marginBottom": 3,
+        "marginLeft": 15,
+        "marginRight": 15,
+        "marginTop": 3,
+      }
+    }
+  />
+  <View>
+    <Text
+      style={
+        Object {
+          "fontSize": 32,
+        }
+      }
+    >
+      Egenskaper:
+    </Text>
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "margin": 5,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "flex": 0.8,
+          "fontSize": 20,
+          "marginLeft": 10,
+        }
+      }
+    >
+      Skiltnummer
+    </Text>
+    <RCTSwitch
+      accessibilityRole="button"
+      onChange={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      onTintColor="#e53938"
+      style={
+        Array [
+          Object {
+            "height": 31,
+            "width": 51,
+          },
+          Object {
+            "flex": 0.2,
+          },
+        ]
+      }
+      thumbTintColor="white"
+      value={false}
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "borderBottomColor": "#a38e8c",
+        "borderBottomWidth": 0.8,
+        "marginBottom": 3,
+        "marginLeft": 15,
+        "marginRight": 15,
+        "marginTop": 3,
+      }
+    }
+  />
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "margin": 5,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "flex": 0.8,
+          "fontSize": 20,
+          "marginLeft": 10,
+        }
+      }
+    >
+      Ansiktsside Rettet Mot
+    </Text>
+    <RCTSwitch
+      accessibilityRole="button"
+      onChange={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      onTintColor="#e53938"
+      style={
+        Array [
+          Object {
+            "height": 31,
+            "width": 51,
+          },
+          Object {
+            "flex": 0.2,
+          },
+        ]
+      }
+      thumbTintColor="white"
+      value={false}
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "borderBottomColor": "#a38e8c",
+        "borderBottomWidth": 0.8,
+        "marginBottom": 3,
+        "marginLeft": 15,
+        "marginRight": 15,
+        "marginTop": 3,
+      }
+    }
+  />
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "margin": 5,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "flex": 0.8,
+          "fontSize": 20,
+          "marginLeft": 10,
+        }
+      }
+    >
+      Oppsettingsdato
+    </Text>
+    <RCTSwitch
+      accessibilityRole="button"
+      onChange={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      onTintColor="#e53938"
+      style={
+        Array [
+          Object {
+            "height": 31,
+            "width": 51,
+          },
+          Object {
+            "flex": 0.2,
+          },
+        ]
+      }
+      thumbTintColor="white"
+      value={false}
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "borderBottomColor": "#a38e8c",
+        "borderBottomWidth": 0.8,
+        "marginBottom": 3,
+        "marginLeft": 15,
+        "marginRight": 15,
+        "marginTop": 3,
+      }
+    }
+  />
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "margin": 5,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "flex": 0.8,
+          "fontSize": 20,
+          "marginLeft": 10,
+        }
+      }
+    >
+      Punkttilknytning
+    </Text>
+    <RCTSwitch
+      accessibilityRole="button"
+      onChange={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      onTintColor="#e53938"
+      style={
+        Array [
+          Object {
+            "height": 31,
+            "width": 51,
+          },
+          Object {
+            "flex": 0.2,
+          },
+        ]
+      }
+      thumbTintColor="white"
+      value={false}
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "borderBottomColor": "#a38e8c",
+        "borderBottomWidth": 0.8,
+        "marginBottom": 3,
+        "marginLeft": 15,
+        "marginRight": 15,
+        "marginTop": 3,
+      }
+    }
+  />
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "margin": 5,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "flex": 0.8,
+          "fontSize": 20,
+          "marginLeft": 10,
+        }
+      }
+    >
+      Geometri, punkt
+    </Text>
+    <RCTSwitch
+      accessibilityRole="button"
+      onChange={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      onTintColor="#e53938"
+      style={
+        Array [
+          Object {
+            "height": 31,
+            "width": 51,
+          },
+          Object {
+            "flex": 0.2,
+          },
+        ]
+      }
+      thumbTintColor="white"
+      value={false}
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "borderBottomColor": "#a38e8c",
+        "borderBottomWidth": 0.8,
+        "marginBottom": 3,
+        "marginLeft": 15,
+        "marginRight": 15,
+        "marginTop": 3,
+      }
+    }
+  />
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "margin": 5,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "flex": 0.8,
+          "fontSize": 20,
+          "marginLeft": 10,
+        }
+      }
+    >
+      Tekst
+    </Text>
+    <RCTSwitch
+      accessibilityRole="button"
+      onChange={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      onTintColor="#e53938"
+      style={
+        Array [
+          Object {
+            "height": 31,
+            "width": 51,
+          },
+          Object {
+            "flex": 0.2,
+          },
+        ]
+      }
+      thumbTintColor="white"
+      value={false}
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "borderBottomColor": "#a38e8c",
+        "borderBottomWidth": 0.8,
+        "marginBottom": 3,
+        "marginLeft": 15,
+        "marginRight": 15,
+        "marginTop": 3,
+      }
+    }
+  />
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "margin": 5,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "flex": 0.8,
+          "fontSize": 20,
+          "marginLeft": 10,
+        }
+      }
+    >
+      Plasseringskode
+    </Text>
+    <RCTSwitch
+      accessibilityRole="button"
+      onChange={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      onTintColor="#e53938"
+      style={
+        Array [
+          Object {
+            "height": 31,
+            "width": 51,
+          },
+          Object {
+            "flex": 0.2,
+          },
+        ]
+      }
+      thumbTintColor="white"
+      value={false}
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "borderBottomColor": "#a38e8c",
+        "borderBottomWidth": 0.8,
+        "marginBottom": 3,
+        "marginLeft": 15,
+        "marginRight": 15,
+        "marginTop": 3,
+      }
+    }
+  />
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "margin": 5,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "flex": 0.8,
+          "fontSize": 20,
+          "marginLeft": 10,
+        }
+      }
+    >
+      Tosidig Plate Med Ulike Motiv
+    </Text>
+    <RCTSwitch
+      accessibilityRole="button"
+      onChange={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      onTintColor="#e53938"
+      style={
+        Array [
+          Object {
+            "height": 31,
+            "width": 51,
+          },
+          Object {
+            "flex": 0.2,
+          },
+        ]
+      }
+      thumbTintColor="white"
+      value={false}
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "borderBottomColor": "#a38e8c",
+        "borderBottomWidth": 0.8,
+        "marginBottom": 3,
+        "marginLeft": 15,
+        "marginRight": 15,
+        "marginTop": 3,
+      }
+    }
+  />
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "margin": 5,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "flex": 0.8,
+          "fontSize": 20,
+          "marginLeft": 10,
+        }
+      }
+    >
+      Størrelse
+    </Text>
+    <RCTSwitch
+      accessibilityRole="button"
+      onChange={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      onTintColor="#e53938"
+      style={
+        Array [
+          Object {
+            "height": 31,
+            "width": 51,
+          },
+          Object {
+            "flex": 0.2,
+          },
+        ]
+      }
+      thumbTintColor="white"
+      value={false}
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "borderBottomColor": "#a38e8c",
+        "borderBottomWidth": 0.8,
+        "marginBottom": 3,
+        "marginLeft": 15,
+        "marginRight": 15,
+        "marginTop": 3,
+      }
+    }
+  />
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "margin": 5,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "flex": 0.8,
+          "fontSize": 20,
+          "marginLeft": 10,
+        }
+      }
+    >
+      Høyde
+    </Text>
+    <RCTSwitch
+      accessibilityRole="button"
+      onChange={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      onTintColor="#e53938"
+      style={
+        Array [
+          Object {
+            "height": 31,
+            "width": 51,
+          },
+          Object {
+            "flex": 0.2,
+          },
+        ]
+      }
+      thumbTintColor="white"
+      value={false}
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "borderBottomColor": "#a38e8c",
+        "borderBottomWidth": 0.8,
+        "marginBottom": 3,
+        "marginLeft": 15,
+        "marginRight": 15,
+        "marginTop": 3,
+      }
+    }
+  />
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "margin": 5,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "flex": 0.8,
+          "fontSize": 20,
+          "marginLeft": 10,
+        }
+      }
+    >
+      Bredde
+    </Text>
+    <RCTSwitch
+      accessibilityRole="button"
+      onChange={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      onTintColor="#e53938"
+      style={
+        Array [
+          Object {
+            "height": 31,
+            "width": 51,
+          },
+          Object {
+            "flex": 0.2,
+          },
+        ]
+      }
+      thumbTintColor="white"
+      value={false}
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "borderBottomColor": "#a38e8c",
+        "borderBottomWidth": 0.8,
+        "marginBottom": 3,
+        "marginLeft": 15,
+        "marginRight": 15,
+        "marginTop": 3,
+      }
+    }
+  />
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "margin": 5,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "flex": 0.8,
+          "fontSize": 20,
+          "marginLeft": 10,
+        }
+      }
+    >
+      Skiltform
+    </Text>
+    <RCTSwitch
+      accessibilityRole="button"
+      onChange={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      onTintColor="#e53938"
+      style={
+        Array [
+          Object {
+            "height": 31,
+            "width": 51,
+          },
+          Object {
+            "flex": 0.2,
+          },
+        ]
+      }
+      thumbTintColor="white"
+      value={false}
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "borderBottomColor": "#a38e8c",
+        "borderBottomWidth": 0.8,
+        "marginBottom": 3,
+        "marginLeft": 15,
+        "marginRight": 15,
+        "marginTop": 3,
+      }
+    }
+  />
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "margin": 5,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "flex": 0.8,
+          "fontSize": 20,
+          "marginLeft": 10,
+        }
+      }
+    >
+      Tekst- og Symbolhøyde
+    </Text>
+    <RCTSwitch
+      accessibilityRole="button"
+      onChange={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      onTintColor="#e53938"
+      style={
+        Array [
+          Object {
+            "height": 31,
+            "width": 51,
+          },
+          Object {
+            "flex": 0.2,
+          },
+        ]
+      }
+      thumbTintColor="white"
+      value={false}
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "borderBottomColor": "#a38e8c",
+        "borderBottomWidth": 0.8,
+        "marginBottom": 3,
+        "marginLeft": 15,
+        "marginRight": 15,
+        "marginTop": 3,
+      }
+    }
+  />
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "margin": 5,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "flex": 0.8,
+          "fontSize": 20,
+          "marginLeft": 10,
+        }
+      }
+    >
+      Farge
+    </Text>
+    <RCTSwitch
+      accessibilityRole="button"
+      onChange={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      onTintColor="#e53938"
+      style={
+        Array [
+          Object {
+            "height": 31,
+            "width": 51,
+          },
+          Object {
+            "flex": 0.2,
+          },
+        ]
+      }
+      thumbTintColor="white"
+      value={false}
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "borderBottomColor": "#a38e8c",
+        "borderBottomWidth": 0.8,
+        "marginBottom": 3,
+        "marginLeft": 15,
+        "marginRight": 15,
+        "marginTop": 3,
+      }
+    }
+  />
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "margin": 5,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "flex": 0.8,
+          "fontSize": 20,
+          "marginLeft": 10,
+        }
+      }
+    >
+      Belysning
+    </Text>
+    <RCTSwitch
+      accessibilityRole="button"
+      onChange={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      onTintColor="#e53938"
+      style={
+        Array [
+          Object {
+            "height": 31,
+            "width": 51,
+          },
+          Object {
+            "flex": 0.2,
+          },
+        ]
+      }
+      thumbTintColor="white"
+      value={false}
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "borderBottomColor": "#a38e8c",
+        "borderBottomWidth": 0.8,
+        "marginBottom": 3,
+        "marginLeft": 15,
+        "marginRight": 15,
+        "marginTop": 3,
+      }
+    }
+  />
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "margin": 5,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "flex": 0.8,
+          "fontSize": 20,
+          "marginLeft": 10,
+        }
+      }
+    >
+      Folieklasse
+    </Text>
+    <RCTSwitch
+      accessibilityRole="button"
+      onChange={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      onTintColor="#e53938"
+      style={
+        Array [
+          Object {
+            "height": 31,
+            "width": 51,
+          },
+          Object {
+            "flex": 0.2,
+          },
+        ]
+      }
+      thumbTintColor="white"
+      value={false}
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "borderBottomColor": "#a38e8c",
+        "borderBottomWidth": 0.8,
+        "marginBottom": 3,
+        "marginLeft": 15,
+        "marginRight": 15,
+        "marginTop": 3,
+      }
+    }
+  />
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "margin": 5,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "flex": 0.8,
+          "fontSize": 20,
+          "marginLeft": 10,
+        }
+      }
+    >
+      Klappskilt
+    </Text>
+    <RCTSwitch
+      accessibilityRole="button"
+      onChange={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      onTintColor="#e53938"
+      style={
+        Array [
+          Object {
+            "height": 31,
+            "width": 51,
+          },
+          Object {
+            "flex": 0.2,
+          },
+        ]
+      }
+      thumbTintColor="white"
+      value={false}
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "borderBottomColor": "#a38e8c",
+        "borderBottomWidth": 0.8,
+        "marginBottom": 3,
+        "marginLeft": 15,
+        "marginRight": 15,
+        "marginTop": 3,
+      }
+    }
+  />
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "margin": 5,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "flex": 0.8,
+          "fontSize": 20,
+          "marginLeft": 10,
+        }
+      }
+    >
+      Vedtaksnummer
+    </Text>
+    <RCTSwitch
+      accessibilityRole="button"
+      onChange={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      onTintColor="#e53938"
+      style={
+        Array [
+          Object {
+            "height": 31,
+            "width": 51,
+          },
+          Object {
+            "flex": 0.2,
+          },
+        ]
+      }
+      thumbTintColor="white"
+      value={false}
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "borderBottomColor": "#a38e8c",
+        "borderBottomWidth": 0.8,
+        "marginBottom": 3,
+        "marginLeft": 15,
+        "marginRight": 15,
+        "marginTop": 3,
+      }
+    }
+  />
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "margin": 5,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "flex": 0.8,
+          "fontSize": 20,
+          "marginLeft": 10,
+        }
+      }
+    >
+      Skiftet dato
+    </Text>
+    <RCTSwitch
+      accessibilityRole="button"
+      onChange={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      onTintColor="#e53938"
+      style={
+        Array [
+          Object {
+            "height": 31,
+            "width": 51,
+          },
+          Object {
+            "flex": 0.2,
+          },
+        ]
+      }
+      thumbTintColor="white"
+      value={false}
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "borderBottomColor": "#a38e8c",
+        "borderBottomWidth": 0.8,
+        "marginBottom": 3,
+        "marginLeft": 15,
+        "marginRight": 15,
+        "marginTop": 3,
+      }
+    }
+  />
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "margin": 5,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "flex": 0.8,
+          "fontSize": 20,
+          "marginLeft": 10,
+        }
+      }
+    >
+      Arkivnummer
+    </Text>
+    <RCTSwitch
+      accessibilityRole="button"
+      onChange={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      onTintColor="#e53938"
+      style={
+        Array [
+          Object {
+            "height": 31,
+            "width": 51,
+          },
+          Object {
+            "flex": 0.2,
+          },
+        ]
+      }
+      thumbTintColor="white"
+      value={false}
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "borderBottomColor": "#a38e8c",
+        "borderBottomWidth": 0.8,
+        "marginBottom": 3,
+        "marginLeft": 15,
+        "marginRight": 15,
+        "marginTop": 3,
+      }
+    }
+  />
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "margin": 5,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "flex": 0.8,
+          "fontSize": 20,
+          "marginLeft": 10,
+        }
+      }
+    >
+      Eier
+    </Text>
+    <RCTSwitch
+      accessibilityRole="button"
+      onChange={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      onTintColor="#e53938"
+      style={
+        Array [
+          Object {
+            "height": 31,
+            "width": 51,
+          },
+          Object {
+            "flex": 0.2,
+          },
+        ]
+      }
+      thumbTintColor="white"
+      value={false}
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "borderBottomColor": "#a38e8c",
+        "borderBottomWidth": 0.8,
+        "marginBottom": 3,
+        "marginLeft": 15,
+        "marginRight": 15,
+        "marginTop": 3,
+      }
+    }
+  />
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "margin": 5,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "flex": 0.8,
+          "fontSize": 20,
+          "marginLeft": 10,
+        }
+      }
+    >
+      Vedlikeholdsansvarlig
+    </Text>
+    <RCTSwitch
+      accessibilityRole="button"
+      onChange={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      onTintColor="#e53938"
+      style={
+        Array [
+          Object {
+            "height": 31,
+            "width": 51,
+          },
+          Object {
+            "flex": 0.2,
+          },
+        ]
+      }
+      thumbTintColor="white"
+      value={false}
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "borderBottomColor": "#a38e8c",
+        "borderBottomWidth": 0.8,
+        "marginBottom": 3,
+        "marginLeft": 15,
+        "marginRight": 15,
+        "marginTop": 3,
+      }
+    }
+  />
+</View>
+`;
