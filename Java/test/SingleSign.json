@@ -1,150 +1,152 @@
 {
+  "id": 85404247,
+  "href": "https://nvdbapiles-v3.atlas.vegvesen.no/vegobjekter/96/85404247/1",
   "metadata": {
-    "sist_modifisert": "2019-10-19T09:08:21",
-    "startdato": "2005-07-11",
     "type": {
-      "navn": "Skiltplate",
-      "id": 96
+      "id": 96,
+      "navn": "Skiltplate"
     },
-    "versjon": 1
+    "versjon": 1,
+    "startdato": "2005-07-11",
+    "sist_modifisert": "2019-10-19T09:08:21"
   },
   "egenskaper": [
     {
+      "id": 100096,
+      "navn": "PunktTilknytning",
+      "egenskapstype": "Stedfesting",
+      "datatype": "GeomPunkt",
       "stedfestingstype": "Punkt",
+      "veglenkesekvensid": 72810,
       "relativPosisjon": 0.76192474,
       "retning": "MED",
-      "datatype": "GeomPunkt",
-      "veglenkesekvensid": 72810,
-      "navn": "PunktTilknytning",
-      "id": 100096,
-      "kjørefelt": [],
-      "egenskapstype": "Stedfesting",
-      "sideposisjon": "V"
+      "sideposisjon": "V",
+      "kjørefelt": []
     },
     {
-      "datatype": "Liste",
-      "navn": "Assosierte Tilstand/skade FU, punkt",
-      "innhold": [
-        {
-          "datatype": "Assosiasjon",
-          "verdi": 85404246,
-          "navn": "Assosiert Tilstand/skade FU, punkt",
-          "id": 201127,
-          "egenskapstype": "Assosiasjon"
-        }
-      ],
       "id": 221127,
-      "egenskapstype": "Liste"
-    },
-    {
+      "navn": "Assosierte Tilstand/skade FU, punkt",
+      "egenskapstype": "Liste",
       "datatype": "Liste",
-      "navn": "Assosierte Tilstand/skade, skiltplate",
       "innhold": [
         {
+          "id": 201127,
+          "navn": "Assosiert Tilstand/skade FU, punkt",
+          "egenskapstype": "Assosiasjon",
           "datatype": "Assosiasjon",
-          "verdi": 85404245,
-          "navn": "Assosiert Tilstand/skade, skiltplate",
-          "id": 200472,
-          "egenskapstype": "Assosiasjon"
+          "verdi": 85404246
         }
-      ],
-      "id": 220472,
-      "egenskapstype": "Liste"
+      ]
     },
     {
+      "id": 220472,
+      "navn": "Assosierte Tilstand/skade, skiltplate",
+      "egenskapstype": "Liste",
+      "datatype": "Liste",
+      "innhold": [
+        {
+          "id": 200472,
+          "navn": "Assosiert Tilstand/skade, skiltplate",
+          "egenskapstype": "Assosiasjon",
+          "datatype": "Assosiasjon",
+          "verdi": 85404245
+        }
+      ]
+    },
+    {
+      "id": 4795,
+      "navn": "Geometri, punkt",
+      "egenskapstype": "Geometri",
       "datatype": "GeomPunkt",
       "verdi": "POINT (269069.11742641 7035130.15559049)",
       "kvalitet": {
         "målemetode": 82,
-        "nøyaktighetHøyde": 0,
         "nøyaktighet": 100,
-        "maksimaltAvvik": -1,
+        "synbarhet": 99,
         "målemetodeHøyde": -1,
-        "synbarhet": 99
+        "nøyaktighetHøyde": 0,
+        "maksimaltAvvik": -1
       },
-      "navn": "Geometri, punkt",
-      "medium_nvdb": 0,
-      "id": 4795,
       "medium": "T",
-      "egenskapstype": "Geometri",
-      "lengde": -1,
+      "medium_nvdb": 0,
+      "lengde": -1.0,
       "høydereferanse": 9999
     },
     {
+      "id": 1921,
+      "navn": "Folieklasse",
+      "egenskapstype": "Tekstenum",
       "datatype": "FlerverdiAttributt, Tekst",
       "verdi": "Klasse 1",
-      "enum_id": 2848,
-      "navn": "Folieklasse",
-      "id": 1921,
-      "egenskapstype": "Tekstenum"
+      "enum_id": 2848
     },
     {
-      "datatype": "Tall",
-      "verdi": 10,
-      "navn": "Plasseringskode",
       "id": 5128,
-      "egenskapstype": "Heltall"
+      "navn": "Plasseringskode",
+      "egenskapstype": "Heltall",
+      "datatype": "Tall",
+      "verdi": 10
     },
     {
+      "id": 1879,
+      "navn": "Belysning",
+      "egenskapstype": "Tekstenum",
       "datatype": "FlerverdiAttributt, Tekst",
       "verdi": "Ingen",
-      "enum_id": 3476,
-      "navn": "Belysning",
-      "id": 1879,
-      "egenskapstype": "Tekstenum"
+      "enum_id": 3476
     },
     {
+      "id": 5530,
+      "navn": "Skiltnummer",
+      "egenskapstype": "Tekstenum",
       "datatype": "FlerverdiAttributt, Tekst",
       "verdi": "206 - Forkjørsveg",
-      "enum_id": 7644,
-      "navn": "Skiltnummer",
-      "id": 5530,
-      "egenskapstype": "Tekstenum"
+      "enum_id": 7644
     },
     {
+      "id": 1892,
+      "navn": "Skiltform",
+      "egenskapstype": "Tekstenum",
       "datatype": "FlerverdiAttributt, Tekst",
       "verdi": "Plan",
-      "enum_id": 2853,
-      "navn": "Skiltform",
-      "id": 1892,
-      "egenskapstype": "Tekstenum"
+      "enum_id": 2853
     },
     {
+      "id": 1894,
+      "navn": "Ansiktsside, rettet mot",
+      "egenskapstype": "Tekstenum",
       "datatype": "FlerverdiAttributt, Tekst",
       "verdi": "Trafikk mot metreringsretning",
-      "enum_id": 2717,
-      "navn": "Ansiktsside, rettet mot",
-      "id": 1894,
-      "egenskapstype": "Tekstenum"
+      "enum_id": 2717
     },
     {
+      "id": 1970,
+      "navn": "Størrelse",
+      "egenskapstype": "Tekstenum",
       "datatype": "FlerverdiAttributt, Tekst",
       "verdi": "Middels",
-      "enum_id": 2626,
-      "navn": "Størrelse",
-      "id": 1970,
-      "egenskapstype": "Tekstenum"
+      "enum_id": 2626
     },
     {
-      "datatype": "Dato",
-      "verdi": "1900-01-01",
-      "navn": "Oppsettingsdato",
       "id": 2108,
-      "egenskapstype": "Dato"
+      "navn": "Oppsettingsdato",
+      "egenskapstype": "Dato",
+      "datatype": "Dato",
+      "verdi": "1900-01-01"
     },
     {
+      "id": 8828,
+      "navn": "Klappskilt",
+      "egenskapstype": "Tekstenum",
       "datatype": "FlerverdiAttributt, Tekst",
       "verdi": "Nei",
-      "enum_id": 11739,
-      "navn": "Klappskilt",
-      "id": 8828,
-      "egenskapstype": "Tekstenum"
+      "enum_id": 11739
     }
   ],
   "geometri": {
     "wkt": "POINT (269069.11742641 7035130.15559049)",
-    "egengeometri": true,
-    "srid": 5973
+    "srid": 5973,
+    "egengeometri": true
   },
   "lokasjon": {
     "kommuner": [
@@ -153,428 +155,121 @@
     "fylker": [
       50
     ],
-    "stedfestinger": [
-      {
-        "relativPosisjon": 0.76192474,
-        "retning": "MED",
-        "kortform": "0.76192474@72810",
-        "veglenkesekvensid": 72810,
-        "kjørefelt": [],
-        "type": "Punkt",
-        "sideposisjon": "V"
-      }
-    ],
     "kontraktsområder": [
       {
-        "navn": "1609 Trondheim ytre 2015-2020",
-        "id": 460144349
+        "id": 460144349,
+        "navn": "1609 Trondheim ytre 2015-2020"
       },
       {
-        "navn": "1631 Klett - Kroppan bru 2016-2020",
-        "id": 830632989
+        "id": 830632989,
+        "navn": "1631 Klett - Kroppan bru 2016-2020"
       },
       {
-        "navn": "Driftskontrakt riksveg Trøndelag sør 2020-2025",
-        "id": 920258479
+        "id": 920258479,
+        "navn": "Driftskontrakt riksveg Trøndelag sør 2020-2025"
       },
       {
-        "navn": "9401 Trondheim 2020-2025 (t.o.m. 31.08.2023)",
-        "id": 920259277
+        "id": 920259277,
+        "navn": "9401 Trondheim 2020-2025 (t.o.m. 31.08.2023)"
       },
       {
-        "navn": "9401 Trondheim 2020-2025 (f.o.m. 01.09.2023)",
-        "id": 1004758086
+        "id": 1004758086,
+        "navn": "9401 Trondheim 2020-2025 (f.o.m. 01.09.2023)"
       },
       {
-        "navn": "E9451 elektrokontrakt Trøndelag 2022-2027",
-        "id": 1007479425
+        "id": 1007479425,
+        "navn": "E9451 elektrokontrakt Trøndelag 2022-2027"
       }
     ],
-    "geometri": {
-      "wkt": "POINT Z(269080.924 7035128.103 136.829)",
-      "srid": 5973
-    },
     "riksvegruter": [
       {
-        "navn": "RUTE6A",
         "id": 137054102,
         "nummer": "6A",
+        "navn": "RUTE6A",
         "periode": "2010-2019"
       },
       {
-        "navn": "RUTE6A",
         "id": 495996831,
         "nummer": "6A",
+        "navn": "RUTE6A",
         "periode": "2014-2023 / 2018-2029"
       }
     ],
     "vegsystemreferanser": [
       {
-        "strekning": {
-          "trafikantgruppe": "K",
-          "retning": "MED",
-          "strekning": 75,
-          "meter": 38.918,
-          "delstrekning": 1,
-          "id": -1,
-          "versjon": -1,
-          "adskilte_løp": "Nei",
-          "arm": false
-        },
-        "kortform": "EV6 S75D1 m39",
         "vegsystem": {
-          "fase": "V",
-          "vegkategori": "E",
           "id": 1002318233,
           "versjon": 1,
+          "vegkategori": "E",
+          "fase": "V",
           "nummer": 6
-        }
+        },
+        "strekning": {
+          "id": -1,
+          "versjon": -1,
+          "strekning": 75,
+          "delstrekning": 1,
+          "arm": false,
+          "adskilte_løp": "Nei",
+          "trafikantgruppe": "K",
+          "meter": 38.918,
+          "retning": "MED"
+        },
+        "kortform": "EV6 S75D1 m39"
       }
-    ]
-  },
-  "vegsegmenter": [
-    {
-      "relativPosisjon": 0.76192474,
-      "kommune": 5001,
-      "vegsystemreferanse": {
-        "kortform": "EV6",
-        "vegsystem": {
-          "fase": "V",
-          "vegkategori": "E",
-          "id": 1002317836,
-          "versjon": 1,
-          "nummer": 6
-        }
-      },
-      "typeVeg_sosi": "kanalisertVeg",
-      "fylke": 50,
-      "startdato": "2005-07-11",
-      "veglenkesekvensid": 72810,
-      "typeVeg": "Kanalisert veg",
-      "geometri": {
-        "wkt": "POINT Z(269080.924 7035128.103 136.829)",
-        "srid": 5973
-      },
-      "veglenkeType": "HOVED",
-      "sluttdato": "2007-07-09",
-      "detaljnivå": "Vegtrase"
-    },
-    {
-      "relativPosisjon": 0.76192474,
-      "kommune": 5001,
-      "vegsystemreferanse": {
-        "kortform": "EV6",
-        "vegsystem": {
-          "fase": "V",
-          "vegkategori": "E",
-          "id": 1002317836,
-          "versjon": 1,
-          "nummer": 6
-        }
-      },
-      "typeVeg_sosi": "kanalisertVeg",
-      "fylke": 50,
-      "startdato": "2007-07-09",
-      "veglenkesekvensid": 72810,
-      "typeVeg": "Kanalisert veg",
-      "geometri": {
-        "wkt": "POINT Z(269080.924 7035128.103 136.829)",
-        "srid": 5973
-      },
-      "veglenkeType": "HOVED",
-      "sluttdato": "2014-05-01",
-      "detaljnivå": "Vegtrase"
-    },
-    {
-      "relativPosisjon": 0.76192474,
-      "kommune": 5001,
-      "vegsystemreferanse": {
-        "kortform": "EV6",
-        "vegsystem": {
-          "fase": "V",
-          "vegkategori": "E",
-          "id": 1002317836,
-          "versjon": 1,
-          "nummer": 6
-        }
-      },
-      "typeVeg_sosi": "kanalisertVeg",
-      "fylke": 50,
-      "startdato": "2014-05-01",
-      "veglenkesekvensid": 72810,
-      "typeVeg": "Kanalisert veg",
-      "geometri": {
-        "wkt": "POINT Z(269080.924 7035128.103 136.829)",
-        "srid": 5973
-      },
-      "veglenkeType": "HOVED",
-      "sluttdato": "2018-01-01",
-      "detaljnivå": "Vegtrase"
-    },
-    {
-      "relativPosisjon": 0.76192474,
-      "kommune": 5001,
-      "vegsystemreferanse": {
-        "kortform": "EV6",
-        "vegsystem": {
-          "fase": "V",
-          "vegkategori": "E",
-          "id": 1002318233,
-          "versjon": 1,
-          "nummer": 6
-        }
-      },
-      "typeVeg_sosi": "kanalisertVeg",
-      "fylke": 50,
-      "startdato": "2018-01-01",
-      "veglenkesekvensid": 72810,
-      "typeVeg": "Kanalisert veg",
-      "geometri": {
-        "wkt": "POINT Z(269080.924 7035128.103 136.829)",
-        "srid": 5973
-      },
-      "veglenkeType": "HOVED",
-      "sluttdato": "2018-11-05",
-      "detaljnivå": "Vegtrase"
-    },
-    {
-      "relativPosisjon": 0.76192474,
-      "kommune": 5001,
-      "vegsystemreferanse": {
-        "kortform": "EV6",
-        "vegsystem": {
-          "fase": "V",
-          "vegkategori": "E",
-          "id": 1002318233,
-          "versjon": 1,
-          "nummer": 6
-        }
-      },
-      "typeVeg_sosi": "kanalisertVeg",
-      "fylke": 50,
-      "startdato": "2018-11-05",
-      "veglenkesekvensid": 72810,
-      "typeVeg": "Kanalisert veg",
-      "geometri": {
-        "wkt": "POINT Z(269080.924 7035128.103 136.829)",
-        "srid": 5973
-      },
-      "veglenkeType": "HOVED",
-      "sluttdato": "2019-11-05",
-      "detaljnivå": "Vegtrase"
-    },
-    {
-      "relativPosisjon": 0.76192474,
-      "kommune": 5001,
-      "vegsystemreferanse": {
-        "kortform": "EV6",
-        "vegsystem": {
-          "fase": "V",
-          "vegkategori": "E",
-          "id": 1002318233,
-          "versjon": 1,
-          "nummer": 6
-        }
-      },
-      "typeVeg_sosi": "kanalisertVeg",
-      "fylke": 50,
-      "startdato": "2019-11-05",
-      "veglenkesekvensid": 72810,
-      "typeVeg": "Kanalisert veg",
-      "geometri": {
-        "wkt": "POINT Z(269080.924 7035128.103 136.829)",
-        "srid": 5973
-      },
-      "veglenkeType": "HOVED",
-      "sluttdato": "2019-11-07",
-      "detaljnivå": "Vegtrase"
-    },
-    {
-      "relativPosisjon": 0.76192474,
-      "kommune": 5001,
-      "vegsystemreferanse": {
-        "strekning": {
-          "trafikantgruppe": "K",
-          "retning": "MED",
-          "strekning": 75,
-          "meter": 38.918,
-          "delstrekning": 1,
-          "id": -1,
-          "versjon": -1,
-          "adskilte_løp": "Nei",
-          "arm": false
-        },
-        "kortform": "EV6 S75D1 m39",
-        "vegsystem": {
-          "fase": "V",
-          "vegkategori": "E",
-          "id": 1002318233,
-          "versjon": 1,
-          "nummer": 6
-        }
-      },
-      "typeVeg_sosi": "kanalisertVeg",
-      "fylke": 50,
-      "startdato": "2019-11-07",
-      "veglenkesekvensid": 72810,
-      "typeVeg": "Kanalisert veg",
-      "geometri": {
-        "wkt": "POINT Z(269080.924 7035128.103 136.829)",
-        "srid": 5973
-      },
-      "veglenkeType": "HOVED",
-      "sluttdato": "2019-11-26",
-      "detaljnivå": "Vegtrase"
-    },
-    {
-      "relativPosisjon": 0.76192474,
-      "kommune": 5001,
-      "vegsystemreferanse": {
-        "strekning": {
-          "trafikantgruppe": "K",
-          "retning": "MED",
-          "strekning": 75,
-          "meter": 38.918,
-          "delstrekning": 1,
-          "id": -1,
-          "versjon": -1,
-          "adskilte_løp": "Nei",
-          "arm": false
-        },
-        "kortform": "EV6 S75D1 m39",
-        "vegsystem": {
-          "fase": "V",
-          "vegkategori": "E",
-          "id": 1002318233,
-          "versjon": 1,
-          "nummer": 6
-        }
-      },
-      "typeVeg_sosi": "kanalisertVeg",
-      "fylke": 50,
-      "startdato": "2019-11-26",
-      "veglenkesekvensid": 72810,
-      "typeVeg": "Kanalisert veg",
-      "geometri": {
-        "wkt": "POINT Z(269080.924 7035128.103 136.829)",
-        "srid": 5973
-      },
-      "veglenkeType": "HOVED",
-      "sluttdato": "2020-03-04",
-      "detaljnivå": "Vegtrase"
-    },
-    {
-      "relativPosisjon": 0.76192474,
-      "kommune": 5001,
-      "vegsystemreferanse": {
-        "strekning": {
-          "trafikantgruppe": "K",
-          "retning": "MED",
-          "strekning": 75,
-          "meter": 38.918,
-          "delstrekning": 1,
-          "id": -1,
-          "versjon": -1,
-          "adskilte_løp": "Nei",
-          "arm": false
-        },
-        "kortform": "EV6 S75D1 m39",
-        "vegsystem": {
-          "fase": "V",
-          "vegkategori": "E",
-          "id": 1002318233,
-          "versjon": 1,
-          "nummer": 6
-        }
-      },
-      "typeVeg_sosi": "kanalisertVeg",
-      "fylke": 50,
-      "startdato": "2020-03-04",
-      "veglenkesekvensid": 72810,
-      "typeVeg": "Kanalisert veg",
-      "geometri": {
-        "wkt": "POINT Z(269080.924 7035128.103 136.829)",
-        "srid": 5973
-      },
-      "veglenkeType": "HOVED",
-      "sluttdato": "2020-03-25",
-      "detaljnivå": "Vegtrase"
-    },
-    {
-      "relativPosisjon": 0.76192474,
-      "kommune": 5001,
-      "vegsystemreferanse": {
-        "strekning": {
-          "trafikantgruppe": "K",
-          "retning": "MED",
-          "strekning": 75,
-          "meter": 38.918,
-          "delstrekning": 1,
-          "id": -1,
-          "versjon": -1,
-          "adskilte_løp": "Nei",
-          "arm": false
-        },
-        "kortform": "EV6 S75D1 m39",
-        "vegsystem": {
-          "fase": "V",
-          "vegkategori": "E",
-          "id": 1002318233,
-          "versjon": 1,
-          "nummer": 6
-        }
-      },
-      "typeVeg_sosi": "kanalisertVeg",
-      "fylke": 50,
-      "startdato": "2020-03-25",
-      "veglenkesekvensid": 72810,
-      "typeVeg": "Kanalisert veg",
-      "geometri": {
-        "wkt": "POINT Z(269080.924 7035128.103 136.829)",
-        "srid": 5973
-      },
-      "veglenkeType": "HOVED",
-      "detaljnivå": "Vegtrase"
+    ],
+    "stedfestinger": [
+      {
+        "type": "Punkt",
+        "veglenkesekvensid": 72810,
+        "relativPosisjon": 0.76192474,
+        "kortform": "0.76192474@72810",
+        "kjørefelt": [],
+        "sideposisjon": "V",
+        "retning": "MED"
+      }
+    ],
+    "geometri": {
+      "wkt": "POINT Z(269080.924 7035128.103 136.829)",
+      "srid": 5973
     }
-  ],
-  "id": 85404247,
-  "href": "https://nvdbapiles-v3.atlas.vegvesen.no/vegobjekter/96/85404247/1",
+  },
   "relasjoner": {
     "foreldre": [
       {
-        "vegobjekter": [
-          85404250
-        ],
         "listeid": 220004,
         "id": 200004,
         "type": {
-          "navn": "Skiltpunkt",
-          "id": 95
-        }
+          "id": 95,
+          "navn": "Skiltpunkt"
+        },
+        "vegobjekter": [
+          85404250
+        ]
       }
     ],
     "barn": [
       {
-        "vegobjekter": [
-          85404245
-        ],
         "listeid": 220472,
         "id": 200472,
         "type": {
-          "navn": "Tilstand/skade, skiltplate",
-          "id": 438
-        }
+          "id": 438,
+          "navn": "Tilstand/skade, skiltplate"
+        },
+        "vegobjekter": [
+          85404245
+        ]
       },
       {
-        "vegobjekter": [
-          85404246
-        ],
         "listeid": 221127,
         "id": 201127,
         "type": {
-          "navn": "Tilstand/skade FU, punkt",
-          "id": 762
-        }
+          "id": 762,
+          "navn": "Tilstand/skade FU, punkt"
+        },
+        "vegobjekter": [
+          85404246
+        ]
       }
     ]
   }

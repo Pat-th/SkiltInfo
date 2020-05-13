@@ -26,7 +26,7 @@ const Expandables = props => {
         }
         return (
             <Animatable.View
-                duration={400}
+                duration={3000}
                 style={[styles.header, isActive ? styles.headeractive : styles.inactive]}
                 transition="backgroundColor"
             >
@@ -39,7 +39,7 @@ const Expandables = props => {
     function renderContent(section, _, isActive) {
         return (
             <Animatable.View
-                duration={300}
+                duration={3000}
                 style={[styles.content, isActive ? styles.active : styles.inactive]}
                 transition="backgroundColor"
             >
