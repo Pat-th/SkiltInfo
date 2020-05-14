@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="no"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ServerTest.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCo Coverage Report</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">ServerTest.java</span></div><h1>ServerTest.java</h1><pre class="source lang-java linenums">import com.github.tomakehurst.wiremock.junit.WireMockRule;
+import org.junit.Rule;
+import org.junit.Test;
+
+
+import java.io.*;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.util.Map;
+import java.io.InputStreamReader;
+import java.io.BufferedReader;
+
+import org.json.*;
+
+import static org.junit.Assert.*;
+import static com.github.tomakehurst.wiremock.client.WireMock.*;
+
+public class ServerTest {
+    private final HttpClient httpClient = HttpClient.newBuilder()
+            .version(HttpClient.Version.HTTP_2)
+<span class="fc" id="L24">            .build();</span>
+<span class="fc" id="L25"></span>
+<span class="fc" id="L26">    @Rule</span>
+<span class="fc" id="L27">    public WireMockRule wireMockRule = new WireMockRule(8080);</span>
+<span class="fc" id="L28"></span>
+<span class="fc" id="L29"></span>
+<span class="fc" id="L30">    @Test</span>
+<span class="fc" id="L31">    public void testGetRequest() throws Exception {</span>
+        URI uri = new URI(&quot;http&quot;,&quot;&quot;, &quot;localhost&quot;,8080, &quot;/&quot;, &quot;lat=63.400854&amp;lon=10.395050&amp;id=7644&quot;, &quot;&quot;);
+<span class="fc" id="L33">        InputStream input = getClass().getResourceAsStream(&quot;SingleSign.json&quot;);</span>
+        InputStreamReader isReader = new InputStreamReader(input);
+        BufferedReader reader = new BufferedReader(isReader);
+        StringBuffer sb = new StringBuffer();
+        String str;
+        while((str = reader.readLine()) != null){
+<span class="fc" id="L39">            sb.append(str);</span>
+<span class="fc" id="L40">        }</span>
+<span class="fc" id="L41">        JSONObject obj = new JSONObject(sb.toString());</span>
+<span class="fc" id="L42">        String responseBody = obj.toString();</span>
+<span class="fc" id="L43"></span>
+
+<span class="fc bfc" id="L45" title="All 2 branches covered.">        stubFor(get(urlEqualTo(&quot;/?lat=63.400854&amp;lon=10.395050&amp;id=7644&quot;))</span>
+<span class="fc" id="L46">                .willReturn(aResponse()</span>
+                        .withStatus(200)
+<span class="fc" id="L48">                        .withHeader(&quot;Content-Type&quot;, &quot;application/json&quot;)</span>
+<span class="fc" id="L49">                        .withBody(responseBody)));</span>
+
+        HttpRequest request = HttpRequest.newBuilder()
+<span class="fc" id="L52">                .GET()</span>
+<span class="fc" id="L53">                .uri(uri)</span>
+<span class="fc" id="L54">                .setHeader(&quot;User-Agent&quot;, &quot;Skiltinfo&quot;)</span>
+<span class="fc" id="L55">                .build();</span>
+<span class="fc" id="L56"></span>
+        HttpResponse&lt;String&gt; response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+<span class="fc" id="L58">        assertEquals(response.statusCode(), 200);</span>
+<span class="fc" id="L59">        assertEquals(response.body(), responseBody);</span>
+<span class="fc" id="L60">    }</span>
+<span class="fc" id="L61"></span>
+<span class="fc" id="L62">    @Test</span>
+    public void testDecodeUrlComponent(){
+<span class="fc" id="L64">        String actual = Server.decodeUrlComponent(&quot;localhost:8080/?lat=63.400854&amp;lon=10.395050&amp;id=7644&quot;);</span>
+<span class="fc" id="L65">        String result = &quot;localhost:8080/?lat=63.400854&amp;lon=10.395050&amp;id=7644&quot;;</span>
+<span class="fc" id="L66"></span>
+<span class="fc" id="L67">        assertEquals(result, actual);</span>
+    }
+
+    @Test
+<span class="fc" id="L71">    public void testGetRequestParameters() throws URISyntaxException {</span>
+<span class="fc" id="L72">        URI uri = new URI(&quot;http&quot;,&quot;&quot;, &quot;localhost&quot;,8080, &quot;/&quot;, &quot;lat=63.400854&amp;lon=10.395050&amp;id=7644&quot;, &quot;&quot;);</span>
+        String actual = Server.getRequestParameters(uri).toString();
+<span class="fc" id="L74">        String result = &quot;{lon=10.395050, id=7644, lat=63.400854}&quot;;</span>
+<span class="fc" id="L75">        Map&lt;String, String&gt; requestParameters = Server.getRequestParameters(uri);</span>
+        String idActual = requestParameters.get(&quot;id&quot;);
+        String latActual = requestParameters.get(&quot;lat&quot;);
+        String lonActual = requestParameters.get(&quot;lon&quot;);
+<span class="fc" id="L79">        assertEquals(&quot;7644&quot;, idActual);</span>
+<span class="fc" id="L80">        assertEquals(&quot;63.400854&quot;, latActual);</span>
+<span class="fc" id="L81">        assertEquals(&quot;10.395050&quot;, lonActual);</span>
+<span class="fc" id="L82">        assertEquals(result, actual);</span>
+<span class="fc" id="L83">    }</span>
+<span class="fc" id="L84"></span>
+<span class="fc" id="L85"></span>
+<span class="fc" id="L86">}</span>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
