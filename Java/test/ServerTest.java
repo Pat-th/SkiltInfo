@@ -6,17 +6,14 @@ import org.junit.Test;
 import java.io.*;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URL;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.nio.charset.StandardCharsets;
 import java.util.Map;
 import java.io.InputStreamReader;
 import java.io.BufferedReader;
 
 import org.json.*;
-import org.skyscreamer.jsonassert.JSONAssert;
 
 import static org.junit.Assert.*;
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
@@ -25,10 +22,6 @@ public class ServerTest {
     private final HttpClient httpClient = HttpClient.newBuilder()
             .version(HttpClient.Version.HTTP_2)
             .build();
-    HttpRoadSignDao dao = new HttpRoadSignDao();
-    double lat = 63.365330;
-    double lon = 10.372574;
-    int sign_id = 7644;
 
     @Rule
     public WireMockRule wireMockRule = new WireMockRule(8080);
