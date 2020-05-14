@@ -38,7 +38,6 @@ public class Server {
     public static void main(final String... args) throws IOException {
         HttpRoadSignDao httpRoadSignDao = new HttpRoadSignDao();
         final HttpServer server = HttpServer.create(new InetSocketAddress(HOSTNAME, PORT), BACKLOG);
-        System.out.println("Server online");
         server.createContext("/", he -> {
             try {
                 final Headers headers = he.getResponseHeaders();

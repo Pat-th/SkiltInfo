@@ -85,7 +85,6 @@ class HttpRoadSignDao {
 
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
         list = handleResponse(response.body());
-        System.out.println(uri);
         return list;
     }
 }

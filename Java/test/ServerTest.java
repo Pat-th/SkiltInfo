@@ -83,7 +83,6 @@ public class ServerTest {
         String idActual = requestParameters.get("id");
         String latActual = requestParameters.get("lat");
         String lonActual = requestParameters.get("lon");
-        System.out.println(uri);
         assertEquals("7644", idActual);
         assertEquals("63.400854", latActual);
         assertEquals("10.395050", lonActual);
