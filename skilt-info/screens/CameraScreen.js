@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, ActivityIndicator, Alert, AsyncStorage, Button } from 'react-native';
+import React, { useState, useEffect} from 'react';
+import { StyleSheet, Text, View, TouchableOpacity, ActivityIndicator, Alert, AsyncStorage } from 'react-native';
 import { Camera } from 'expo-camera';
 import MapSignPicker from "../components/MapSignPicker";
 import Colors from "../Constants/Colors"
@@ -19,7 +19,12 @@ const CameraScreen = props => {
     const [numOfSigns, setNumOfSigns] = useState(null);
     const [hasFetched, setHasFetched] = useState(false);
     const [completeSignData, setCompleteSignData] = useState([]);
-    const URL = "http://280203fe.ngrok.io";
+    const URL = "http://33ef352c.ngrok.io";
+
+    const readFilters = require("../settings/filters.json");
+    const readEnkel = require("../settings/enkel.json");
+    const readAvansert = require("../settings/avansert.json");
+    const readFullstendig = require("../settings/fullstendig.json");
 
     let camera;
 
@@ -38,7 +43,47 @@ const CameraScreen = props => {
 
     useEffect(() => {
         console.log("Number of signs: " + numOfSigns); // This will be executed when `numOfSigns` state changes
-    }, [numOfSigns])
+    }, [numOfSigns]);
+
+    useEffect(()=> {
+        firstRun();
+    },[]);
+
+    const firstRun = async () => {
+        await AsyncStorage.getItem('filters', (err, res) => {
+            if (res == null){
+                AsyncStorage.setItem('filters', JSON.stringify(readFilters));
+            }});
+
+        await AsyncStorage.getItem('standard', (err, res) => {
+            if(res == null) {
+                AsyncStorage.setItem('standard', 'Enkel');
+            }});
+
+        await AsyncStorage.getItem('Enkel', (err, res) => {
+            if(res == null) {
+                AsyncStorage.setItem('Enkel', JSON.stringify(readEnkel));
+            }});
+
+        await AsyncStorage.getItem('Avansert', (err, res) => {
+            if(res == null) {
+                AsyncStorage.setItem('Avansert', JSON.stringify(readAvansert));
+            }});
+
+        await AsyncStorage.getItem('Fullstendig', (err, res) => {
+            if(res == null) {
+                AsyncStorage.setItem('Fullstendig', JSON.stringify(readFullstendig));
+            }});
+        await AsyncStorage.getItem('radius', (err, res) => {
+            if(res == null) {
+                AsyncStorage.setItem('radius', '500');
+            }});
+        await AsyncStorage.getItem('signType', (err, res) => {
+            if(res == null) {
+                AsyncStorage.setItem('signType', '7644')
+            }
+        })
+    };
 
 
       async function fetchSign(latitude, longitude){
@@ -66,7 +111,7 @@ const CameraScreen = props => {
             //setGetSignError(true); UNCOMMENT WHEN NVDB UP
             setIsLoading(false);
           }
-      };
+      }
 
       useEffect(() => {
         var completeData = [];
@@ -83,13 +128,13 @@ const CameraScreen = props => {
             var points = res1.split(" ");
             var east = points[0];
             var north = points[1];
-            var latlon = utmToLatLon(east, north)
+            var latlon = utmToLatLon(east, north);
             var currentSign = signsData[i];
             completeData.push({ coords: latlon, data: currentSign });
           }
           setCompleteSignData(completeData);
         }
-    }, [signsData])
+    }, [signsData]);
 
     const getPosSuccess = position => {
       const latitude = position.coords.latitude;
@@ -97,7 +142,7 @@ const CameraScreen = props => {
       setLongitude(position.coords.longitude);
       setLatitude(position.coords.latitude);
       fetchSign(latitude, longitude)
-      .then(data => setSignsData(data))
+      .then(data => setSignsData(data));
       if(!getSignError){
         setIsChooseMode(true);
         setGetSignError(false);
@@ -116,7 +161,7 @@ const CameraScreen = props => {
     };
 
     const getLatLong = () => {
-      setNavigation(props.navigation)
+      setNavigation(props.navigation);
       navigator.geolocation.getCurrentPosition(
         getPosSuccess, getPosError, options
       )
@@ -128,14 +173,14 @@ const CameraScreen = props => {
 
     async function takePicture(){
       if (camera) {
-        const options = { quality: 0.5 }
+        const options = { quality: 0.5 };
         let photo = await camera.takePictureAsync(options);
         setPicture(photo);
       }
       else{
         console.log("no camera");
       }
-    };
+    }
 
     if (hasPermission === null) {
       return(
@@ -148,7 +193,7 @@ const CameraScreen = props => {
       return <Text>Har ikke tilgang til kamera</Text>;
     }
 
-    const CameraView = props => {
+    const CameraView = () => {
             if (isLoading) {
                 return (
                     <View style={styles.container}>

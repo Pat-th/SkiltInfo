@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {AsyncStorage, Button, FlatList, Image, StyleSheet, Switch, Text, TouchableOpacity, View, Alert, TextInput, Picker} from 'react-native';
+import {AsyncStorage, FlatList, Image, StyleSheet, Text, TouchableOpacity, View, Alert, TextInput, Picker} from 'react-native';
 import Collapsed from "../components/Collapsed";
 import SettingsFilters from "../components/SettingsFilters";
 import Colors  from "../Constants/Colors"
@@ -8,15 +8,10 @@ import Colors  from "../Constants/Colors"
 const SettingsScreen = props => {
     let filters = ['hei', 'ho'];
     const [data, setData] = useState([]);
-    const [dark, setDark] = useState(false);
     const [selected, setSelected] = useState('Enkel');
-    const [radius, setRadius] = useState('500');
+    const [radius, setRadius] = useState('50');
     const [selectedSign, setSelectedSign] = useState("7644");
 
-    const readFilters = require("../settings/filters.json");
-    const readEnkel = require("../settings/enkel.json");
-    const readAvansert = require("../settings/avansert.json");
-    const readFullstendig = require("../settings/fullstendig.json");
 
     useEffect(() => {
         getData();
@@ -35,7 +30,6 @@ const SettingsScreen = props => {
 
     const getData = async () => {
         filters = [];
-        await firstRun();
         let getFilters = await AsyncStorage.getItem('filters');
         let result = await JSON.parse(getFilters);
         if(result.filters.length > 3) {
@@ -50,42 +44,7 @@ const SettingsScreen = props => {
         setData(filters);
     };
 
-    const firstRun = async () => {
-        await AsyncStorage.getItem('filters', (err, res) => {
-            if (res == null){
-                AsyncStorage.setItem('filters', JSON.stringify(readFilters));
-            }});
 
-        await AsyncStorage.getItem('standard', (err, res) => {
-            if(res == null) {
-                AsyncStorage.setItem('standard', 'Enkel');
-        }});
-
-        await AsyncStorage.getItem('Enkel', (err, res) => {
-            if(res == null) {
-                AsyncStorage.setItem('Enkel', JSON.stringify(readEnkel));
-            }});
-
-        await AsyncStorage.getItem('Avansert', (err, res) => {
-            if(res == null) {
-                AsyncStorage.setItem('Avansert', JSON.stringify(readAvansert));
-            }});
-
-        await AsyncStorage.getItem('Fullstendig', (err, res) => {
-            if(res == null) {
-                AsyncStorage.setItem('Fullstendig', JSON.stringify(readFullstendig));
-            }});
-        await AsyncStorage.getItem('radius', (err, res) => {
-            if(res == null) {
-                AsyncStorage.setItem('radius', radius);
-            }});
-        await AsyncStorage.getItem('signType', (err, res) => {
-            if(res == null) {
-                AsyncStorage.setItem('signType', selectedSign)
-            }
-        })
-
-    };
 
     const setFilter = async filter => {
         await AsyncStorage.setItem('standard', filter);
