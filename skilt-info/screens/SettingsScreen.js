@@ -9,7 +9,7 @@ const SettingsScreen = props => {
     let filters = ['hei', 'ho'];
     const [data, setData] = useState([]);
     const [selected, setSelected] = useState('Enkel');
-    const [radius, setRadius] = useState('50');
+    const [radius, setRadius] = useState('500');
     const [selectedSign, setSelectedSign] = useState("7644");
 
 
